@@ -1,0 +1,30 @@
+//social icons list
+.nb-social-icons {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    ::after {
+        @include clearfix();
+    }
+    li {
+        float: left;
+        a {
+            &.social-link {
+                padding: 0 10px;
+                color: $nb-color-creme;
+            }
+        }
+
+        &.social-item {
+
+        }
+        
+        &.form-item {
+            padding: 0 15px;
+        }
+
+
+    }
+
+
+}

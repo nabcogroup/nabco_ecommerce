@@ -1,0 +1,26 @@
+body {
+    font-size: 100%;
+    font-family: 'Open Sans', Courier, monospace;
+    font-size: calc(12px + 0.3vw);
+}
+
+
+p {
+    line-height: 1.7em;
+    text-align: justify;
+    color: $nb-color-brown;
+    font-size: calc(12px + 0.3vw);
+}
+
+
+address {
+    abbr {
+        display:block;
+        padding:0;
+        margin: 0;
+        font-size: calc(10px + 0.2vw);
+    }
+}
+
+
+

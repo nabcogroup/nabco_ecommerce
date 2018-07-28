@@ -1,0 +1,98 @@
+
+//card mod
+.card-nab-product-type {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    .nb-card-wrapper {
+        position:relative;
+        height: 300px;
+        &:hover {
+            cursor: pointer;
+            .card-top-img {
+                @include the-transform(scale(1.1));
+            }
+        }
+    }
+
+    .card-top-img {
+        position: absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height: 100%;
+        @include transition(all .5s ease-in-out);
+    }
+
+    .nb-card-body {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.35);
+        top:0;
+        left:0;
+    }
+}
+
+.card-footer-wrapper {
+    background: transparent;
+    border: none;
+
+    .card-header {
+        background: transparent;
+        margin-bottom: 15px;
+        font-weight: 700;
+        padding: 0 0 0 15px;
+        border: none;
+
+        position:relative;
+        &::before {
+            display: inline-block;
+            font-weight: 900;
+            content: '';
+            width: 3px;
+            height: 100%;
+            background: $nb-color-red;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+    }
+
+    ul.menu {
+        margin:0;
+        padding:0;
+        list-style: none;
+        li {
+            a {
+                display: block;
+                padding: $nb-padding-base-vertical;
+                text-decoration: none;
+                border-bottom: 1px solid rgba(0,0,0,0.15);
+                color: $nb-color-brown;
+                padding-left: 25px;
+            }
+            position: relative;
+            &::before {
+                display: inline-block;
+                content: '»';
+                position: absolute;
+                top: 6px;
+                left: 0;
+                color: $nb-color-brown;
+    
+            }
+        }
+    }    
+}
+
+.card-hallo {
+    width:100%;
+    height: 650px;
+    background: transparent;
+    .card-group-header {
+        text-align: center;
+    }
+
+}

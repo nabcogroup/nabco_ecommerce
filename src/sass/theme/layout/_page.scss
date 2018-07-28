@@ -1,0 +1,38 @@
+.main-wrapper {
+    height: 100%;
+}
+
+//page 
+.top-page-header {
+    padding: 15px 0 0 0;
+    width:100%;
+    background: #f5f5f5;
+    text-align: center;
+    .page-title {
+        color: $nb-color-creme;
+        position: relative;
+        width: auto;
+        display: inline-block;
+        padding: 15px 0;
+        &::after,&::before {
+            top: 50%;
+            width: 30px;
+            position: absolute;
+            background-color: $nb-color-brown;
+            height: 2px;
+            display: block;
+            content: "";
+        }
+        &:before {
+            right: -30px;
+        }
+        &:after {
+            left: -30px;
+        }
+    }
+}
+
+.page-wrapper {
+    min-height: 350px;
+}
+

@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i');
+
+
+$nb-bgnav: #fff;
+$nb-color: #b7924e;
+$nb-bg-color: #f5f5f5;
+
+//gray group
+$nb-gray-darker:  lighten(#000, 13.5%); // #222
+$nb-gray-dark:    lighten(#000, 20%);   // #333
+$nb-gray:         lighten(#000, 33.5%); // #555
+$nb-gray-light:   lighten(#000, 46.7%); // #777
+$nb-gray-lighter: lighten(#000, 93.5%); // #eee
+
+
+//color
+/*theme color*/
+$nb-color-red: #60212b;
+$nb-color-light: #fefefe;
+$nb-color-violet: #293845;
+$nb-color-blue: #4f6373;
+$nb-color-brown: #8f8164;
+$nb-color-creme: #b7924e;
+$nb-color-dark: #3d3d3d;
+$nb-color-footer: #f8f9fa;
+
+//custom padding
+
+/*padding base*/
+$nb-padding-base-vertical:          6px;
+$nb-padding-base-horizontal:        12px;
+
+$nb-padding-large-vertical:         10px;
+$nb-padding-large-horizontal:       16px;
+
+$nb-padding-small-vertical:         5px;
+$nb-padding-small-horizontal:       10px;
+
+$nb-padding-xs-vertical:            1px;
+$nb-padding-xs-horizontal:          5px;
+
+$nb-padding-default:                30px;
+$nb-padding-header:                 15px;
+
+$nb-line-height-large:              1.33;
+$nb-line-height-small:              1.5;
+
+$nb-border-radius-base:             4px;
+$nb-border-radius-large:            6px;
+$nb-border-radius-small:            3px;
+
+$nb-component-active-color:         #fff;
+$nb-component-active-bg:            $nb-color-creme;
+
+$nb-caret-width-base:               4px;
+$nb-caret-width-large:              5px;
+
+
+//social color
+$fb-color: #3B5998;
+$twitter-color: #1DA1F2;
+$instagram-color: #262626;
+$youtube-color: #DB4437;
+
+
+@mixin the-transform($origin) {
+    transform: $origin;
+    -webkit-transform: $origin;
+    -moz-transform: $origin;
+    
+}
