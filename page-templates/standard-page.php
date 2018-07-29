@@ -15,6 +15,16 @@ get_header();
 $under_con = get_theme_mod( 'nb_underconstruction', '' )
 ?>
 
+ <?php  if(have_posts()) : the_post(); ?>
+    <div class="top-page-header">
+        <?php the_title('<h1 class="page-title">','</h1>') ?>
+        <?php get_template_part( 'template-parts/menu/menu', 'main' ) ?>
+    </div>
+    
+<?php 
+    rewind_posts();
+    endif;
+?>
 
 <?php if($under_con != 'development') : ?>
 <article class="container page-wrapper">

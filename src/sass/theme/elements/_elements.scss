@@ -2,6 +2,7 @@ body {
     font-size: 100%;
     font-family: 'Open Sans', Courier, monospace;
     font-size: calc(12px + 0.3vw);
+    background: #f5f5f5;
 }
 
 
@@ -10,6 +11,11 @@ p {
     text-align: justify;
     color: $nb-color-brown;
     font-size: calc(12px + 0.3vw);
+}
+
+a {
+    color: #030303;
+    
 }
 
 
@@ -22,5 +28,27 @@ address {
     }
 }
 
+.nb-form {
+    .input-group {
+        .form-control {
+            border: 1px solid $nb-color-brown;
+            @include box-shadow(transparent);
+            @include border-left-radius(0%);
+            
+            &::focus {
+                border: 1px solid $nb-color-brown;
+            }
+        }
+
+        .input-group-text {
+            @include border-radius(0%);
+            background-color: transparent;
+            border: 1px solid $nb-color-brown;
+            &:hover {
+                background-color: $nb-color-creme;
+            }
+        }
+    }
+}
 
 

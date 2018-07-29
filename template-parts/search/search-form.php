@@ -1,4 +1,5 @@
-<form class="form-horizontal" style="display:block;">
+
+<form class="form-horizontal nb-form" style="display:block;">
     <div class="col-md-12">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
@@ -8,4 +9,5 @@
         </div>
     </div>
 </form>
+
 

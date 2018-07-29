@@ -1,5 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i');
 
+// Use this file to overwrite the basic Bootstrap variables and add your own variables
+// To overwrite a Bootstrap variable you don´t have to touch the Bootstrap folder. 
+// Just copy a variable from src/sass/bootstrap4/_variables.scss, paste it here and edit the value.
+
+
+$enable-shadows: false;
+//$enable-transitions: false;
 
 $nb-bgnav: #fff;
 $nb-color: #b7924e;
@@ -54,6 +60,8 @@ $nb-component-active-bg:            $nb-color-creme;
 
 $nb-caret-width-base:               4px;
 $nb-caret-width-large:              5px;
+
+$standard-menu-size: calc(10px + 0.2vw);
 
 
 //social color

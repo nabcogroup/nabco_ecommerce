@@ -11,8 +11,6 @@ if(!is_active_sidebar( 'social-sidebar' ))  {
 
 ?>
 
-
-
 <div id="social-nav" class="social-wrapper">
     <ul class="nb-social-icons">
         <li class="social-item">
@@ -40,4 +38,4 @@ if(!is_active_sidebar( 'social-sidebar' ))  {
             </div>    
         </div>
     </div>
-</div>    
+</div>
