@@ -52,6 +52,8 @@ if ( defined( 'JETPACK__VERSION' ) ) {
  * Load WooCommerce compatibility file.
  */
 if ( class_exists( 'WooCommerce' ) ) {
+
+	require_once get_template_directory() . '/inc/woocommerce/class-wc-loop.php';
 	
 	require get_template_directory() . '/inc/woocommerce.php';
 

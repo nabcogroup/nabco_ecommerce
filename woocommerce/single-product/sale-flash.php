@@ -1,8 +1,8 @@
 <?php
 /**
- * Product loop sale flash
+ * Single Product Sale Flash
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/loop/sale-flash.php.
+ * This template can be overridden by copying it to yourtheme/woocommerce/single-product/sale-flash.php.
  *
  * HOWEVER, on occasion WooCommerce will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -24,9 +24,27 @@ global $post, $product;
 
 ?>
 <?php if ( $product->is_on_sale() ) : ?>
-<div class="sale-wrapper">
-	<?php echo apply_filters( 'woocommerce_sale_flash', '<span class="onsale">' . esc_html__( 'Sale!', 'woocommerce' ) . '</span>', $post, $product ); ?>
-</div>
+	
+	<?php $show_percentage = get_theme_mod('show_percentage',true); ?>
+	
+	<?php 
+		$html = "";
+		if($show_percentage) { 
+			$regularPrice = $product->get_regular_price(); 
+			$salePrice = $product->get_sale_price(); 
+			$percentage = ($regularPrice - $salePrice) / $regularPrice * 100; 
+
+			$html = round($percentage) . '% off';
+		} 
+	?>
+	
+
+	
+
+	<div class="sale-wrapper">
+		<?php echo apply_filters( 'woocommerce_sale_flash', '<span class="onsale">' .  $html.  esc_html__( 'Sale!', 'woocommerce' ) . '</span>', $post, $product ); ?>
+	</div>
+
 <?php endif;
 
 /* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */

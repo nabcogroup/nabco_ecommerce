@@ -5,11 +5,17 @@
  $woocommerce__color-success: #0f834d;
  $woocommerce__color-info: #3D9CD2;
 
-/*
- * Imports
- */
+ @import "assets/bootstrap4/functions";
+ @import "assets/bootstrap4/variables";
+ @import "assets/bootstrap4/mixins";
+ 
+
+/************************************
+* Imports
+*************************************/
 @import "theme/variable-site/_theme_variables";
-@import "woocommerce/mixins/mixins-master";
+
+@import "theme/mixins/mixins";
 
 /**
  * Shop tables

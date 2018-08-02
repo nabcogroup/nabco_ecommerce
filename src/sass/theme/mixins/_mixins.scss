@@ -4,3 +4,11 @@
     clear: both;
 }
 
+@mixin transform($tran...) {
+    -webkit-transform: $tran;
+    -moz-transform: $tran;
+    -ms-transform: $tran;
+    -o-transform: $tran;
+    transform: $tran;
+
+}

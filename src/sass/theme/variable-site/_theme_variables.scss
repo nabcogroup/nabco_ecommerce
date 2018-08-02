@@ -22,6 +22,7 @@ $nb-gray-lighter: lighten(#000, 93.5%); // #eee
 //color
 /*theme color*/
 $nb-color-red: #60212b;
+$nb-color-orange: #F7DC6F;
 $nb-color-light: #fefefe;
 $nb-color-violet: #293845;
 $nb-color-blue: #4f6373;
@@ -61,7 +62,12 @@ $nb-component-active-bg:            $nb-color-creme;
 $nb-caret-width-base:               4px;
 $nb-caret-width-large:              5px;
 
+
+$nb-p-color: #616A6B;  
+
 $standard-menu-size: calc(10px + 0.2vw);
+$standard-font-size: calc(12px + 0.2vw);
+$h1-size: calc(1.5em + 0.5vw);
 
 
 //social color

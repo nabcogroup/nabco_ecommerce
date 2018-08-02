@@ -23,6 +23,14 @@ $color__text-main: #000;
 	}
 }
 
+.star-rating-wrapper {
+	position: absolute;
+	width: 100%;
+	top:0;
+	left: 0;
+	z-index: 999;
+}
+
 /**
  * Star rating
  */
@@ -38,20 +46,22 @@ $color__text-main: #000;
 
 	&:before {
 		content: "\53\53\53\53\53";
-		opacity: .25;
+		opacity: 0.25;
 		float: left;
 		top: 0;
 		left: 0;
 		position: absolute;
+		color: #030303;
 	}
 
 	span {
 		overflow: hidden;
-		float: left;
 		top: 0;
 		left: 0;
 		position: absolute;
 		padding-top: 1.5em;
+
+		strong { display: none}
 	}
 
 	span:before {
@@ -59,7 +69,8 @@ $color__text-main: #000;
 		top: 0;
 		position: absolute;
 		left: 0;
-		color: $color__link;
+		color: $nb-color-orange;
+		
 	}
 }
 
@@ -102,7 +113,7 @@ p.stars {
 		a {
 			&:before {
 				content: "\53";
-				color: $color__link;
+				color: $nb-color-blue;
 				opacity: 1;
 			}
 		}
@@ -112,7 +123,7 @@ p.stars {
 		a.active {
 			&:before {
 				content: "\53";
-				color: $color__link;
+				color: $nb-color-blue;
 				opacity: 1;
 			}
 
@@ -126,7 +137,7 @@ p.stars {
 		a:not(.active) {
 			&:before {
 				content: "\53";
-				color: $color__link;
+				color: $nb-color-blue;
 				opacity: 1;
 			}
 		}
@@ -146,18 +157,32 @@ p.stars {
 		li {
 			margin: 0;
 			position: relative;
-			border: 1px solid $nb-gray-light;
+			border: 1px solid $nb-gray-lighter;
+			background: #fff;
+
 			a {
 				padding: 1em 10px;
 				display: block;
+				text-decoration: none;
+				text-transform: uppercase;
+				font-size: 12px;
+				transform: translate3d();
+				color: $nb-color-brown;
+			}
+
+			&.active {
+				border-bottom: 2px solid #fff;
+				box-shadow: 7px 2px 9px -6px rgba(204,202,204,1);
 			}
 		}
 	}
 
 	.woocommerce-Tabs-panel {
-		border: 1px solid $nb-gray-lighter;
+		//border: 1px solid $nb-gray-lighter;
 		padding: 10px;
 		background: #fff;
+		border-left: 1px solid $nb-gray-lighter;
+		box-shadow:  0px 12px 9px -10px rgba(204,202,204,1);
 		h2:first-of-type {
 			margin-bottom: 1em;
 		}

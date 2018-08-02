@@ -26,4 +26,9 @@ if ( get_option( 'woocommerce_enable_review_rating' ) === 'no' ) {
 	return;
 }
 
-echo wc_get_rating_html( $product->get_average_rating() );
+if(($average =  $product->get_average_rating())) {
+	echo '<div class="star-rating-wrapper"><div class="star-rating" title="'.sprintf(__( 'Rated %s out of 5', 'woocommerce' ), $average).'">'; 
+	echo '<span style="width:'.( ( $average / 5 ) * 100 ) . '%"><strong itemprop="ratingValue" class="rating">'.$average.'</strong> <strong>'.__( 'out of 5', 'woocommerce' ).'</strong></span></div></div>'; 
+}
+
+//echo wc_get_rating_html( $product->get_average_rating() );

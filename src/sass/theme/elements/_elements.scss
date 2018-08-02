@@ -1,7 +1,7 @@
 body {
     font-size: 100%;
     font-family: 'Open Sans', Courier, monospace;
-    font-size: calc(12px + 0.3vw);
+    font-size: $standard-font-size;
     background: #f5f5f5;
 }
 
@@ -9,15 +9,17 @@ body {
 p {
     line-height: 1.7em;
     text-align: justify;
-    color: $nb-color-brown;
-    font-size: calc(12px + 0.3vw);
+    color: $nb-p-color;
+    font-size: $standard-font-size;
 }
 
 a {
     color: #030303;
-    
 }
 
+h1 {
+    font-size: $h1-size;
+}
 
 address {
     abbr {

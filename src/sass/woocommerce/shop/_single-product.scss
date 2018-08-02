@@ -16,12 +16,23 @@
 	}
 }
 
+.summary {
+	.onsale {
+		display: block;
+		padding: 5px;
+		background: $nb-color-red;
+		color: #f5f5f5;
+		letter-spacing: 0.5em;
+	}
+}
+
 .woocommerce-content-single-product-wrapper {
 	.product_title {
 		color: $nb-color-brown;
 		padding: 5px 0;
 		border-bottom: 1px solid $nb-gray-lighter;
 		margin-bottom: 30px;
+		
 	}
 	input.qty {
 		resize: horizontal;

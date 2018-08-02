@@ -33,43 +33,49 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 
     do_action( 'woocommerce_before_shop_loop_item' );
 ?>
-<div class="card card-product-thumbnail">
-    <div class="card-product-thumbnail-wrapper">
-        <?php 
-            
-            /**
-             * Hook: woocommerce_before_shop_loop_item_title.
-             *
-             * @hooked woocommerce_show_product_loop_sale_flash - 10
-             * @hooked woocommerce_template_loop_product_thumbnail - 10
-             */
-            do_action( 'woocommerce_before_shop_loop_item_title' );
-        ?>
-    
-        <div class="card-body">
-            <div class="<?php wc_product_class(); ?>">
-                <?php
-                    
-                    /**
-                     * Hook: woocommerce_shop_loop_item_title.
-                     *
-                     * @hooked woocommerce_template_loop_product_title - 10
-                     */
-                    do_action( 'woocommerce_shop_loop_item_title' );
+<div class="col-sm-12 col-md-4 pb-3">
+    <div class="card card-product-thumbnail">
+        <div class="card-product-thumbnail-wrapper">
+            <?php 
+                
+                /**
+                 * Hook: woocommerce_before_shop_loop_item_title.
+                 *
+                 * @hooked woocommerce_show_product_loop_sale_flash - 10
+                 * @hooked woocommerce_template_loop_product_thumbnail - 10
+                 * 
+                 * added theme
+                 * @hooked: woocommerce_template_loop_rating - 11
+                 */
+                do_action( 'woocommerce_before_shop_loop_item_title' );
+            ?>
+        
+            <div class="card-body">
+                <div class="<?php wc_product_class(); ?>">
+                    <?php
+                        
+                        /**
+                         * Hook: woocommerce_shop_loop_item_title.
+                         *
+                         * @hooked woocommerce_template_loop_product_title - 10
+                         */
+                        do_action( 'woocommerce_shop_loop_item_title' );
 
-                    /**
-                     * Hook: woocommerce_after_shop_loop_item_title.
-                     *
-                     * @hooked woocommerce_template_loop_rating - 5
-                     * @hooked woocommerce_template_loop_price - 10
-                     */
-                    do_action( 'woocommerce_after_shop_loop_item_title' );
-                ?>
+                        /**
+                         * Hook: woocommerce_after_shop_loop_item_title.
+                         *
+                         * @unhooked woocommerce_template_loop_rating - 5 --> remove 
+                         * @hooked woocommerce_template_loop_price - 10
+                         * @hooked woocommerceSeperator - 11
+                         * @hooked wooCommerceViewMoreButton - 12
+                         */
+                        do_action( 'woocommerce_after_shop_loop_item_title' );
+                    ?>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 <?php 
     
     /**
