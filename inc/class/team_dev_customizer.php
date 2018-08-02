@@ -58,7 +58,7 @@ class TeamDevCustomizer {
         
     }
 
-    public function addCoreControl($name,$settings = [],$controls = [],$override = false) {
+    public function addCoreControl($name,$settings = array(),$controls = array(),$override = false) {
         
         $default_control_setting = [
             'label'         =>  '',
@@ -76,6 +76,21 @@ class TeamDevCustomizer {
         
         $this->wp_customize->add_setting( $name, $settings);
 
-        $this->wp_customize->add_control(new WP_Customize_Control($wp_customize,$name,$default_control_setting));
+        $this->wp_customize->add_control(new WP_Customize_Control($this->wp_customize,$name,$default_control_setting));
+    } 
+
+    public function addUploadControl($name,$settings = array(),$controls = array(),$override = false) {
+        
+        $default_control_setting = [
+            'label'         =>  isset($controls['label']) ? __($controls['label']) : '',
+            'description'   =>  isset($controls['description']) ? __($controls['description']) : '',
+            'section'       =>  $this->section_name,
+            'priority'      =>  isset($controls['priority']) ? $controls['priority'] : '',
+            'input_attrs'   =>  isset($controls['input_attrs']) ? $controls['input_attrs'] : [],
+        ];
+
+        $this->wp_customize->add_setting( $name, $settings);
+
+        $this->wp_customize->add_control(new WP_Customize_Upload_Control( $this->wp_customize,  $name, $default_control_setting));
     }
 }

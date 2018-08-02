@@ -7,15 +7,17 @@
  * @package nabcofurn_us
  */
 
+
+
 require_once get_template_directory() . '/inc/class/team_dev_customizer.php';
 
 require_once get_template_directory() . '/inc/class/class-wp-bootstrap-navwalker.php';
 
 require_once get_template_directory() . '/inc/class/post_widgets.php';
 
-require get_template_directory() . './inc/setup.php';
+require get_template_directory() . '/inc/setup.php';
 
-require get_template_directory() . './inc/widgets.php';
+require get_template_directory() . '/inc/widgets.php';
 
 require get_template_directory() . '/inc/enqueue.php';
 
@@ -50,5 +52,11 @@ if ( defined( 'JETPACK__VERSION' ) ) {
  * Load WooCommerce compatibility file.
  */
 if ( class_exists( 'WooCommerce' ) ) {
+	
 	require get_template_directory() . '/inc/woocommerce.php';
+
+	require get_template_directory() . '/inc/woocommerce/woocommerce-hook.php';
+
+
+	
 }

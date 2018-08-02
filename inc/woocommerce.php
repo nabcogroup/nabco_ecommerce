@@ -16,9 +16,13 @@
  * @return void
  */
 function nabco_furnitures_woocommerce_setup() {
+	
 	add_theme_support( 'woocommerce' );
+	
 	add_theme_support( 'wc-product-gallery-zoom' );
+	
 	add_theme_support( 'wc-product-gallery-lightbox' );
+	
 	add_theme_support( 'wc-product-gallery-slider' );
 }
 add_action( 'after_setup_theme', 'nabco_furnitures_woocommerce_setup' );
@@ -29,7 +33,8 @@ add_action( 'after_setup_theme', 'nabco_furnitures_woocommerce_setup' );
  * @return void
  */
 function nabco_furnitures_woocommerce_scripts() {
-	wp_enqueue_style( 'nabco-furnitures-woocommerce-style', get_template_directory_uri() . '/woocommerce.css' );
+	
+	wp_enqueue_style( 'nabco-furnitures-woocommerce-style', get_template_directory_uri() . '/dist/css/woocommerce.css' );
 
 	$font_path   = WC()->plugin_url() . '/assets/fonts/';
 	$inline_font = '@font-face {
@@ -45,6 +50,7 @@ function nabco_furnitures_woocommerce_scripts() {
 
 	wp_add_inline_style( 'nabco-furnitures-woocommerce-style', $inline_font );
 }
+
 add_action( 'wp_enqueue_scripts', 'nabco_furnitures_woocommerce_scripts' );
 
 /**
@@ -57,131 +63,8 @@ add_action( 'wp_enqueue_scripts', 'nabco_furnitures_woocommerce_scripts' );
  */
 add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 
-/**
- * Add 'woocommerce-active' class to the body tag.
- *
- * @param  array $classes CSS classes applied to the body tag.
- * @return array $classes modified to include 'woocommerce-active' class.
- */
-function nabco_furnitures_woocommerce_active_body_class( $classes ) {
-	$classes[] = 'woocommerce-active';
 
-	return $classes;
-}
-add_filter( 'body_class', 'nabco_furnitures_woocommerce_active_body_class' );
 
-/**
- * Products per page.
- *
- * @return integer number of products.
- */
-function nabco_furnitures_woocommerce_products_per_page() {
-	return 12;
-}
-add_filter( 'loop_shop_per_page', 'nabco_furnitures_woocommerce_products_per_page' );
-
-/**
- * Product gallery thumnbail columns.
- *
- * @return integer number of columns.
- */
-function nabco_furnitures_woocommerce_thumbnail_columns() {
-	return 4;
-}
-add_filter( 'woocommerce_product_thumbnails_columns', 'nabco_furnitures_woocommerce_thumbnail_columns' );
-
-/**
- * Default loop columns on product archives.
- *
- * @return integer products per row.
- */
-function nabco_furnitures_woocommerce_loop_columns() {
-	return 3;
-}
-add_filter( 'loop_shop_columns', 'nabco_furnitures_woocommerce_loop_columns' );
-
-/**
- * Related Products Args.
- *
- * @param array $args related products args.
- * @return array $args related products args.
- */
-function nabco_furnitures_woocommerce_related_products_args( $args ) {
-	$defaults = array(
-		'posts_per_page' => 3,
-		'columns'        => 3,
-	);
-
-	$args = wp_parse_args( $defaults, $args );
-
-	return $args;
-}
-add_filter( 'woocommerce_output_related_products_args', 'nabco_furnitures_woocommerce_related_products_args' );
-
-if ( ! function_exists( 'nabco_furnitures_woocommerce_product_columns_wrapper' ) ) {
-	/**
-	 * Product columns wrapper.
-	 *
-	 * @return  void
-	 */
-	function nabco_furnitures_woocommerce_product_columns_wrapper() {
-		$columns = nabco_furnitures_woocommerce_loop_columns();
-		echo '<div class="columns-' . absint( $columns ) . '">';
-	}
-}
-add_action( 'woocommerce_before_shop_loop', 'nabco_furnitures_woocommerce_product_columns_wrapper', 40 );
-
-if ( ! function_exists( 'nabco_furnitures_woocommerce_product_columns_wrapper_close' ) ) {
-	/**
-	 * Product columns wrapper close.
-	 *
-	 * @return  void
-	 */
-	function nabco_furnitures_woocommerce_product_columns_wrapper_close() {
-		echo '</div>';
-	}
-}
-add_action( 'woocommerce_after_shop_loop', 'nabco_furnitures_woocommerce_product_columns_wrapper_close', 40 );
-
-/**
- * Remove default WooCommerce wrapper.
- */
-remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
-remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
-
-if ( ! function_exists( 'nabco_furnitures_woocommerce_wrapper_before' ) ) {
-	/**
-	 * Before Content.
-	 *
-	 * Wraps all WooCommerce content in wrappers which match the theme markup.
-	 *
-	 * @return void
-	 */
-	function nabco_furnitures_woocommerce_wrapper_before() {
-		?>
-		<div id="primary" class="content-area">
-			<main id="main" class="site-main" role="main">
-			<?php
-	}
-}
-add_action( 'woocommerce_before_main_content', 'nabco_furnitures_woocommerce_wrapper_before' );
-
-if ( ! function_exists( 'nabco_furnitures_woocommerce_wrapper_after' ) ) {
-	/**
-	 * After Content.
-	 *
-	 * Closes the wrapping divs.
-	 *
-	 * @return void
-	 */
-	function nabco_furnitures_woocommerce_wrapper_after() {
-			?>
-			</main><!-- #main -->
-		</div><!-- #primary -->
-		<?php
-	}
-}
-add_action( 'woocommerce_after_main_content', 'nabco_furnitures_woocommerce_wrapper_after' );
 
 /**
  * Sample implementation of the WooCommerce Mini Cart.

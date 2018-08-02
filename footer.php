@@ -21,7 +21,10 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-sm-12">
-          <p class="align-middle p-0 m-0">&copy; All Rights Reserved 2018</p>
+          <small class="nb-text-white align-middle p-0 m-0">&copy; All Rights Reserved 2018</small>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <?php get_template_part( 'template-parts/content', 'socialicon' ) ?>
         </div>
       </div>
     </div>

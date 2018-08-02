@@ -1,0 +1,42 @@
+/**
+ * WooCommerce color variables
+ */
+ $woocommerce__color-error: #e2401c;
+ $woocommerce__color-success: #0f834d;
+ $woocommerce__color-info: #3D9CD2;
+
+/*
+ * Imports
+ */
+@import "theme/variable-site/_theme_variables";
+@import "woocommerce/mixins/mixins-master";
+
+/**
+ * Shop tables
+ */
+@import "woocommerce/shop/tables";
+
+/**
+ * Products
+ */
+@import "woocommerce/shop/products";
+
+/**
+ * Single product
+ */
+@import "woocommerce/shop/single-product";
+
+/**
+ * Checkout
+ */
+@import "woocommerce/shop/checkout";
+
+/**
+ * General WooCommerce components
+ */
+@import "woocommerce/shop/components";
+
+/**
+ * WooCommerce widgets
+ */
+@import "woocommerce/shop/widgets";

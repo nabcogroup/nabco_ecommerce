@@ -84,3 +84,12 @@
 	</header>
 	
 	<main class="main-wrapper">
+
+    <!-- top header -->
+    <?php if(!is_front_page()) : ?> 
+        <div class="header-menu-wrapper">
+            <?php get_template_part( 'template-parts/menu/menu', 'main' ) ?>
+        </div>
+    <?php else : ?>
+        
+    <?php endif; ?>

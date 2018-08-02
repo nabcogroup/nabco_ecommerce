@@ -79,6 +79,16 @@ function nabco_furnitures_theme_customize_register($wp_customize) {
 	);
 
 
+	$argUploadSetting = array(
+		'default'   =>  '',
+		'type'		=>	'theme_mod'
+	);
+	
+	$argUploadControl = array('label' => 'Upload Video');
+
+	$nabCustomizer->addUploadControl('nb_upload_video',$argUploadSetting,$argUploadControl);
+
+
 }
 
 add_action( 'customize_register', 'nabco_furnitures_theme_customize_register');

@@ -1,6 +1,40 @@
 //section
 .nb-section {
-    position: relative;
+    
+    
+    .slider-section {
+        background: url('bg.jpg') left top no-repeat;
+        background-size: cover;
+        height: 400px;
+        overflow: hidden;
+        position: relative;
+        .video-wrapper {
+            position: absolute;
+            top:-120px;
+            @include media-breakpoint-between(sm,md) {
+                top:0px;    
+
+            }
+            
+            
+            left: 0;
+            width: 100%;
+            height: 850px;
+            margin:0;
+            padding:0;
+        }
+
+        .ns-video-box-rel {
+            width:100%;
+            min-height: 759px;
+            background: rgba($color: #000000, $alpha: 0.30);
+            position: absolute;
+            top:0;
+            left: 0;
+            z-index: 1001;
+        }
+
+    }
     
     .video-section {
         right: 0;

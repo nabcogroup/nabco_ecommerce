@@ -83,13 +83,7 @@ if ( ! class_exists( 'WP_Bootstrap_Navwalker' ) ) {
 			
 		}
 
-		public function end_lvl(&$output, $depth = 0, $args = array() ) {
-
-
-
-			$output .= "<div></div></ul>";
-		}
-
+	
 		/**
 		 * Starts the element output.
 		 *
@@ -247,11 +241,7 @@ if ( ! class_exists( 'WP_Bootstrap_Navwalker' ) ) {
 			}
 
 
-			/** 
-			* Take the image and display for category 
-			*/
-			
-			$thumbnail_html = self::add_thumbnail($item->ID);
+		
 
 
 			/**
@@ -575,9 +565,5 @@ if ( ! class_exists( 'WP_Bootstrap_Navwalker' ) ) {
 		}
 
 
-		private function add_thumbnail($item) {
-			
-			var_dump($item_id);
-		}
 	}
 }

@@ -1,9 +1,9 @@
 <?php  
 
 /**
- * Template Name: Nabco Standard Page
+ * Template Name: Nabco Sub Page
  *
- * Template for displaying a standard page.
+ * Template for displaying a sub page if page consist of subpage.
  *
  * @package understrap
  */
@@ -23,6 +23,15 @@ $under_con = get_theme_mod( 'nb_underconstruction', '' );
 
     <?php if(have_posts()) : ?>
         <?php while(have_posts()) : the_post(); ?>
+            
+            <nav class="nb-page-nav">
+                <ul>
+                    <li><a href="#"> About Us</a></li>
+                    <li><a href="#">Our Commitment</a></li>
+                </ul>
+            </nav>
+
+            <?php the_title('<h1>','</h1>') ?>
 
             <div class="body-content">
                 <?php the_content(); ?>

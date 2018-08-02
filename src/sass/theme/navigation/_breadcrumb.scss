@@ -1,0 +1,12 @@
+
+//override woocommerce bread crumbs
+.woocommerce-breadcrumb {
+    
+    padding: 15px 0;
+    color: $nb-gray-dark;
+    font-size: calc(10px + 0.2vw);
+    a {
+        color: $nb-color-creme;
+        text-decoration: none;
+    }
+}
