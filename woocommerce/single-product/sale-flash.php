@@ -25,25 +25,10 @@ global $post, $product;
 ?>
 <?php if ( $product->is_on_sale() ) : ?>
 	
-	<?php $show_percentage = get_theme_mod('show_percentage',true); ?>
+	<?php $html = nabco_furniture_sale_percentage($product); ?>
 	
-	<?php 
-		$html = "";
-		if($show_percentage) { 
-			$regularPrice = $product->get_regular_price(); 
-			$salePrice = $product->get_sale_price(); 
-			$percentage = ($regularPrice - $salePrice) / $regularPrice * 100; 
-
-			$html = round($percentage) . '% off';
-		} 
-	?>
+	<?php echo apply_filters( 'woocommerce_sale_flash', '<span class="onsale ml-3">' .  $html.  esc_html__( ' Sale! ', 'woocommerce' ) . '</span>', $post, $product ); ?>
 	
-
-	
-
-	<div class="sale-wrapper">
-		<?php echo apply_filters( 'woocommerce_sale_flash', '<span class="onsale">' .  $html.  esc_html__( 'Sale!', 'woocommerce' ) . '</span>', $post, $product ); ?>
-	</div>
 
 <?php endif;
 

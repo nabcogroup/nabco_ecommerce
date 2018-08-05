@@ -23,4 +23,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 
 ?>
-<p class="price my-2"><span class="mr-2">Price:</span><?php echo $product->get_price_html(); ?></p>
+<p class="price my-2">
+	<strong class="mr-2">Price:</strong><?php echo $product->get_price_html(); ?>
+	<?php 
+		 /**************************************************
+		* Hook: nb_woocommerce_after_sales_price.
+		*
+		* @hooked woocommerce_show_product_sale_flash - 10
+		* 
+		**************************************************/
+		do_action('nb_woocommerce_after_sales_price') 
+	?>
+</p>

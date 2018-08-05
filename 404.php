@@ -11,11 +11,6 @@ get_header();
 
 ?>
 
-<div class="top-page-header">
-	<h1 class="page-title">Page Not Found</h1>
-	<?php get_template_part( 'template-parts/menu/menu', 'main' ) ?>
-</div>
-
 <section class="error-404 not-found">
 	<header class="page-header my-3">
 		<h1 class="page-title text-center"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'nabco-furnitures' ); ?></h1>

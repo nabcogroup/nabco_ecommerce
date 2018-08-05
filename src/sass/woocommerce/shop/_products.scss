@@ -63,6 +63,12 @@
     margin-bottom: 15px;
 }
 
+.woocommerce-variation-add-to-cart {
+    margin: 5px 0;
+    padding: 10px;
+    border-top: 1px solid $nb-gray-lighter; 
+    border-bottom: 1px solid $nb-gray-lighter; 
+}
 
 
 .card-product-thumbnail {
@@ -144,8 +150,6 @@
             padding: 5px 0;
             font-weight: 700;
         }
-
-        
         
     }
     

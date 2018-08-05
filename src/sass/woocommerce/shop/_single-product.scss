@@ -16,17 +16,16 @@
 	}
 }
 
-.summary {
+.woocommerce-content-single-product-wrapper {
 	.onsale {
-		display: block;
 		padding: 5px;
 		background: $nb-color-red;
 		color: #f5f5f5;
-		letter-spacing: 0.5em;
-	}
-}
+		display: inline-block;
+		border-radius: 5px;
+		font-size: 12px;
 
-.woocommerce-content-single-product-wrapper {
+	}
 	.product_title {
 		color: $nb-color-brown;
 		padding: 5px 0;

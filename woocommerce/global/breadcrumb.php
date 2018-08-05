@@ -27,7 +27,7 @@ if ( ! empty( $breadcrumb ) ) {
 
 	echo $wrap_before;
 
-	echo '<i class="fas fa-home pr-1"></i>';
+	echo '<i class="fa fa-home pr-1"></i>';
 
 	foreach ( $breadcrumb as $key => $crumb ) {
 

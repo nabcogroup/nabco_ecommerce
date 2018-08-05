@@ -25,10 +25,7 @@ $under_con = get_theme_mod( 'nb_underconstruction', '' );
         <?php while(have_posts()) : the_post(); ?>
             
             <nav class="nb-page-nav">
-                <ul>
-                    <li><a href="#"> About Us</a></li>
-                    <li><a href="#">Our Commitment</a></li>
-                </ul>
+                <?php echo nabco_furniture_list_child_pages(); ?>
             </nav>
 
             <?php the_title('<h1>','</h1>') ?>

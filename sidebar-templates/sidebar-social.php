@@ -14,16 +14,16 @@ if(!is_active_sidebar( 'social-sidebar' ))  {
 <div id="social-nav" class="social-wrapper">
     <ul class="nb-social-icons">
         <li class="social-item">
-            <a  href="#" class="social-link js-icon" data-title="Facebook" data-container="facebook-container"><span class="fab fa-facebook fa-2x"></span></a>
+            <a  href="#" class="social-link js-icon" data-title="Facebook" data-container="facebook-container"><span class="fa fa-facebook-official fa-2x"></span></a>
         </li>
         <li class="social-item">
-            <a href="#" class="social-link js-icon" data-title="Twitter" data-container="twitter-container"><span class="fab fa-twitter-square fa-2x"></span></a>
+            <a href="#" class="social-link js-icon" data-title="Twitter" data-container="twitter-container"><span class="fa fa-twitter-square fa-2x"></span></a>
         </li>
         <li class="social-item">
-            <a href="#" class="social-link js-icon" data-title="Instagram" data-container="instagram-container"><span class="fab fa-instagram fa-2x"></span></a>
+            <a href="#" class="social-link js-icon" data-title="Instagram" data-container="instagram-container"><span class="fa fa-instagram fa-2x"></span></a>
         </li>
         <li class="social-item">
-            <a href="#" class="social-link js-icon" data-title="Youtube" data-container="youtube-container"><span class="fab fa-youtube fa-2x"></span></a>
+            <a href="#" class="social-link js-icon" data-title="Youtube" data-container="youtube-container"><span class="fa fa-youtube fa-2x"></span></a>
         </li>
     </ul>
     

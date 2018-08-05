@@ -1,6 +1,8 @@
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i');
 
+@import "./assets/fontawesome/font-awesome"; // <------- Font Awesome Icon font
+
 @import './theme/bootstrap4/bootstrap4';
 
 @import './theme/variable-site/theme_variables';
@@ -21,6 +23,8 @@
 @import "./theme/layout/footer";
 @import "./theme/layout/page";
 @import "./theme/layout/section";
+
+
 
 
 

@@ -27,9 +27,9 @@ if ( $max_value && $min_value === $max_value ) {
 	/* translators: %s: Quantity. */
 	$labelledby = ! empty( $args['product_name'] ) ? sprintf( __( '%s quantity', 'woocommerce' ), strip_tags( $args['product_name'] ) ) : '';
 	?>
-	<div class="quantity row my-3">
-		<label class="screen-reader-text col-md-3" for="<?php echo esc_attr( $input_id ); ?>"><?php esc_html_e( 'Quantity', 'woocommerce' ); ?></label>
-		<div class="col-md-3">
+	<div class="quantity row py-1">
+		<label class="screen-reader-text col-md-4" for="<?php echo esc_attr( $input_id ); ?>"><?php esc_html_e( 'Quantity:', 'woocommerce' ); ?></label>
+		<div class="col-md-8">
 			<div class="input-group">
 				<div class="input-group-prepend">
 					<button class="btn btn-default btn-sm js-qty-minus" type="button">-</button>

@@ -34,6 +34,16 @@
  <!-- ADDITIONAL JS HERE -->
  <?php wp_footer(); ?>
 
+  <?php 
+
+  /************** 
+  * Hook: nabco_furniture_after_content
+  * 
+  * @hooked: nabco_furniture_pre_loading_script - 10
+  */
+
+  do_action('nabco_furniture_after_content'); 
+?>
 </body>
 
 </html>

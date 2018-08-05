@@ -114,3 +114,71 @@ add_action( 'after_setup_theme', 'nabco_furnitures_content_width', 0 );
 
 
 
+
+/*
+	Preloading 
+*/
+
+
+function nabco_furnitures_css() {
+	
+?>
+	<style>
+		body {
+			display:none;
+		}
+
+		
+		#preloader {
+    		position:fixed;
+    		top:0;
+    		left:0;
+    		right:0;
+    		bottom:0;
+    		background-color:#fff; /* change if the mask should have another color then white */
+    		z-index:9999999; /* makes sure it stays on top */
+		}
+
+		#status {
+    		width:200px;
+    		height:200px;
+    		position:absolute;
+    		left:50%;  
+    		top:50%;  
+    		background-image: url(<?php echo get_template_directory_uri() ?>/dist/imgs/preload.png);
+    		background-repeat:no-repeat;
+    		background-position:center;
+    		margin:-100px 0 0 -100px; 
+		}
+
+	</style>
+<?php
+}
+
+add_action('nabco_furnitures_style','nabco_furnitures_css');
+
+function nabco_furnitures_pre_loading() {
+?>
+	<div id="preloader">
+		<div id="status">&nbsp;</div>
+	</div>
+<?php
+}
+
+add_action('nabco_furniture_before_content','nabco_furnitures_pre_loading',10);
+
+function nabco_furnitures_pre_loading_script() {
+?>
+
+<script>
+	(function($) {
+		$('#status').delay(1500).fadeOut('slow'); // will first fade out the loading animation
+		$('#preloader').delay(600).fadeOut('slow'); // will fade out the white DIV that covers the website.
+		$('body').fadeIn();
+	})(jQuery)
+</script>
+
+<?php 	
+}
+
+add_action('nabco_furniture_after_content','nabco_furnitures_pre_loading_script',10);

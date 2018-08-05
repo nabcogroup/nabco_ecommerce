@@ -42,6 +42,11 @@ require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/customizer.php';
 
 /**
+ * Additional shortcode function
+ */
+require get_template_directory() . '/inc/short-code.php';
+
+/**
  * Load Jetpack compatibility file.
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
@@ -54,11 +59,13 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 if ( class_exists( 'WooCommerce' ) ) {
 
 	require_once get_template_directory() . '/inc/woocommerce/class-wc-loop.php';
+
+	require_once get_template_directory() . '/inc/woocommerce/class-wc-single.php';
+
+
 	
 	require get_template_directory() . '/inc/woocommerce.php';
 
 	require get_template_directory() . '/inc/woocommerce/woocommerce-hook.php';
 
-
-	
 }

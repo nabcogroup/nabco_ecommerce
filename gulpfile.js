@@ -75,9 +75,11 @@ gulp.task('scripts-all', function() {
     paths.dev + '/bootstrap4/bootstrap.js',
     // End - All BS4 stuff
     paths.dev + '/skip-link-focus-fix.js',
+    paths.dev + '/price-variation.js',
     // Adding currently empty javascript file to add on for your own themes´ customizations
     // Please add any customizations to this .js file only!
     paths.dev + '/custom-javascript.js'
+
   ];
 
   gulp.src( scripts )
@@ -90,7 +92,7 @@ gulp.task('scripts-all', function() {
 
 
 // Clean output directory
-gulp.task('clean', () => del(['dist']));
+gulp.task('clean', () => del(['dist/css','dist/js']));
 
 gulp.task('watch',['clean'],function () {
   

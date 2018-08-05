@@ -24,13 +24,27 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
     
-    <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
     <?php wp_head(); ?>
+
+   <?php do_action('nabco_furnitures_style'); ?>
 
 </head>
 
 <body <?php body_class(); ?>>
 	
+    <!-- preloading -->
+
+    <?php 
+
+        /************** 
+         * Hook: nabco_furniture_before_content
+         * 
+         * @hooked: nabco_furniture_pre_loading - 10
+        */
+    
+        do_action('nabco_furniture_before_content'); 
+    ?>
+
     <!-- ******************* The Header Area ******************* -->
     <header id="main-header">
         <div class="navbar navbar-expand-md navbar-light nb-header">
@@ -67,9 +81,9 @@
                         <?php get_template_part( 'template-parts/search/search', 'form' ) ?>
                         <div class="nb-tran-icon">
                             <!-- carting here -->
-                            <a href="#"> <i class="fas fa-heart"></i></a>
-                            <a href="#"> <i class="fas fa-shopping-cart"></i></a>
-                            <a href="#"> <i class="fas fa-user"></i></a>
+                            <a href="#"> <i class="fa fa-heart"></i></a>
+                            <a href="#"> <i class="fa fa-shopping-cart"></i></a>
+                            <a href="#"> <i class="fa fa-user"></i></a>
                         </div>
                     </div>
                 </div>

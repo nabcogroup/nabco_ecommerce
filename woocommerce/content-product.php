@@ -66,8 +66,6 @@ if ( empty( $product ) || ! $product->is_visible() ) {
                          *
                          * @unhooked woocommerce_template_loop_rating - 5 --> remove 
                          * @hooked woocommerce_template_loop_price - 10
-                         * @hooked woocommerceSeperator - 11
-                         * @hooked wooCommerceViewMoreButton - 12
                          */
                         do_action( 'woocommerce_after_shop_loop_item_title' );
                     ?>
