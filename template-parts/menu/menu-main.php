@@ -14,6 +14,7 @@
     }
     
     add_filter( 'nb-main-menu', 'menu_parent_create_item', 10, 2 );
+
     if(! function_exists('menu_parent_create_item')) {
 
         function menu_parent_create_item( $item, $items) {
@@ -39,23 +40,25 @@
                 $imageHtmls = [];
                 $childrenList = "";
                 $isActive = true;
+
                 foreach($items as $subnav) {
 
                     if ( $subnav->menu_item_parent == $curNavItemID) {
                         
                         $thumbnail_id = get_woocommerce_term_meta($subnav->object_id,'thumbnail_id',true);
+                        
                         $image = wp_get_attachment_url( $thumbnail_id );
                         
                         array_push($imageHtmls, "<img src='{$image}' alt='{$subnav->title}' />");
 
                         $childrenList .= "<li class='js-subnav-icon nb-category-subnav {$item->ID} ". ($isActive ? 'active' : '') . "' data-src='{$image}'>";
+
                         $childrenList .= "<a href='{$subnav->url}'>{$subnav->title}</a>";
+
                         $childrenList .= "</li>";
 
                         $isActive = false;
                     }
-
-                
                     
                 }
 
@@ -131,7 +134,7 @@ $args = array(
         <?php if(is_user_logged_in()) : ?>
             <div style="padding:25px 0;"></div>
         <?php endif ?>
-        <span class="mobile-close-icon" data-target="#mobileMenu"><i class="far fa-times-circle fa-2x"></i> </span>
+        <span class="mobile-close-icon" data-target="#mobileMenu"><i class="fa fa-times-circle fa-2x"></i> </span>
         <?php get_template_part( 'template-parts/search/search', 'form' ) ?>
         
         <!-- The WordPress Menu goes here -->

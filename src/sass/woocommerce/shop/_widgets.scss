@@ -25,9 +25,10 @@
 		z-index: 2;
 		width: 1em;
 		height: 1em;
+		border-radius: 30%;
 		cursor: ew-resize;
 		outline: none;
-		background: $nb-color-blue;
+		background: $nb-color-creme;
 		box-sizing: border-box;
 		margin-top: -.25em;
 		opacity: 1;
@@ -60,5 +61,62 @@
 
 	.ui-slider-horizontal .ui-slider-range {
 		height: 100%;
+	}
+}
+
+.price_slider_amount {
+	button {
+		font-size: 0.8em;
+	}
+}
+
+.widget-area {
+
+	.widget {
+		margin-bottom: 50px;
+	}
+
+	.widget-title {
+		font-size: 1.2em;
+		padding: 7px 0;
+		border-bottom: 1px solid $nb-gray-lighter;
+		color: $nb-p-color;
+	}
+
+	ul.product-categories {
+		list-style: none;
+		margin: 0;
+		padding:0;
+		
+		> li.cat-item {
+			border-bottom: 1px dashed $nb-gray-lighter;
+			color: $nb-gray-darker;
+			padding: 5px 0;
+			font-size: 0.9em;
+			
+			a {
+				float: left;
+				display: block;
+				color: $nb-p-color;
+				text-decoration: none;
+				padding: 3px;
+				@include transition(all 0.2s,ease);
+				&:hover {
+					background: $nb-color-creme;
+					color: #f5f5f5;
+					@include transition(all 0.2s,ease);
+					border-radius: 2px;
+				}
+			}
+
+			span {
+				float: right;
+				display: block;
+			}
+
+			&::after {
+				@include clearfloats();
+			}
+		}
 	}
 }

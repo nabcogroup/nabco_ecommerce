@@ -12,8 +12,8 @@
  * Count number of widgets in a sidebar
  * Used to add classes to widget areas so widgets can be displayed one, two, three or four per row
  */
-if ( ! function_exists( 'nabteamdev_slbd_count_widgets' ) ) {
-	function nabteamdev_slbd_count_widgets( $sidebar_id ) {
+if ( ! function_exists( 'nabco_furnitures_slbd_count_widgets' ) ) {
+	function nabco_furnitures_slbd_count_widgets( $sidebar_id ) {
 		// If loading from front page, consult $_wp_sidebars_widgets rather than options
 		// to see if wp_convert_widget_settings() has made manipulations in memory.
 		global $_wp_sidebars_widgets;
@@ -62,10 +62,10 @@ function nabco_furnitures_widgets_init() {
 	) );
 	
 	register_sidebar( array(
-		'name'          => __( 'Footer Full', 'nabteamdev' ),
+		'name'          => __( 'Footer Full', 'nabco-furnitures' ),
 		'id'            => 'footerfull',
 		'description'   => 'Full sized footer widget with dynamic grid',
-		'before_widget'  => '<div id="%1$s" class=" %2$s '. nabteamdev_slbd_count_widgets( 'footerfull' ) .' mb-3"  ><div class="card card-footer-wrapper">', 
+		'before_widget'  => '<div id="%1$s" class=" %2$s '. nabco_furnitures_slbd_count_widgets( 'footerfull' ) .' mb-3"  ><div class="card card-footer-wrapper">', 
 		'after_widget'   => '</div></div><!-- .footer-widget -->', 
 		'before_title'   => '<div class="card-header widget-title">', 
 		'after_title'    => '</div>', 
@@ -73,7 +73,7 @@ function nabco_furnitures_widgets_init() {
 
 
 	register_sidebar( array(
-		'name'	=>	__('Item List','nabteamdev'),
+		'name'	=>	__('Item List','nabco-furnitures'),
 		'id'	=>	'items',
 		'description'   => 'Item List used in side bar on products',
 		'before_widget'  => '<div id="%1$s" class="nab-group-items %2s ">', 
@@ -81,7 +81,7 @@ function nabco_furnitures_widgets_init() {
 	));
 
 	register_sidebar( array(
-		'name'			=>	__('Sales Promotion Sidebar','nabteamdev'),
+		'name'			=>	__('Sales Promotion Sidebar','nabco-furnitures'),
 		'id'			=>	'sales-sidebar',
 		'description'	=>	'Promotion side area',	
 		'before_widget'	=>	'<div id="%1s" class="%2s">',
@@ -89,7 +89,7 @@ function nabco_furnitures_widgets_init() {
 	) );
 
 	register_sidebar( array(
-		'name'			=>	__('Social Sidebar ','nabteamdev'),
+		'name'			=>	__('Social Sidebar ','nabco-furnitures'),
 		'id'			=>	'social-sidebar',
 		'description'	=>	'Social side area',	
 		'before_widget'	=>	'<div id="%1s" class=social-handle-container %2s">',

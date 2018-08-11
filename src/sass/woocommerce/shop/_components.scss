@@ -144,50 +144,6 @@ p.stars {
 	}
 }
 
-/**
- * Tabs
- */
-.woocommerce-tabs {
-	ul.tabs {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		text-align: left;
-		display: flex;
-		li {
-			margin: 0;
-			position: relative;
-			border: 1px solid $nb-gray-lighter;
-			background: #fff;
-
-			a {
-				padding: 1em 10px;
-				display: block;
-				text-decoration: none;
-				text-transform: uppercase;
-				font-size: 12px;
-				transform: translate3d();
-				color: $nb-color-brown;
-			}
-
-			&.active {
-				border-bottom: 2px solid #fff;
-				box-shadow: 7px 2px 9px -6px rgba(204,202,204,1);
-			}
-		}
-	}
-
-	.woocommerce-Tabs-panel {
-		//border: 1px solid $nb-gray-lighter;
-		padding: 10px;
-		background: #fff;
-		border-left: 1px solid $nb-gray-lighter;
-		box-shadow:  0px 12px 9px -10px rgba(204,202,204,1);
-		h2:first-of-type {
-			margin-bottom: 1em;
-		}
-	}
-}
 
 /**
  * Password strength meter
@@ -268,8 +224,7 @@ p.no-comments {
 	clear: both;
 }
 
-.woocommerce-info,
-.woocommerce-error,
+
 .woocommerce-noreviews,
 p.no-comments
 {
@@ -283,17 +238,13 @@ p.no-comments
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	font-size: 12px;
 	border-bottom: 2px solid $nb-color-brown;
-}
+}	
 
-.woocommerce-info,
 .woocommerce-noreviews,
 p.no-comments {
 	background-color: $woocommerce__color-info;
 }
 
-.woocommerce-error {
-	background-color: $woocommerce__color-error;
-}
 
 .demo_store {
 	position: fixed;
@@ -331,4 +282,25 @@ p.no-comments {
 			}
 		}
 	}
+}
+
+/*
+* Comment
+*/
+.commentlist {
+	list-style: none;
+	margin: 0;
+	padding:0;
+}
+
+.comment_container {
+	display: flex;
+	flex-direction: row;
+	.avatar {
+		margin: 15px;
+	}
+	border-bottom: 1px solid #f5f5f5;
+}
+.comment-respond {
+	margin: 25px 0 10px 0;
 }

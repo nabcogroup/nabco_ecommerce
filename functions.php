@@ -57,15 +57,10 @@ if ( defined( 'JETPACK__VERSION' ) ) {
  * Load WooCommerce compatibility file.
  */
 if ( class_exists( 'WooCommerce' ) ) {
-
-	require_once get_template_directory() . '/inc/woocommerce/class-wc-loop.php';
-
-	require_once get_template_directory() . '/inc/woocommerce/class-wc-single.php';
-
-
 	
-	require get_template_directory() . '/inc/woocommerce.php';
+	require get_template_directory() . '/inc/nab-wc-setup.php';
 
-	require get_template_directory() . '/inc/woocommerce/woocommerce-hook.php';
+	require_once get_template_directory() . '/inc/woocommerce/woocommerce-hook.php';
 
+	require get_template_directory() . '/inc/woocommerce/wc-meta-product.php';
 }

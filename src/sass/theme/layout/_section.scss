@@ -1,37 +1,67 @@
 //section
 .nb-section {
-    
-    
+
     .slider-section {
-        background: url('bg.jpg') left top no-repeat;
-        background-size: cover;
-        height: 400px;
+
+        height: 500px;
         overflow: hidden;
         position: relative;
+        
+        @include media-breakpoint-up(md) {
+            height: 400px;
+        }   
+
+        .loading-bar-wrapper {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 500px;
+            z-index: 980;
+            background: $nb-gray-dark;
+            color: #fff;
+
+            .fa {
+                color: #fff;
+            }
+        }
+        
+        
         .video-wrapper {
             position: absolute;
-            top:-120px;
-            @include media-breakpoint-between(sm,md) {
-                top:0px;    
-
-            }
-            
-            
-            left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             width: 100%;
-            height: 850px;
-            margin:0;
-            padding:0;
+            height: 1200px;
+            background: gray;
+            top: -350px;
+            z-index: 970;
+            
+            @include media-breakpoint-up(md) {
+                width:100%;
+            }
+
+
+
+            .videoContainer__video {
+                height: 100%;
+                object-fit: cover;
+            }
+           
         }
 
         .ns-video-box-rel {
-            width:100%;
-            min-height: 759px;
-            background: rgba($color: #000000, $alpha: 0.30);
             position: absolute;
-            top:0;
+            top: 0;
             left: 0;
-            z-index: 1001;
+            background: rgba($color: #fff  , $alpha: 0.1);
+            width: 100%;
+            height: 900px;
+            z-index: 990;
         }
 
     }
@@ -59,6 +89,7 @@
             }
         }
     }
-
-    
 }
+
+
+

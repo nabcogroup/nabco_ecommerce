@@ -1,7 +1,7 @@
 <?php
 
 
-function nabco_furniture_list_child_pages() { 
+function nabco_furnitures_list_child_pages() { 
  
     global $post; 
     $parent = "";
@@ -30,16 +30,16 @@ function nabco_furniture_list_child_pages() {
      
 }
      
-add_shortcode('nb_childpages', 'nabco_furniture_list_child_pages');
+add_shortcode('nb_childpages', 'nabco_furnitures_list_child_pages');
 
 
 /** 
  * Short code modifier
 */
-add_shortcode( 'nb_card', 'nb_explicit_card_wrapper' );
+add_shortcode( 'nb_card', 'nabco_furnitures_card_wrapper' );
 
-if(!function_exists('nb_explicit_card_wrapper')) {
-	function nb_explicit_card_wrapper($atts,$content) {
+if(!function_exists('nabco_furnitures_card_wrapper')) {
+	function nabco_furnitures_card_wrapper($atts,$content) {
 		$a = shortcode_atts( array(
 			'col'	=> '',
 			'title' => 'title',

@@ -13,7 +13,6 @@
             $('.scroll-top-wrapper').removeClass('show');
             $('#nab-nav').removeClass('fixed-top');
         }
-        
     });
     
     
@@ -144,3 +143,13 @@
     });
 })();
 
+//video
+(function($) {
+    console.log($("#frontvid"));
+    $("#frontvid").hide();
+    $("#frontvid").on("canplaythrough",function() {
+        //$(".pre").hide();
+        $("#frontvid").show();
+    })
+    
+})(jQuery);

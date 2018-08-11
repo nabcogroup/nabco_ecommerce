@@ -41,11 +41,11 @@ if ( empty( $product ) || ! $product->is_visible() ) {
                 /**
                  * Hook: woocommerce_before_shop_loop_item_title.
                  *
-                 * @hooked woocommerce_show_product_loop_sale_flash - 10
-                 * @hooked woocommerce_template_loop_product_thumbnail - 10
+                 * @hooked woocommerce_show_product_loop_sale_flash - 10 -> class-wc-loop 
+                 * @hooked woocommerce_template_loop_product_thumbnail - 10 -> class-wc-loop 
                  * 
                  * added theme
-                 * @hooked: woocommerce_template_loop_rating - 11
+                 * @hooked: woocommerce_template_loop_rating - 11 -> class-wc-loop
                  */
                 do_action( 'woocommerce_before_shop_loop_item_title' );
             ?>

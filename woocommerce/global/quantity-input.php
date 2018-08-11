@@ -28,7 +28,9 @@ if ( $max_value && $min_value === $max_value ) {
 	$labelledby = ! empty( $args['product_name'] ) ? sprintf( __( '%s quantity', 'woocommerce' ), strip_tags( $args['product_name'] ) ) : '';
 	?>
 	<div class="quantity row py-1">
-		<label class="screen-reader-text col-md-4" for="<?php echo esc_attr( $input_id ); ?>"><?php esc_html_e( 'Quantity:', 'woocommerce' ); ?></label>
+		<?php if(is_product()) : ?>
+			<label class="screen-reader-text col-md-4" for="<?php echo esc_attr( $input_id ); ?>"><?php esc_html_e( 'Quantity:', 'woocommerce' ); ?></label>
+		<?php endif; ?>
 		<div class="col-md-8">
 			<div class="input-group">
 				<div class="input-group-prepend">

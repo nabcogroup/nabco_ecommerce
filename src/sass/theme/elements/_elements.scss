@@ -1,34 +1,11 @@
 body {
     font-size: 100%;
-    font-family: 'Open Sans', Courier, monospace;
+    font-family: $global-font-family;
     font-size: $standard-font-size;
-    background: #f5f5f5;
+    background: #fff;
 }
 
 
-p {
-    line-height: 1.7em;
-    text-align: justify;
-    color: $nb-p-color;
-    font-size: $standard-font-size;
-}
-
-a {
-    color: #030303;
-}
-
-h1 {
-    font-size: $h1-size;
-}
-
-address {
-    abbr {
-        display:block;
-        padding:0;
-        margin: 0;
-        font-size: calc(10px + 0.2vw);
-    }
-}
 
 .nb-form {
     .input-group {

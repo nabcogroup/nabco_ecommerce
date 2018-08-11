@@ -1,0 +1,69 @@
+.woocommerce-billing-fields__field-wrapper {
+    padding: 15px 0;
+}
+
+
+$formRowWidth: 100%;
+
+.billing-panel {
+    border: 1px solid $nb-gray-lighter;
+}
+
+.checkout {
+    &.woocommerce-checkout {
+        
+        p {
+            text-align: left;
+        }
+      
+        .form-row {
+            
+            width: 100%;
+
+            label {
+                @include make-col(12);
+                @include media-breakpoint-up(sm) {
+                    @include make-col(3);
+                }
+            }
+            
+            span.woocommerce-input-wrapper {
+                @include make-col(12);
+                @include media-breakpoint-up(sm) {
+                    @include make-col(9);
+                }
+            }
+
+            
+        }
+    }
+
+}
+
+.woocommerce-additional-fields {
+    h3:first-of-type {
+        color: $nb-p-color;
+        font-size: 1.5em;
+        border-bottom: 1px solid $nb-gray-lighter;
+        padding-bottom: 10px;
+    }
+}
+
+.wc_payment_methods {
+    list-style: none;
+    margin: 10px 0;
+    padding: 0;
+    background: $nb-color-creme;
+    color: #f5f5f5;
+    li {
+        padding: 10px;
+    }
+    .payment_box {
+
+        p{
+            color:#f5f5f5;
+            
+        }
+        
+    }
+}

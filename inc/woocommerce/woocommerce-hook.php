@@ -1,31 +1,16 @@
 <?php
 
 
-$archiveProduct = new WoocommerceProductLoop();
-$singleProduct = new WoocommerceSingleProduct();
-
-$archiveProduct->hook();
-
-$singleProduct->hook();
 
 
+require_once get_template_directory() . '/inc/woocommerce/class-nb-wc-cart.php';
 
-//woocommerce cart message
-add_filter( 'wc_add_to_cart_message_html','nabco_furniture_cart_message', 10);
+require_once get_template_directory() . '/inc/woocommerce/class-nb-wc-checkout.php';
 
-function nabco_furniture_cart_message() {
-    
-    global $woocommerce;
-    
-    // Output success messages
-    if (get_option('woocommerce_cart_redirect_after_add')=='yes') :
-        $return_to  = get_permalink(woocommerce_get_page_id('shop'));
-        $message    = sprintf('%s <a href="%s" class="button btn btn-sm btn-success">%s</a> ',__('Product successfully added to your cart.', 'woocommerce'), $return_to, __('Continue Shopping &rarr;', 'woocommerce') );
-    else :
-        $message    = sprintf('%s <a href="%s" class="button btn btn-sm btn-success">%s</a> ',__('Product successfully added to your cart.', 'woocommerce') ,get_permalink(wc_get_page_id ('cart')), __('View Cart &rarr;', 'woocommerce'));
-    endif;
-        return $message;
-}
+require_once get_template_directory() . '/inc/woocommerce/class-nb-wc-loop.php';
+
+require_once get_template_directory() . '/inc/woocommerce/class-nb-wc-single.php';
+
 
 //modify price display on variation
 add_filter('woocommerce_available_variation','nabco_furniture_set_variation_price',10,3);
@@ -53,7 +38,6 @@ function nabco_furniture_set_variation_price($args,$object,$variation) {
     return $args;
 }
 
-
 function nabco_furniture_sale_percentage($variation) {
 
     if(is_product()) {
@@ -71,6 +55,4 @@ function nabco_furniture_sale_percentage($variation) {
 
         return $html;
     }
-
-
 }

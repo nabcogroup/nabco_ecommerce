@@ -20,7 +20,7 @@
   <div class="footer-bottom">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-6 col-sm-12 nb-footer-text-wrapper">
           <small class="nb-text-white align-middle p-0 m-0">&copy; All Rights Reserved 2018</small>
         </div>
         <div class="col-md-6 col-sm-12">
@@ -40,6 +40,7 @@
   * Hook: nabco_furniture_after_content
   * 
   * @hooked: nabco_furniture_pre_loading_script - 10
+  * @hooked: nabco_furniture_youtube_script - 20
   */
 
   do_action('nabco_furniture_after_content'); 

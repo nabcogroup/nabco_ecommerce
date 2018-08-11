@@ -65,9 +65,15 @@ $nb-caret-width-large:              5px;
 
 $nb-p-color: #616A6B;  
 
+//text sizing
 $standard-menu-size: calc(10px + 0.2vw);
 $standard-font-size: calc(12px + 0.2vw);
 $h1-size: calc(1.5em + 0.5vw);
+
+$small-h1-rem: 1.2em;
+
+$global-font-family:  'Roboto', sans-serif;
+$secondary-font-family: 'Open Sans', Courier, monospace;
 
 
 //social color

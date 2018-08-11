@@ -6,7 +6,7 @@ $nabco_setting_ico = apply_filters( 'nabco_setting_options_icon_path', [] );
 
 <!-- social -->
 <div class="row">
-<ul class="nb-social-icons  ml-auto">
+<ul class="nb-social-icons  mx-auto ml-md-atuo">
     <?php if(isset($nabco_setting_ico['ico_youtube'])) : ?>
         <li class="social-item"><a class="youtube-color social-link" href="<?php echo $nabco_setting_ico['ico_youtube'] ?>" target="_blank" ><i class="fa fa-youtube  fa-fw"></i></a></li>
     <?php endif ?>
