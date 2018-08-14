@@ -15,6 +15,7 @@
 *************************************/
 @import "theme/variable-site/_theme_variables";
 
+
 @import "theme/mixins/mixins";
 
 /**
@@ -46,3 +47,14 @@
  * WooCommerce widgets
  */
 @import "woocommerce/shop/widgets";
+
+
+/**
+ * WooCommerce dashboard
+ */
+ @import "woocommerce/shop/dashboard";
+
+ /**
+ * WooCommerce register
+ */
+ @import "woocommerce/shop/register";

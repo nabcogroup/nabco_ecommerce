@@ -19,14 +19,37 @@ $vid_post = get_theme_mod('nb_video_src', get_template_directory_uri() . '/dist/
 			<video id="main-video" src="<?php echo $vid_src ?>" poster="<?php echo $vid_post ?>" autoplay muted onended="this.play()" class="videoContainer__video"></video>
 		</div>	
 	</div>
-	
 	<?php get_template_part( 'template-parts/menu/menu', 'main' ) ?>
-
 </section>
 
 
 <?php if($under_con == 'development') : ?>
-    <?php get_template_part( 'template-parts/content-loop/content', 'under-construction' ) ?>
+	
+	<?php get_template_part( 'template-parts/content-loop/content', 'under-construction' ) ?>
+
 <?php endif; ?>
+
+<!-- testimony section -->
+<section class="testimony-section">
+
+</section>
+
+
+<!-- product section -->
+<section class="testimony-section">
+
+</section>
+
+<!-- product section -->
+<section class="product-section">
+	
+</section>
+
+
+<!-- branch section -->
+<section class="branch-section">
+	
+</section>
+
 
 <?php get_footer(); ?>

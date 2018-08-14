@@ -33,46 +33,62 @@
                 $anchorCssDropdown = "nb-dropdown-toggle";
                 
                 $childrenOutput .= "<div class='nb-dropdown__wrapper'>";
-                $childrenOutput .= "<div class='container row p-1 m-0'>";
-                $childrenOutput .= "<div class='col-4'>";
+                $childrenOutput .= "<div class='container row m-0 full-container'>";
+                $childrenOutput .= "<div class='col-4 m-0 p-0'>";
                 $childrenOutput .= "<ul class='nb-dropdown-subnav' data-group='{$item->ID}'>";
                 
                 $imageHtmls = [];
                 $childrenList = "";
-                $isActive = true;
-
+                $isActive = true;   
+                $productArgs = [];
                 foreach($items as $subnav) {
-
+                    //subnavigation
                     if ( $subnav->menu_item_parent == $curNavItemID) {
                         
                         $thumbnail_id = get_woocommerce_term_meta($subnav->object_id,'thumbnail_id',true);
                         
                         $image = wp_get_attachment_url( $thumbnail_id );
                         
-                        array_push($imageHtmls, "<img src='{$image}' alt='{$subnav->title}' />");
+                        $imageHtmls[$subnav->object_id] = "<img src='{$image}' alt='{$subnav->title}' class='nb-wc-product-feature' />";
 
-                        $childrenList .= "<li class='js-subnav-icon nb-category-subnav {$item->ID} ". ($isActive ? 'active' : '') . "' data-src='{$image}'>";
-
+                        $childrenList .= "<li class='js-subnav-icon nb-category-subnav {$item->ID} ". ($isActive ? 'active' : '') . "' data-container='product_catkey_{$subnav->object_id}'>";
                         $childrenList .= "<a href='{$subnav->url}'>{$subnav->title}</a>";
-
                         $childrenList .= "</li>";
 
-                        $isActive = false;
+                        $args = array(
+                            'post_type'             => array('product','product_variation'),
+                            'post_status'           => 'publish',
+                            'posts_per_page'         =>  5,
+                            'tax_query'             => array(
+                                array(
+                                    'taxonomy'  => 'product_cat',
+                                    'field'     => 'term_id', 
+                                    'terms'     => $subnav->object_id
+                                ),
+                            )
+                        );
+                        
+                        $productArgs[$subnav->object_id] = apply_filters('nb_menu_subnavigation_loop_args',$args); 
+                        
+                        //one time activation
+                        if($isActive) $isActive = false;
                     }
-                    
                 }
 
                 
+                
+                
                 $childrenOutput .= "{$childrenList}</ul>";
+                $childrenOutput .= "</div><!-- col -->";
+                
+                $childrenOutput .= "<div class='col-8 p-0 m-0'>";
+                $childrenOutput .= "<div class='nb-dropdown-container'>";
+                $childrenOutput .=  apply_filters( 'products_list_args',$productArgs,$imageHtmls);
                 $childrenOutput .= "</div>";
-                $childrenOutput .= "<div class='col-8'>";
-                $childrenOutput .= "<div class='nb-dropdown-img-container'>";
-                $childrenOutput .= "<img src='' id='subnavContainer-{$item->ID}' >";
-                $childrenOutput .= "<div>";
                 $childrenOutput .= "</div>";
 
-                $childrenOutput .= "</div>";
-                $childrenOutput .= "</div>";
+                $childrenOutput .= "</div><!-- container -->";
+                $childrenOutput .= "</div><!-- wrapper -->";
 
             }
             
@@ -106,20 +122,14 @@ $args = array(
 ?>
     <nav class="nb-navbar">
         <div class="container">
-            
-           
             <?php if(count($items) > 0) { ?>
                 <ul class="nb-menu justify-content-center">
                     <?php $output = ""; ?>
 
                     <?php foreach($items as $item) { ?>
-
                         <?php if($item->menu_item_parent != 0) { continue; } ?>
-                        
                         <?php  /* create display list*/ ?>
-                        
                         <?php echo apply_filters( 'nb-main-menu', $item, $items ); ?>
-
                     <?php } ?>
                 </ul>
             <?php } ?>

@@ -40,8 +40,8 @@
          * 
          * @hooked: nabco_furniture_pre_loading - 10
         */
-    
-        do_action('nabco_furniture_before_content'); 
+
+        //do_action('nabco_furniture_before_content'); 
     ?>
 
     <!-- ******************* The Header Area ******************* -->
@@ -78,12 +78,14 @@
                     </div>
                     <div class="row ml-auto">
                         <?php get_template_part( 'template-parts/search/search', 'form' ) ?>
+
                         <div class="nb-tran-icon">
                             <!-- carting here -->
                             <a href="#"> <i class="fa fa-heart"></i></a>
                             <a href="#"> <i class="fa fa-shopping-cart"></i></a>
-                            <a href="#"> <i class="fa fa-user"></i></a>
+                            <a href="/my-account"> <i class="fa fa-user"></i></a>
                         </div>
+                        
                     </div>
                 </div>
             </div>

@@ -5,41 +5,6 @@
 
 $formRowWidth: 100%;
 
-.billing-panel {
-    border: 1px solid $nb-gray-lighter;
-}
-
-.checkout {
-    &.woocommerce-checkout {
-        
-        p {
-            text-align: left;
-        }
-      
-        .form-row {
-            
-            width: 100%;
-
-            label {
-                @include make-col(12);
-                @include media-breakpoint-up(sm) {
-                    @include make-col(3);
-                }
-            }
-            
-            span.woocommerce-input-wrapper {
-                @include make-col(12);
-                @include media-breakpoint-up(sm) {
-                    @include make-col(9);
-                }
-            }
-
-            
-        }
-    }
-
-}
-
 .woocommerce-additional-fields {
     h3:first-of-type {
         color: $nb-p-color;
@@ -66,4 +31,24 @@ $formRowWidth: 100%;
         }
         
     }
+}
+
+//thank you message
+.woocommerce-thankyou-order-details {
+    list-style: none;
+    margin: 0;
+    padding: 15px;
+    border: 1px solid #f5f5f5;
+
+    li {
+        padding: 5px;
+        @include make-row();
+        color: $nb-p-color;
+    }
+}
+
+.woocommerce-order-details,
+.woocommerce-customer-details  {
+    padding: 15px;
+    border: 1px solid #f5f5f5;
 }

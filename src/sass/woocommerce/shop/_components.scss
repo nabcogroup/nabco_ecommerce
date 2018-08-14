@@ -1,5 +1,22 @@
+
+
+@mixin woocom-titleicon() {
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+	font-family: "FontAwesome";
+	font-size: $standard-font-size;
+    position: absolute;
+	top:0;
+	left:0;
+	bottom:15px;
+	
+}
+
 $color__link : #000;
 $color__text-main: #000;
+
+
 /**
  * Header cart
  */
@@ -240,12 +257,6 @@ p.no-comments
 	border-bottom: 2px solid $nb-color-brown;
 }	
 
-.woocommerce-noreviews,
-p.no-comments {
-	background-color: $woocommerce__color-info;
-}
-
-
 .demo_store {
 	position: fixed;
 	left: 0;
@@ -303,4 +314,16 @@ p.no-comments {
 }
 .comment-respond {
 	margin: 25px 0 10px 0;
+}
+
+
+/*
+	title icon
+*/
+
+.nb-title-ico {
+	@include woocom-titleicon();
+	&.billing-address {
+		content: '\f015';
+	}
 }

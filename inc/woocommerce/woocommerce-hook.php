@@ -5,6 +5,8 @@
 
 require_once get_template_directory() . '/inc/woocommerce/class-nb-wc-cart.php';
 
+require_once get_template_directory() . '/inc/woocommerce/class-nb-wc-acct.php';
+
 require_once get_template_directory() . '/inc/woocommerce/class-nb-wc-checkout.php';
 
 require_once get_template_directory() . '/inc/woocommerce/class-nb-wc-loop.php';

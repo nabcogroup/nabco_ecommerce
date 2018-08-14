@@ -1,0 +1,48 @@
+
+.nb-wc-form-register {
+    width: 100%;
+   
+    p {
+        text-align: left;
+    }
+    
+    .form-row {
+        @include make-row();
+        
+        label {
+
+            @include make-col(12);
+
+            @include media-breakpoint-up(sm) {
+                @include make-col(3);
+
+            }
+        }
+        
+        span.woocommerce-input-wrapper {
+
+            @include make-col(12);
+
+            @include media-breakpoint-up(sm) {
+                @include make-col(9);
+            }
+
+        }
+    }
+}
+
+
+.billing-panel {
+    border: 1px solid $nb-gray-lighter;
+    padding: 10px;
+}
+
+.woocommerce-Address-title {
+    position:relative;
+    a.edit {
+        position: absolute;
+        right:0;
+        top:0;
+        z-index: 99;
+    }
+}

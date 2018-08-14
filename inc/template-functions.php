@@ -34,4 +34,75 @@ function nabco_furnitures_pingback_header() {
 		echo '<link rel="pingback" href="', esc_url( get_bloginfo( 'pingback_url' ) ), '">';
 	}
 }
+
 add_action( 'wp_head', 'nabco_furnitures_pingback_header' );
+
+
+
+
+/************ 
+ * 
+ * 
+*/
+add_filter('nb_menu_subnavigation_loop_args','nabco_furnitures_product_navigation',10);
+
+function nabco_furnitures_product_navigation($args) {
+	
+	
+	$theProducts = new WP_Query($args);
+	$productArgs = [];
+
+	if($theProducts->have_posts()) {
+
+		while($theProducts->have_posts()) {
+
+			$theProducts->the_post();
+
+			$productArg = array(
+				'permalink' =>  get_the_permalink(),
+				'title'     =>  get_the_title()
+			);
+
+			//get the product information
+			array_push($productArgs,$productArg);
+			
+		}
+	}
+	
+	wp_reset_postdata();
+
+	return $productArgs;
+}
+
+
+//menu filter
+add_filter( 'products_list_args', 'nabco_furnitures_product_menu', 10,2);
+
+function nabco_furnitures_product_menu($categories,$imageArgs) {
+
+	$html = "<!-- product wrapper --> <div class='nb-wc-product-menu-wrapper'>";
+	
+	foreach($categories as $key => $category) {
+		$html .= "<nav id='product_catkey_{$key}' class='nb-wc-menu-product category-{$key}'>"; 
+		$html .= "<div class='row'>";
+
+		$html .= "<!-- products column --><div class='col-md-4'>";
+		$html .= "<ul>";
+		
+		foreach($category as $item) {
+			$html .= "<li><a href='" . $item['permalink']. "' class='nb-product-navlink'>" .  $item['title'] . "</a></li>";
+		}
+		$html .= "</ul>"; 
+		$html .= "</div><!--end -->";
+
+		$html .= "<!-- image column --><div class='col-md-8'>";
+		$html .= $imageArgs[$key];
+		$html .= "</div><!--end image column -->";
+		$html .= "</div>";
+		$html .= "</nav>";
+	}
+
+	$html .= "</div><!--end -->";
+
+	return $html;
+}

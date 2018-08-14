@@ -36,18 +36,23 @@ echo '</div>';
 
 ?>
 	<div class="col-md-12">
-		<form name="checkout" method="post" class="checkout woocommerce-checkout p-3" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
-			<div class="row my-3">
+		<form name="checkout" method="post" class="checkout woocommerce-checkout p-3 nb-wc-form-register" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
+			<div class="row">
 				<?php if ( $checkout->get_checkout_fields() ) : ?>
+				
 					<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
 
-					<div class=" col-md-8 billing-panel" id="customer_details">
-						<div>
-							<?php do_action( 'woocommerce_checkout_billing' ); ?>
-						</div>
-			
-						<div>
-							<?php do_action( 'woocommerce_checkout_shipping' ); ?>
+					<div class="col-md-8" id="customer_details">
+						<div class="card">
+							<div class="card-body">
+								<div>
+									<?php do_action( 'woocommerce_checkout_billing' ); ?>
+								</div>
+					
+								<div>
+									<?php do_action( 'woocommerce_checkout_shipping' ); ?>
+								</div>
+							</div>
 						</div>
 					</div>
 			

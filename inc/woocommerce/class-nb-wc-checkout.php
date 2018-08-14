@@ -8,10 +8,6 @@ class Nb_WoocommerceCheckout {
 
         add_action('woocommerce_after_checkout_form',[$this,'endCheckoutFormBootstrapWrapper'],10);
 
-
-        // Hook in to modify checkout fields into bootstrap 
-        add_filter( 'woocommerce_billing_fields' , [$this,'customOverrideAddressFields'] );
-
         // Hook in to modify checkout fields into bootstrap 
         add_filter( 'woocommerce_checkout_fields' , [$this,'customOverrideFields'] );
 
@@ -22,11 +18,22 @@ class Nb_WoocommerceCheckout {
 
 
        add_filter('woocommerce_checkout_login_message',[$this,'changeCheckoutLoginMessage']);
+
+       
+       add_filter('woocommerce_thankyou_order_received_text',[$this,'changeThankyouReceivedText']);
+
     }
 
     public function changeCheckoutLoginMessage() {
         $message = __(get_theme_mod('login_message','Please Login if you have an account'),'woocommerce');
         return '';
+    }
+
+    public function changeThankyouReceivedText() {
+        
+        $message = __(get_theme_mod('thankyou_message', 'Thank you. Your reservation has been received'),'woocommerce');
+        
+        return  $message;
     }
 
     public function changeOrderButtonHtmlToBootstrap($args) {
@@ -56,10 +63,19 @@ class Nb_WoocommerceCheckout {
     public function customOverrideAddressFields($address_fields) {
         
         foreach($address_fields as &$field) {
+
             array_push($field['class'],"form-group");
             
             if(!isset($field['input_class'])) {
+
                 $field["input_class"] = array("form-control");
+
+            }
+
+            if(!isset($field["label_class"])) {
+                
+                $field["label_class"] = array("register-label");
+
             }
         }
         
