@@ -1,9 +1,31 @@
+
+@keyframes fadeOut {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeOut {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+//helper
 @mixin clearfloats() {
     display: block;
     content:'';
     clear: both;
 }
 
+
+//effect
 @mixin transform($tran...) {
     -webkit-transform: $tran;
     -moz-transform: $tran;
@@ -12,3 +34,27 @@
     transform: $tran;
 
 }
+
+
+//style
+
+
+
+//animation mixin
+@mixin bounce() {
+    -webkit-animation-name: bounce;
+    animation-name: bounce;
+    -webkit-transform-origin: center bottom;
+    transform-origin: center bottom;
+}
+
+@mixin animated() {
+   
+    @include media-breakpoint-up(sm) {
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+    }
+}
+

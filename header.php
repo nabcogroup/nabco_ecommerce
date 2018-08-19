@@ -105,6 +105,17 @@
         <div class="header-menu-wrapper">
             <?php get_template_part( 'template-parts/menu/menu', 'main' ) ?>
         </div>
+        <div class="container">
+            <div class="row col-md-12 my-3" >
+                <?php 
+
+                    if(is_page('checkout'))  {
+                        echo sprintf("<a href='/cart' class='nb-wc-cart-breadcrumbs'> <i class='fa fa-mail-reply'></i> %s</a>",__("Back to Cart")); 
+                    }
+                ?>
+            </div>
+
+        </div>
     <?php else : ?>
-        
+
     <?php endif; ?>

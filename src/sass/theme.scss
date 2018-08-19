@@ -1,13 +1,19 @@
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i|Roboto');
 
+
+
 @import "./assets/fontawesome/font-awesome"; // <------- Font Awesome Icon font
 
 @import './theme/bootstrap4/bootstrap4';
 
+
 @import './theme/variable-site/theme_variables';
 
+
 @import './theme/mixins/mixins';
+
+@import './theme/mixins/animation';
 
 @import "./theme/elements/elements.scss";
 

@@ -4,7 +4,11 @@
 class Nb_WoocommerceCheckout {
 
     public function __construct() {
+
+
         add_action('woocommerce_before_checkout_form',[$this,'beforeCheckoutFormBootstrapWrapper'],10);
+
+        
 
         add_action('woocommerce_after_checkout_form',[$this,'endCheckoutFormBootstrapWrapper'],10);
 
@@ -23,9 +27,16 @@ class Nb_WoocommerceCheckout {
        add_filter('woocommerce_thankyou_order_received_text',[$this,'changeThankyouReceivedText']);
 
     }
+    
+    public function cartBreadCrumbs() {
 
+        echo sprintf("<a href='/cart' class='nb-wc-cart-breadcrumbs'> <i class='fa fa-mail-reply'></i> %s</a>",__("Back to Cart"));
+
+    }
     public function changeCheckoutLoginMessage() {
+
         $message = __(get_theme_mod('login_message','Please Login if you have an account'),'woocommerce');
+
         return '';
     }
 

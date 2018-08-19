@@ -22,19 +22,20 @@ $under_con = get_theme_mod( 'nb_underconstruction', '' );
 <article class="container page-wrapper">
 
     <?php if(have_posts()) : ?>
+
         <?php while(have_posts()) : the_post(); ?>
-            
+
             <nav class="nb-page-nav">
                 <?php echo nabco_furnitures_list_child_pages(); ?>
             </nav>
 
-            <?php the_title('<h1>','</h1>') ?>
-
-            <div class="body-content">
+            <div class="body-content row col-md-12">
+                <?php the_title('<h1>','</h1>') ?>
                 <?php the_content(); ?>
             </div>
 
         <?php endwhile; ?>
+
     <?php endif; ?>
 </article>
 <?php else : ?>

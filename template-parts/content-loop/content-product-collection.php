@@ -1,31 +1,42 @@
 <?php 
 
-    $args = array(
-        'taxonomy'  =>  'product_cat',
-        'hierarchical' => 0,
-        'hide_empty'   => 1
-    );
+    // $args = array(
+    //     'taxonomy'  =>  'product_cat',
+    //     'hierarchical' => 0,
+    //     'hide_empty'   => 1
+    // );
 
-    $categories = get_categories(apply_filters('nb-product-collection-loop-args', $args));
+    // $categories = get_categories(apply_filters('nb-product-collection-loop-args', $args));
+
+
+    $locations = get_nav_menu_locations();
+
+    $items = array();
+    if(isset($locations['collection'])) {
+        $menu = get_term($locations['collection'],'nav_menu');
+        $items = wp_get_nav_menu_items( $menu->name ); 
+    }
 
 ?>
 
 
 
 <div class="row">
-<?php foreach($categories as $category) { ?>
+<?php if(is_array($items) && count($items) > 0) : ?>
+
+<?php foreach($items as $item) { ?>
     
-    <div class="col-md-4 px-0">
+    <div class="col-md-6 px-0">
 
     <?php
 
-        $thumbnail_id = get_woocommerce_term_meta($category->term_id,'thumbnail_id',true); 
+        $thumbnail_id = get_woocommerce_term_meta($item->object_id,'thumbnail_id',true); 
 
         $img_src = wp_get_attachment_image_src( $thumbnail_id,'large' );
         
-        $name = $category->name;
+        $name = $item->title;
 
-        $category_link = get_category_link($category);
+        $category_link = $item->url;
         
         
     ?>
@@ -37,12 +48,13 @@
             <a href="<?php echo $category_link;  ?>" class="card-product-shop-link">SHOP</a>
         </div>
         <div class="card-title">
-            <?php echo sprintf(' %s %s ', $name, __('Collection')); ?>
+            <?php echo sprintf('<span> %s %s </span>', $name, __('Collection')); ?>
         </div>
 
     </div>
     </div>
 <?php } ?>
+<?php endif; ?>
 </div>
 
 

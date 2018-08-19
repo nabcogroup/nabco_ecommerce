@@ -32,14 +32,13 @@ if ( $max_value && $min_value === $max_value ) {
 			<label class="screen-reader-text col-md-4" for="<?php echo esc_attr( $input_id ); ?>"><?php esc_html_e( 'Quantity:', 'woocommerce' ); ?></label>
 		<?php endif; ?>
 		<div class="col-md-8">
-			<div class="input-group">
-				<div class="input-group-prepend">
-					<button class="btn btn-default btn-sm js-qty-minus" type="button">-</button>
-				</div>
+			<div class="nb-input-group-wrapper">
+				<button class="nb-wc-input-qty__modifier nb-wc-input-qty__modifier--left" type="button">-</button>
 				<input
 					type="text"
 					id="<?php echo esc_attr( $input_id ); ?>"
-					class="form-control form-control-sm input-text qty text"
+					maxlength="3"
+					class="nb-wc-input-qty input-text qty text"
 					step="<?php echo esc_attr( $step ); ?>"
 					min="<?php echo esc_attr( $min_value ); ?>"
 					max="<?php echo esc_attr( 0 < $max_value ? $max_value : '' ); ?>"
@@ -49,12 +48,9 @@ if ( $max_value && $min_value === $max_value ) {
 					pattern="<?php echo esc_attr( $pattern ); ?>"
 					inputmode="<?php echo esc_attr( $inputmode ); ?>"
 					aria-labelledby="<?php echo esc_attr( $labelledby ); ?>" />
-				<div class="input-group-append">
-					<button class="btn btn-default btn-sm js-qty-plus" type="button">+</button>
-				</div>
+					<button class="nb-wc-input-qty__modifier nb-wc-input-qty__modifier--right" type="button">+</button>
 			</div>
 		</div>
-		
 	</div>
 	<?php
 }

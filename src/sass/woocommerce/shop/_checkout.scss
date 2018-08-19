@@ -33,6 +33,26 @@ $formRowWidth: 100%;
     }
 }
 
+
+//terms 
+.woocommerce-terms-and-conditions-wrapper {
+    margin:25px 0;
+    padding: 5px;
+    background: $nb-gray-lighter;
+    .woocommerce-form__label {
+        &.checkbox {
+            @include make-col-ready();
+            @include media-breakpoint-up(sm) {
+                @include make-col(12);
+            }
+        }
+    }
+
+    .woocommerce-terms-and-conditions-link {
+        color: $nb-color-creme;
+    }
+}
+
 //thank you message
 .woocommerce-thankyou-order-details {
     list-style: none;

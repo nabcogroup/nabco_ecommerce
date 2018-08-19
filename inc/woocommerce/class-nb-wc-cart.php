@@ -7,6 +7,8 @@ class Nb_WoocommerceCart {
         
         add_action('woocommerce_before_cart',[$this,'addCartBootstrapWrapper'],10);
 
+        add_action('woocommerce_before_cart', 'woocommerce_breadcrumb',20);
+
         add_action('woocommerce_after_cart',[$this,'addCartBootstrapClosing'],10);
 
         apply_filters( 'wc_empty_cart_message', [$this,'addCartEmptyMessage'] );

@@ -49,8 +49,9 @@ if ( ! function_exists( 'nabco_furnitures_setup' ) ) {
 		
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'primary' 	=> esc_html__( 'Primary', 'nabco-furnitures' ),
-			'footer'	=>	esc_html__('Footer','nabco-furnitures'),
+			'primary' 		=> 	esc_html__( 'Primary', 'nabco-furnitures' ),
+			'footer'		=>	esc_html__('Footer','nabco-furnitures'),
+			'collection'	=>	esc_html__('Collection','nabco-furnitures')
 		) );
 
 

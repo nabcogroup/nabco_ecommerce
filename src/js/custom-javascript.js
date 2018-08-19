@@ -1,11 +1,7 @@
 //scroll effect
 (function() {
-    
     var $ = jQuery;
-
-    
     $(document).on( 'scroll', function(){
-        
         if ($(window).scrollTop() > 100) {
             $('.scroll-top-wrapper').addClass('show');
             $('#nab-nav').addClass('fixed-top');
@@ -15,32 +11,34 @@
         }
     });
     
-    
     $('.scroll-top-wrapper').on('click', scrollToTop);
-
+    
     function scrollToTop() {
-
         verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
         element = $('body');
         offset = element.offset();
         offsetTop = offset.top;
         $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
-
     }
 
 });
 
+
+
 //common
-(function() {
-    var $ = jQuery;
-    
+jQuery(document).ready(function($) {
+
     //closing icon mobile
     $(".mobile-close-icon").on("click",function() {
         $target = $(this).data("target");
         $($target).removeClass("show");
     });
 
-})();
+
+    //control
+    
+
+});
 
 
 //navigation
