@@ -12,15 +12,14 @@ $vid_post = get_theme_mod('nb_video_src', get_template_directory_uri() . '/dist/
 
 
  <!-- video section-->
-<section class="nb-section p-0 m-0">
-	<div class="slider-section">
+<section class="nb-section slider-section p-0 m-0">
 		<div class="ns-video-box-rel"></div>
 		<div id="vidFront" class="video-wrapper">
 			<video id="main-video" src="<?php echo $vid_src ?>" poster="<?php echo $vid_post ?>" autoplay muted onended="this.play()" class="videoContainer__video"></video>
 		</div>	
-	</div>
-	<?php get_template_part( 'template-parts/menu/menu', 'main' ) ?>
 </section>
+
+<?php get_template_part( 'template-parts/menu/menu', 'main' ) ?>
 
 
 <?php if($under_con == 'development') : ?>
@@ -30,26 +29,36 @@ $vid_post = get_theme_mod('nb_video_src', get_template_directory_uri() . '/dist/
 <?php endif; ?>
 
 <!-- testimony section -->
-<section class="testimony-section">
+<section class="nb-section testimony-section">
+	<div class="container">
+		<div class="row">
+			<div class="nb-section-title-wrapper col-md-12">
 
+				<h3 class="nb-section-title">Our Products</h3>
+				
+			</div>
+
+			<div class="col-md-8">
+
+				<?php get_template_part('template-parts/content-loop/content', 'product-collection') ?>
+
+			</div>
+			
+			<div class="col-md-4">
+
+				<?php get_template_part('template-parts/content-loop/content','testimonial') ?>
+
+			</div>
+		</div>
+	</div>
 </section>
 
-
-<!-- product section -->
-<section class="testimony-section">
-
-</section>
-
-<!-- product section -->
-<section class="product-section">
+<section>
+	<div class="container">
 	
+	</div>
 </section>
 
-
-<!-- branch section -->
-<section class="branch-section">
-	
-</section>
 
 
 <?php get_footer(); ?>

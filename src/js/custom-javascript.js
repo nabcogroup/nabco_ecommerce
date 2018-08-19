@@ -44,9 +44,7 @@
 
 
 //navigation
-(function() {
-
-    var $ = jQuery;
+jQuery(document).ready(function($) {
     
     //check if subnav set to active
     var groupSubnavs = $(".nb-dropdown-subnav");
@@ -93,10 +91,7 @@
 
         })
     }
-    
-    
-  
-})();
+});
 
 (function() {
 

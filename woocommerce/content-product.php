@@ -33,7 +33,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 
     do_action( 'woocommerce_before_shop_loop_item' );
 ?>
-<div class="col-sm-12 col-md-4 pb-3">
+<div class="col-sm-12 col-md-4 pb-3 px-1">
     <div class="card card-product-thumbnail">
         <div class="card-product-thumbnail-wrapper">
             <?php 

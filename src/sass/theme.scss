@@ -13,20 +13,18 @@
 
 @import "./theme/typography/text.scss";
 
-@import "./theme/boxes/card";
 
+@import "./theme/boxes/components";
+@import "./theme/boxes/card";
 @import "./theme/boxes/social";
 
 @import "./theme/navigation/breadcrumb";
-
 @import "./theme/navigation/main-navigation";
-
 @import "./theme/navigation/social-navigation";
 
 @import "./theme/layout/footer";
-
 @import "./theme/layout/page";
-
+@import "./theme/layout/form";
 @import "./theme/layout/section";
 
 
