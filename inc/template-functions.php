@@ -40,15 +40,15 @@ add_action( 'wp_head', 'nabco_furnitures_pingback_header' );
 
 
 
-/************ 
+/**
  * 
- * 
+ * Hooked in menu-main filter
+ * Get all the products attached to that category
 */
 add_filter('nb_menu_subnavigation_loop_args','nabco_furnitures_product_navigation',10);
 
 function nabco_furnitures_product_navigation($args) {
-	
-	
+		
 	$theProducts = new WP_Query($args);
 	$productArgs = [];
 

@@ -13,6 +13,7 @@
  * Used to add classes to widget areas so widgets can be displayed one, two, three or four per row
  */
 if ( ! function_exists( 'nabco_furnitures_slbd_count_widgets' ) ) {
+	
 	function nabco_furnitures_slbd_count_widgets( $sidebar_id ) {
 		// If loading from front page, consult $_wp_sidebars_widgets rather than options
 		// to see if wp_convert_widget_settings() has made manipulations in memory.
@@ -73,14 +74,6 @@ function nabco_furnitures_widgets_init() {
 
 
 	register_sidebar( array(
-		'name'	=>	__('Item List','nabco-furnitures'),
-		'id'	=>	'items',
-		'description'   => 'Item List used in side bar on products',
-		'before_widget'  => '<div id="%1$s" class="nab-group-items %2s ">', 
-		'after_widget'   => '</div>', 
-	));
-
-	register_sidebar( array(
 		'name'			=>	__('Sales Promotion Sidebar','nabco-furnitures'),
 		'id'			=>	'sales-sidebar',
 		'description'	=>	'Promotion side area',	
@@ -95,6 +88,22 @@ function nabco_furnitures_widgets_init() {
 		'before_widget'	=>	'<div id="%1s" class=social-handle-container %2s">',
 		'after_widget'	=>	'</div>'
 	) );
+
+	register_sidebar(array(
+		'name'		=>	__('Front Page Sidebar','nabco-furnitures'),
+		'id'		=>	'frontpage-sidebar',
+		'description'	=>	'Front page sidebar area',	
+		'before_widget'	=>	'<div id="%1s">',
+		'after_widget'	=>	'</div>'
+	));
+
+	register_sidebar(array(
+		'name'		=>	__('Top Header Search Sidebar','nabco-furnitures'),
+		'id'		=>	'topheader-search-sidebar',
+		'description'	=>	'Top header search sidebar area',	
+		'before_widget'	=>	'<div>',
+		'after_widget'	=>	'</div>'
+	));
 	
 }
 

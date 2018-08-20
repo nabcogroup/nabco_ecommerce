@@ -41,7 +41,9 @@
          * @hooked: nabco_furniture_pre_loading - 10
         */
 
-        //do_action('nabco_furniture_before_content'); 
+        if( !get_theme_mod('nb_theme_debug',false) ) {
+            do_action('nabco_furniture_before_content'); 
+        }
     ?>
 
     <!-- ******************* The Header Area ******************* -->
@@ -53,7 +55,6 @@
                     <?php if(is_front_page() && is_home()) : ?>
                         <a class="navbar-brand" href="#"><?php bloginfo('name'); ?></a>
                     <?php endif ?>
-
                 <?php else : ?>
                     <?php 
                         $logo_id = get_theme_mod('custom_logo');
@@ -77,7 +78,8 @@
                         <?php get_template_part( 'sidebar-templates/sidebar', 'social' ) ?>
                     </div>
                     <div class="row ml-auto">
-                        <?php get_template_part( 'template-parts/search/search', 'form' ) ?>
+                        
+                        <?php get_template_part( 'sidebar-templates/sidebar', 'front-search' ) ?>
 
                         <div class="nb-tran-icon">
                             <!-- carting here -->
@@ -102,20 +104,31 @@
 
     <!-- top header -->
     <?php if(!is_front_page()) : ?> 
+        
         <div class="header-menu-wrapper">
             <?php get_template_part( 'template-parts/menu/menu', 'main' ) ?>
         </div>
+        <?php
+        //check if underconstruction
+        if(get_theme_mod('nb_underconstruction', 'full_prod') == 'development') {
+            
+            get_template_part('template-parts/content-loop/content', 'under-construction');
+
+            get_footer();
+            
+            exit;
+        }?>
+
         <div class="container">
             <div class="row col-md-12 my-3" >
                 <?php 
-
                     if(is_page('checkout'))  {
                         echo sprintf("<a href='/cart' class='nb-wc-cart-breadcrumbs'> <i class='fa fa-mail-reply'></i> %s</a>",__("Back to Cart")); 
                     }
                 ?>
             </div>
-
         </div>
+
     <?php else : ?>
 
     <?php endif; ?>

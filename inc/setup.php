@@ -116,41 +116,16 @@ add_action( 'after_setup_theme', 'nabco_furnitures_content_width', 0 );
 
 
 
-/*
+/**
 	Preloading 
 */
-
-
 function nabco_furnitures_css() {
 	
 	if(is_customize_preview()) { return false; }
+
+
 ?>
 	<style>
-
-		@-webkit-keyframes spin {
-			0%   { 
-				-webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-				-ms-transform: rotate(0deg);  /* IE 9 */
-				transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
-			}
-			100% {
-				-webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-				-ms-transform: rotate(360deg);  /* IE 9 */
-				transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
-			}
-		}
-		@keyframes spin {
-			0%   { 
-				-webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-				-ms-transform: rotate(0deg);  /* IE 9 */
-				transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
-			}
-			100% {
-				-webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-				-ms-transform: rotate(360deg);  /* IE 9 */
-				transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
-			}
-		}
 		
 		#nb-loader-wrapper {
 			position: fixed;
@@ -208,84 +183,85 @@ function nabco_furnitures_css() {
 
 
 		
-		#nb-loader-wrapper .nb-loader-section {
-			position: fixed;
-			display: flex;
-			flex-direction: column;
-            justify-content: center;
-            align-items: center;
-    		top: 0;
-    		width: 51%;
-    		height: 100%;
-    		background: #f5f5f5;
-    		z-index: 1000;
-		}
- 
-		#nb-loader-wrapper .nb-loader-section.section-left {
-    		left: 0;
-		}
- 
-		#nb-loader-wrapper .nb-loader-section.section-right {
-    		right: 0;
-		}
-		
-		#nb-loader {
-    		z-index: 1001; /* anything higher than z-index: 1000 of .loader-section */
-		}
+	#nb-loader-wrapper .nb-loader-section {
+		position: fixed;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		top: 0;
+		width: 51%;
+		height: 100%;
+		background: #f5f5f5;
+		z-index: 1000;
+	}
+
+	#nb-loader-wrapper .nb-loader-section.section-left {
+		left: 0;
+	}
+
+	#nb-loader-wrapper .nb-loader-section.section-right {
+		right: 0;
+	}
+	
+	#nb-loader {
+		z-index: 1001; /* anything higher than z-index: 1000 of .loader-section */
+	}
 
 		
 
-		/* Loaded */
-		.nb-loaded #nb-loader-wrapper .nb-loader-section.section-left {
-    		-webkit-transform: translateX(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
-    		-ms-transform: translateX(-100%);  /* IE 9 */
-    		transform: translateX(-100%);  /* Firefox 16+, IE 10+, Opera */
-		}
- 
-		.nb-loaded #nb-loader-wrapper .nb-loader-section.section-right {
-    		-webkit-transform: translateX(100%);  /* Chrome, Opera 15+, Safari 3.1+ */
-    		-ms-transform: translateX(100%);  /* IE 9 */
-    		transform: translateX(100%);  /* Firefox 16+, IE 10+, Opera */
-		}
+	/* Loaded */
+	.nb-loaded #nb-loader-wrapper .nb-loader-section.section-left {
+		-webkit-transform: translateX(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
+		-ms-transform: translateX(-100%);  /* IE 9 */
+		transform: translateX(-100%);  /* Firefox 16+, IE 10+, Opera */
+	}
 
-		.nb-loaded #nb-loader {
-			opacity: 0;
-			-webkit-transition: all 0.3s ease-out; 
-            transition: all 0.3s ease-out;
-		}
+	.nb-loaded #nb-loader-wrapper .nb-loader-section.section-right {
+		-webkit-transform: translateX(100%);  /* Chrome, Opera 15+, Safari 3.1+ */
+		-ms-transform: translateX(100%);  /* IE 9 */
+		transform: translateX(100%);  /* Firefox 16+, IE 10+, Opera */
+	}
 
-		.nb-loaded #nb-loader-wrapper .nb-loader-section.section-right,
-		.nb-loaded #nb-loader-wrapper .nb-loader-section.section-left {
-    		-webkit-transition: all 0.3s 0.3s ease-out; 
-            transition: all 0.3s 0.3s ease-out;
-		}
+	.nb-loaded #nb-loader {
+		opacity: 0;
+		-webkit-transition: all 0.3s ease-out; 
+		transition: all 0.3s ease-out;
+	}
 
-		.nb-loaded #nb-loader-wrapper {
-    		visibility: hidden;
-		}
+	.nb-loaded #nb-loader-wrapper .nb-loader-section.section-right,
+	.nb-loaded #nb-loader-wrapper .nb-loader-section.section-left {
+		-webkit-transition: all 0.3s 0.3s ease-out; 
+		transition: all 0.3s 0.3s ease-out;
+	}
 
-		.#nb-loader-wrapper .nb-loader-section.section-right,
-		.#nb-loader-wrapper .nb-loader-section.section-left {
-			-webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-			transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-		}
+	.nb-loaded #nb-loader-wrapper {
+		visibility: hidden;
+	}
 
-		.nb-loaded #nb-loader-wrapper {
-        	-webkit-transform: translateY(-100%);
-            -ms-transform: translateY(-100%);
-			transform: translateY(-100%);
- 
-			-webkit-transition: all 0.3s 1s ease-out; 
-			transition: all 0.3s 1s ease-out;
-		}
+	.#nb-loader-wrapper .nb-loader-section.section-right,
+	.#nb-loader-wrapper .nb-loader-section.section-left {
+		-webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+		transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+	}
+
+	.nb-loaded #nb-loader-wrapper {
+		-webkit-transform: translateY(-100%);
+		-ms-transform: translateY(-100%);
+		transform: translateY(-100%);
+
+		-webkit-transition: all 0.3s 1s ease-out; 
+		transition: all 0.3s 1s ease-out;
+	}
 
 	</style>
 <?php
 }
 
-add_action('nabco_furnitures_style','nabco_furnitures_css');
+add_action('nabco_furnitures_style','nabco_furnitures_css',10);
 
 function nabco_furnitures_pre_loading() {
+
 	if(is_customize_preview()) { return false; }
 ?>
 
@@ -305,12 +281,11 @@ function nabco_furnitures_pre_loading_script() {
 ?>
 
 <script>
-	jQuery(document).ready(function() {
+	jQuery(document).ready(function($) {
 		setTimeout(function(){
-        	jQuery('body').addClass('nb-loaded');
+        	$('body').addClass('nb-loaded');
     	}, 1500);
 	})
-	
 </script>
 
 <?php 	
@@ -328,23 +303,18 @@ function nabco_furniture_youtube_script() {
 	jQuery(document).ready(function() {
 
 		if(window.matchMedia("(min-width: 640px)").matches) { 
-			//carry on video
+			//ignore
 		}
 		else {
 			jQuery("#vidFront").empty();
 			var img = document.createElement("img");
 			img.setAttribute('src','<?php echo get_theme_mod('nb_video_src', get_template_directory_uri() . '/dist/imgs/front.jpeg'); ?>');
 			img.setAttribute('class','videoContainer__video');
-			
-			 
+
 			jQuery("#vidFront").append(img);
 		}
 	});
-
-	
-
 </script>
-
 	<?php
 
 }

@@ -60,3 +60,29 @@ if(!function_exists('nabco_furnitures_card_wrapper')) {
 
 	}
 }
+
+add_shortcode( 'nb_form_search', 'nabco_furnitures_product_form_search' );
+
+if(!function_exists('nabco_furnitures_product_form_search')) {
+    
+    function nabco_furnitures_product_form_search() {
+        
+        $output =   '<form class="form-horizontal nb-form" style="display:block;" method="get" action="'.esc_url( home_url( '/' ) ).'">';
+        $output .=  '<div class="col-md-12">';
+        $output .=  '<div class="input-group">';
+        $output .=  '<input type="text" id="woocommerce-product-search-field-0" 
+                    class="form-control" placeholder="'. __( 'Search products&hellip;', 'woocommerce' ) .'" 
+                    aria-label="Search" name="s" 
+                    value="'. get_search_query() .'">';
+        $output .=  '<input type="hidden"   name="post_type" value="product" />';
+        $output .=  '<div class="input-group-append">';
+        $output .=  '<button class="input-group-text btn btn-primary" id="basic-addon1" type="submit"><i class="fa fa-search"></i></button>';
+        $output .=  '</div>';
+        $output .=  '</div>';
+        $output .=  '</div>';
+        $output .=  '</form>';
+
+        return $output;
+
+    }
+}

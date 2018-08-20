@@ -13,7 +13,7 @@ require_once get_template_directory() . '/inc/class/team_dev_customizer.php';
 
 require_once get_template_directory() . '/inc/class/class-wp-bootstrap-navwalker.php';
 
-require_once get_template_directory() . '/inc/class/post_widgets.php';
+require_once get_template_directory() . '/inc/class/search_widget.php';
 
 require get_template_directory() . '/inc/setup.php';
 

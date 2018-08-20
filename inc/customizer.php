@@ -61,7 +61,7 @@ function nabco_furnitures_theme_customize_register($wp_customize) {
         ]
 	);
 	
-
+	//select for development and production mode
 	$nabCustomizer->addSelectControl('nb_underconstruction',  [
         'default'   =>  'development',
         'type'      =>  'theme_mod'],
@@ -73,7 +73,6 @@ function nabco_furnitures_theme_customize_register($wp_customize) {
 				'stage' => __( 'Staging ', 'nabco' ),
 				'full_prod' => __( 'Full Production ', 'nabco' ),
 			),
-
             'priority'  =>  '20'
         ]
 	);
@@ -87,6 +86,21 @@ function nabco_furnitures_theme_customize_register($wp_customize) {
 	$argUploadControl = array('label' => 'Upload Video');
 
 	$nabCustomizer->addUploadControl('nb_upload_video',$argUploadSetting,$argUploadControl);
+
+	//select for development and production mode
+	$nabCustomizer->addSelectControl('nb_theme_debug',  [
+        'default'   =>  'false',
+        'type'      =>  'theme_mod'],
+        [
+			'label'         =>  __('Theme Debug', 'nabco'),
+			
+            'choices'       => array(
+                'false'       => __( 'False', 'nabco' ),
+				'true' => __( 'True', 'nabco' ),
+			),
+            'priority'  =>  '30'
+        ]
+	);
 
 
 }

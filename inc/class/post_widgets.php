@@ -3,7 +3,7 @@
 /***********************************************
 Register custom widget
 */
-add_action('widgets_init','td_load_widget');
+
 
 function td_load_widget() {
     register_widget( 'Nab_SpecificPost_Widget' );
