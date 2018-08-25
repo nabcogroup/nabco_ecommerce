@@ -18,7 +18,7 @@ class TeamDevCustomizer {
         
         $this->wp_customize->add_section($this->section_name, array(
             'title'       => __( $title, $this->domain),
-            'description' => __( $title, 'understrap' ),
+            'description' => __( $title, $this->domain ),
             'priority'    => $priority,
         ));
 

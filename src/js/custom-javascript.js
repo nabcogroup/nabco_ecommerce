@@ -27,16 +27,11 @@
 
 //common
 jQuery(document).ready(function($) {
-
     //closing icon mobile
     $(".mobile-close-icon").on("click",function() {
         $target = $(this).data("target");
         $($target).removeClass("show");
     });
-
-
-    //control
-    
 
 });
 

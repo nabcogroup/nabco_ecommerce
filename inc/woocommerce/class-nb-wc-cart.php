@@ -20,6 +20,36 @@ class Nb_WoocommerceCart {
 
         //woocommerce cart message
         add_filter( 'wc_add_to_cart_message_html',[$this,'addCartMessageHtml'], 10);
+
+
+        //mini cart header
+        add_filter('woocommerce_widget_cart_item_quantity',[$this,'modWidgetCartItemQuantity'],10,3);
+
+        //remove action and replace 
+        remove_action('woocommerce_widget_shopping_cart_buttons','woocommerce_widget_shopping_cart_button_view_cart',10);
+        remove_action('woocommerce_widget_shopping_cart_buttons','woocommerce_widget_shopping_cart_proceed_to_checkout',20);
+        //add_action('woocommerce_widget_shopping_cart_buttons',[$this,'modWidgetShoppingCartButtonViewCart'],10);
+        add_action('woocommerce_widget_shopping_cart_buttons',[$this,'modWidgetShoppingCartProceedToCheckout'],10);
+
+    }
+
+    public function modWidgetShoppingCartButtonViewCart() {
+        echo '<div class="col-md-6">';
+        echo '<!-- open col --><a href="' . esc_url( wc_get_cart_url() ) . '" class="button wc-forward btn btn-block btn-secondary">' . esc_html__( 'View Cart', 'woocommerce' ) . '</a><!-- end-->';
+        echo '</div>';
+    }
+
+    public function modWidgetShoppingCartProceedToCheckout() {
+        echo '<a href="' . esc_url( wc_get_checkout_url() ) . '" class="button checkout wc-forward btn btn-block  btn-secondary">' . esc_html__( 'Checkout', 'woocommerce' ) . '</a>';
+    }
+
+
+
+    public function modWidgetCartItemQuantity($content,$item,$key) {
+        
+        $content = "<span class='quantity'><strong>Quantity:&nbsp;</strong>{$item['quantity']}</span>";
+        
+        return $content;
     }
 
     public function addCartEmptyMessage() {

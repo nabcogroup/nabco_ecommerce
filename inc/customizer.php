@@ -30,6 +30,10 @@ function nabco_furnitures_customize_register( $wp_customize ) {
 			'render_callback' => 'nabco_furnitures_customize_partial_blogdescription',
 		) );
 	}
+
+
+
+	
 }
 
 
@@ -107,6 +111,41 @@ function nabco_furnitures_theme_customize_register($wp_customize) {
 
 add_action( 'customize_register', 'nabco_furnitures_theme_customize_register');
 
+
+if (!function_exists('nabco_furnitures_custom_header_register')) {
+
+	function nabco_furnitures_custom_header_register($wp_customize) {
+
+		$nabCustomizer = new TeamDevCustomizer($wp_customize,'nabco','nabco_theme_header_option');
+
+		$nabCustomizer->addSection('Naco Header Setting','Naco Header Setting',125);
+
+		$nabCustomizer->addUploadControl('nb_header_logo',array('label' => 'Upload Logo','priority' => 10));
+
+		$nabCustomizer->addSelectControl('nb_header_social_api',
+			array('default'   =>  'none','type'		=>	'theme_mod'),
+			array(
+				'label'		=>	__('Social API'),
+				'choices'	=>	array('none'=> 'None','basic' => 'Basic', 'general' => 'General'),
+				'priority'	=>	20
+			)
+		);
+
+		$nabCustomizer->addSelectControl('nb_header_search_control',
+			array('default'   =>  'none','type'		=>	'theme_mod'),
+			array(
+				'label'		=>	__('Product Search'),
+				'choices'	=>	array('none'=> 'None','product' => 'Product', 'basic' => 'Basic'),
+				'priority'	=>	30
+			)
+		);
+
+
+	}
+
+}
+
+add_action( 'customize_register', 'nabco_furnitures_custom_header_register');
 
 
 

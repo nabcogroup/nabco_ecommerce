@@ -32,8 +32,8 @@ if ( $max_value && $min_value === $max_value ) {
 			<label class="screen-reader-text col-md-4" for="<?php echo esc_attr( $input_id ); ?>"><?php esc_html_e( 'Quantity:', 'woocommerce' ); ?></label>
 		<?php endif; ?>
 		<div class="col-md-8">
-			<div class="nb-input-group-wrapper">
-				<button class="nb-wc-input-qty__modifier nb-wc-input-qty__modifier--left" type="button">-</button>
+			<div id="qtyInput" class="nb-input-group-wrapper">
+				<button id="qtyDec" class="nb-wc-input-qty__modifier nb-wc-input-qty__modifier--left" type="button" data-type="dec">-</button>
 				<input
 					type="text"
 					id="<?php echo esc_attr( $input_id ); ?>"
@@ -48,7 +48,7 @@ if ( $max_value && $min_value === $max_value ) {
 					pattern="<?php echo esc_attr( $pattern ); ?>"
 					inputmode="<?php echo esc_attr( $inputmode ); ?>"
 					aria-labelledby="<?php echo esc_attr( $labelledby ); ?>" />
-					<button class="nb-wc-input-qty__modifier nb-wc-input-qty__modifier--right" type="button">+</button>
+					<button id="qtyInc" class="nb-wc-input-qty__modifier nb-wc-input-qty__modifier--right" type="button" data-type="inc">+</button>
 			</div>
 		</div>
 	</div>

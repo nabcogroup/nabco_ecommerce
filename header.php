@@ -41,7 +41,7 @@
          * @hooked: nabco_furniture_pre_loading - 10
         */
 
-        if( !get_theme_mod('nb_theme_debug',false) ) {
+        if( get_theme_mod('nb_theme_debug','false') == 'false') {
             do_action('nabco_furniture_before_content'); 
         }
     ?>
@@ -51,17 +51,10 @@
         <div class="navbar navbar-expand-md navbar-light nb-header">
             <div class="container">
                 <!-- Your site title as branding in the menu -->
-                <?php if ( ! has_custom_logo() ) : ?>     
-                    <?php if(is_front_page() && is_home()) : ?>
-                        <a class="navbar-brand" href="#"><?php bloginfo('name'); ?></a>
-                    <?php endif ?>
-                <?php else : ?>
-                    <?php 
-                        $logo_id = get_theme_mod('custom_logo');
-                        $image = wp_get_attachment_image_src( $logo_id , 'full' );
-                    ?>
-                    <a class="navbar-brand mr-auto" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo $image[0]; ?>" alt=""></a>
-                <?php endif; ?>
+                <?php 
+                    $logo_path = get_theme_mod('nb_header_logo');
+                ?>
+                <a class="navbar-brand mr-auto" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo $logo_path; ?>" alt=""></a>
                 
                 <button class="navbar-toggler" type="button" 
                         data-toggle="collapse" 
@@ -83,9 +76,10 @@
 
                         <div class="nb-tran-icon">
                             <!-- carting here -->
-                            <a href="#"> <i class="fa fa-heart"></i></a>
-                            <a href="#"> <i class="fa fa-shopping-cart"></i></a>
-                            <a href="/my-account"> <i class="fa fa-user"></i></a>
+                            <?php 
+                                //hooked: nabco_furnitures_cart_link_display - 10
+                                do_action('nabco_furnitures_header_display_fragment'); 
+                            ?>
                         </div>
                         
                     </div>

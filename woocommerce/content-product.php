@@ -51,7 +51,9 @@ if ( empty( $product ) || ! $product->is_visible() ) {
             ?>
         
             <div class="card-body">
+
                 <div class="<?php wc_product_class(); ?>">
+                    
                     <?php
                         
                         /**
@@ -69,7 +71,9 @@ if ( empty( $product ) || ! $product->is_visible() ) {
                          */
                         do_action( 'woocommerce_after_shop_loop_item_title' );
                     ?>
+
                 </div>
+                
             </div>
         </div>
     </div>
