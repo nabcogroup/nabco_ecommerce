@@ -15,6 +15,8 @@ require_once get_template_directory() . '/inc/class/class-wp-bootstrap-navwalker
 
 require_once get_template_directory() . '/inc/class/search_widget.php';
 
+require_once get_template_directory() . '/inc/class/class-nb-mainmenu.php';
+
 require get_template_directory() . '/inc/setup.php';
 
 require get_template_directory() . '/inc/widgets.php';

@@ -155,7 +155,7 @@ class Nb_WoocommerceProductLoop {
         );
     }
 
-    public function loopProductThumbnail($size = 'shop_catalog') {
+    public function loopProductThumbnail($size = 'thumbnail') {
         
         global $post, $woocommerce;
         

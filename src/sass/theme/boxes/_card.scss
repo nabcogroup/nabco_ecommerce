@@ -111,23 +111,26 @@
     }
 }
 
+
+$front-image-height: 179px;
+$front-image-height-responsive: 200px;
+
 .card {
     
     &.card-product-collection {
         
         border-radius: 0 !important;
-        border: none !important;
+        border:none;
         padding: 5px;
         
 
         .card-img-wrapper {
             position: relative;
-            height: 300px;
-            @include border-radius(5px);
+            height: $front-image-height-responsive;
             overflow: hidden;
 
             @include media-breakpoint-up(sm) {
-                height: 300px;
+                height: $front-image-height;
             }
 
             img.card-top-img {
@@ -175,7 +178,7 @@
         .card-title {
             font-weight: 900;
             padding: 5px;
-            color: $nb-color-creme;
+            color: $nb-p-color;
             text-align: center;
             line-height: 1.2em;
             text-transform: uppercase;

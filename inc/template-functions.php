@@ -24,6 +24,7 @@ function nabco_furnitures_body_classes( $classes ) {
 
 	return $classes;
 }
+
 add_filter( 'body_class', 'nabco_furnitures_body_classes' );
 
 /**
@@ -76,7 +77,7 @@ function nabco_furnitures_product_navigation($args) {
 
 
 //menu filter
-add_filter( 'products_list_args', 'nabco_furnitures_product_menu', 10,2);
+
 
 function nabco_furnitures_product_menu($categories,$imageArgs) {
 

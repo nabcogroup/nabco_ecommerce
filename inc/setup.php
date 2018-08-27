@@ -89,7 +89,9 @@ if ( ! function_exists( 'nabco_furnitures_setup' ) ) {
 			'flex-height' => true,
 		) );
 
-	
+		
+		//add image size
+		add_image_size('front-page-thumb', 420, 315);	
 		
 	}
 }
@@ -210,18 +212,24 @@ function nabco_furnitures_css() {
 
 		
 
-	/* Loaded */
+	/* Loaded 
 	.nb-loaded #nb-loader-wrapper .nb-loader-section.section-left {
-		-webkit-transform: translateX(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
-		-ms-transform: translateX(-100%);  /* IE 9 */
-		transform: translateX(-100%);  /* Firefox 16+, IE 10+, Opera */
+		-webkit-transform: translateX(-100%);  
+		-ms-transform: translateX(-100%);  
+		transform: translateX(-100%);  
 	}
 
 	.nb-loaded #nb-loader-wrapper .nb-loader-section.section-right {
-		-webkit-transform: translateX(100%);  /* Chrome, Opera 15+, Safari 3.1+ */
-		-ms-transform: translateX(100%);  /* IE 9 */
-		transform: translateX(100%);  /* Firefox 16+, IE 10+, Opera */
+		-webkit-transform: translateX(100%);  
+		-ms-transform: translateX(100%);  
+		transform: translateX(100%);  
+	}*/
+
+	.nb-loaded #nb-loader-wrapper .nb-loader-section.section-left,
+	.nb-loaded #nb-loader-wrapper .nb-loader-section.section-right {
+		display:none;
 	}
+
 
 	.nb-loaded #nb-loader {
 		opacity: 0;
@@ -284,7 +292,7 @@ function nabco_furnitures_pre_loading_script() {
 	jQuery(document).ready(function($) {
 		setTimeout(function(){
         	$('body').addClass('nb-loaded');
-    	}, 1500);
+    	}, 150);
 	})
 </script>
 
