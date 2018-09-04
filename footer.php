@@ -10,13 +10,16 @@
  */
 
 ?>
+
+<?php if(!is_front_page()) : ?> 
+  </div> <!-- closing container -->
+<?php endif ?>
+  
   </main>
 
 <!-- footer -->
 <footer id="footer-full" class="footer-wrapper">
-  
   <?php get_template_part( 'sidebar-templates/sidebar', 'footerfull' ) ?>
-
   <div class="footer-bottom">
     <div class="container">
       <div class="row">
@@ -29,7 +32,6 @@
       </div>
     </div>
   </div>
-	
  </footer>
  <!-- ADDITIONAL JS HERE -->
  <?php wp_footer(); ?>

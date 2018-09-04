@@ -35,7 +35,6 @@ add_action( 'after_setup_theme', 'nabco_furnitures_woocommerce_setup' );
 function nabco_furnitures_woocommerce_scripts() {
 	
 	wp_enqueue_style( 'nabco-furnitures-woocommerce-style', get_template_directory_uri() . '/dist/css/woocommerce.css' );
-
 	$font_path   = WC()->plugin_url() . '/assets/fonts/';
 	$inline_font = '@font-face {
 			font-family: "star";
@@ -128,6 +127,21 @@ if ( ! function_exists( 'nabco_furnitures_woocommerce_cart_link' ) ) {
 	}
 }
 
+
+if(!function_exists('nabco_furnitures_search_form')) {
+	
+	function nabco_furnitures_search_form() {
+
+?>
+		<div class="mr-3">
+			<a href="#"><i class="fa fa-search"></i></a>	
+		</div>
+<?php
+	}
+}
+
+
+
 if ( ! function_exists( 'nabco_furnitures_woocommerce_header_cart' ) ) {
 	/**
 	 * Display Header Cart.
@@ -147,7 +161,7 @@ if ( ! function_exists( 'nabco_furnitures_woocommerce_header_cart' ) ) {
 				<li class="<?php echo esc_attr( $class ); ?>">
 					<?php nabco_furnitures_woocommerce_cart_link(); ?>
 				</li>
-				<li>
+				<li class="d-none d-sm-block">
 					<?php
 					$instance = array('title' => '');
 					the_widget( 'WC_Widget_Cart', $instance );
@@ -193,7 +207,9 @@ function nabco_furnitures_qty_input() {
 				var inputValue = parseInt(input.val());
 				var step = input.attr('step');
 				step = 'undefined' !== typeof(step) ? parseInt(step) : 1;
-				input.val( inputValue + step ).change();
+				if(inputValue < 100) {
+					input.val( inputValue + step ).change();
+				}
 			})
 
 			$(document).on('click','#qtyDec',function(e) {
@@ -202,7 +218,7 @@ function nabco_furnitures_qty_input() {
 				var inputValue = parseInt(input.val());
 				var step = input.attr('step');
 				step = 'undefined' !== typeof(step) ? parseInt(step) : 1;
-				if (inputValue > 0) {
+				if (inputValue > 1) {
 					input.val( inputValue - step ).change();
 				}
 			})
@@ -214,3 +230,28 @@ function nabco_furnitures_qty_input() {
 }
 
 add_action('wp_footer','nabco_furnitures_qty_input');
+
+
+function nabco_furnitures_wc_dashboard_button() {
+	if(!is_page('my-account')) {
+		return false;
+	}
+ ?>
+
+<script>
+	jQuery(document).ready(function($) {
+		$(".nb-wc-mob-nav-button").on("click",function() {
+			if(!$(".woocommerce-MyAccount-navigation").hasClass('mobile-button-active')) {
+				$(".woocommerce-MyAccount-navigation").addClass('mobile-button-active');
+			}
+			else {
+				$(".woocommerce-MyAccount-navigation").removeClass('mobile-button-active');
+			}
+		});
+	})
+</script>
+
+<?php
+}
+
+add_action('wp_footer','nabco_furnitures_wc_dashboard_button');

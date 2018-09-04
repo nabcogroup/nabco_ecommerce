@@ -46,7 +46,16 @@
 
 .body-content {
 
-  
+    &.white-wrap {
+        background: #f5f5f5;
+        border: 1px solid $nb-gray-lighter;
+        padding: 5px 10px;
+
+        > h2  {
+          font-size: 1.4rem;  
+          text-transform: uppercase;
+        }
+    }
     
     p {
         text-align: justify;

@@ -18,10 +18,9 @@ $color__text-main: #000;
 
 
 .nb-wc-cart-breadcrumbs {
-	padding: 10px 5px;
-	background: $nb-gray-lighter;
-	@include border-radius(5px);
-	color: $nb-color-creme;
+	padding: 5px;
+	color: $nb-p-color;
+	font-size: 0.9rem;
 }
 
 
@@ -274,46 +273,49 @@ p.no-comments
 
 
 $prefix : '.nb';
-
-#{$prefix}-input-group-wrapper {
-	position:relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width:150px;
-}
-
-#{$prefix}-wc-input-qty {
-	
-	  display: inline-block;
-	  border: 1px solid $nb-gray-lighter;
-	  text-align:center;
-	  padding: 5px 0;
-	  &.qty {
-		  
-		width: 3rem !important;
+.quantity {
+	.screen-reader-text {
+		font-size: 12px;
 	}
-}
-
-#{$prefix}-wc-input-qty__modifier,
-#{$prefix}-wc-input-qty {
-	user-select: none;
-  	outline: none;
-}
-
-#{$prefix}-wc-input-qty__modifier {
-
-	padding:5px;
-	width: 2rem;
-	  
-  	background: $nb-gray-lighter;
-  	color: $nb-p-color;
-	text-align: center;
-	border: 1px solid $nb-gray-lighter;
-
-	&:hover {
-		cursor: pointer;
-		background: $nb-gray-light;
-		color: white;
+	#{$prefix}-input-group-wrapper {
+		position:relative;
+		display: flex;
+	}
+	
+	#{$prefix}-wc-input-qty {
+		  display: inline-block;
+		  border: 1px solid $nb-gray-lighter;
+		  text-align:center;
+		  padding: 5px 0;
+		  &.qty {
+			width: 3rem;
+			@include media-breakpoint-down(md)  {
+				width:100%;
+			}
+			
+		}
+	}
+	
+	#{$prefix}-wc-input-qty__modifier,
+	#{$prefix}-wc-input-qty {
+		user-select: none;
+		  outline: none;
+	}
+	
+	#{$prefix}-wc-input-qty__modifier {
+	
+		padding:5px;
+		width: 2rem;
+		  
+		  background: $nb-gray-lighter;
+		  color: $nb-p-color;
+		text-align: center;
+		border: 1px solid $nb-gray-lighter;
+	
+		&:hover {
+			cursor: pointer;
+			background: $nb-gray-light;
+			color: white;
+		}
 	}
 }

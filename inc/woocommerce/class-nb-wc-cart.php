@@ -6,13 +6,8 @@ class Nb_WoocommerceCart {
     public function __construct() {
         
         add_action('woocommerce_before_cart',[$this,'addCartBootstrapWrapper'],10);
-
-        add_action('woocommerce_before_cart', 'woocommerce_breadcrumb',20);
-
         add_action('woocommerce_after_cart',[$this,'addCartBootstrapClosing'],10);
-
-        apply_filters( 'wc_empty_cart_message', [$this,'addCartEmptyMessage'] );
-
+        
         //remove default empty cart display and replace with bootstrap style
         remove_action('woocommerce_cart_is_empty','wc_empty_cart_message',10);
 

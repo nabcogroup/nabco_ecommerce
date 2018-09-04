@@ -17,17 +17,15 @@
 
 defined( 'ABSPATH' ) || exit;
 
+$under_con = get_theme_mod( 'nb_underconstruction', '' );
+
 get_header( 'shop' );
-
-$under_con = get_theme_mod( 'nb_underconstruction', '' )
-
 
 ?>
 
 
 <!-- trap development -->
 <?php if($under_con != 'development') : ?>
-
 
 <?php 
 	
@@ -48,17 +46,17 @@ $under_con = get_theme_mod( 'nb_underconstruction', '' )
 	<?php endif; ?>
 </header>
 
-	<div class="row col-md-12">
-		<?php
-			/******************************************************
-			 * Hook: woocommerce_archive_description.
-			 *
-			 * @hooked woocommerce_taxonomy_archive_description - 10
-			 * @hooked woocommerce_product_archive_description - 10
-			 ********************************************************/
-			do_action( 'woocommerce_archive_description' );
-		?>
-	</div>
+<div class="row col-md-12">
+	<?php
+		/******************************************************
+		 * Hook: woocommerce_archive_description.
+		 *
+		 * @hooked woocommerce_taxonomy_archive_description - 10
+		 * @hooked woocommerce_product_archive_description - 10
+		 ********************************************************/
+		do_action( 'woocommerce_archive_description' );
+	?>
+</div>
 
 	<div class="row">
 		<div class="col-md-9">

@@ -72,3 +72,17 @@ $formRowWidth: 100%;
     padding: 15px;
     border: 1px solid #f5f5f5;
 }
+
+//login form toggle
+.woocommerce-form-login-toggle {
+    background: $nb-gray-lighter;
+    padding: 5px;
+
+    a {
+        font-weight: 900;
+    }
+}
+//review order table
+.woocommerce-checkout-review-order-table {
+    font-size: 0.9rem;
+}

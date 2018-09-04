@@ -6,19 +6,23 @@ $under_con = get_theme_mod('nb_underconstruction','');
 $vid_src = get_theme_mod('nb_video_src', get_template_directory_uri() . '/dist/videos/fp.mp4');
 $vid_post = get_theme_mod('nb_video_src', get_template_directory_uri() . '/dist/imgs/front.jpeg');
 
+
+
+//<video id="main-video" src=" echo $vid_src" poster="echo $vid_post " autoplay muted onended="this.play()" class="videoContainer__video"></video>
+
 ?>
 
 
- <!-- video section-->
+<!-- video section-->
 <section class="nb-section slider-section p-0 m-0">
-		<div class="ns-video-box-rel"></div>
-		<div id="vidFront" class="video-wrapper">
-			<video id="main-video" src="<?php echo $vid_src ?>" poster="<?php echo $vid_post ?>" autoplay muted onended="this.play()" class="videoContainer__video"></video>
-		</div>	
+		<?php 
+			if(function_exists('nabcosetting_slider')) {
+				nabcosetting_slider(); 
+			}
+		?>
 </section>
 
 <?php get_template_part( 'template-parts/menu/menu', 'main' ) ?>
-
 
 <?php if($under_con == 'development') : ?>
 	

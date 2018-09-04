@@ -19,7 +19,7 @@ $under_con = get_theme_mod( 'nb_underconstruction', '' );
 
 <?php if($under_con != 'development') : ?>
 
-<article class="container page-wrapper">
+<article class="page-wrapper">
 
     <?php if(have_posts()) : ?>
 

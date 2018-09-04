@@ -108,14 +108,14 @@ $args = array(
     'depth'           => 2,
     'walker'          => new WP_Bootstrap_Navwalker());
 ?>
-    <nav class="nb-navbar">
+    <nav class="nb-navbar nb-navbar-js">
         <div class="container">
             <?php if($nbMainNavigation->haveItems()) { ?>
                 <ul class="nb-menu justify-content-center">
                     <?php
                         //loop
                         foreach($nbMainNavigation->items as $item) {
-                            if($htmlMenu = Nab_MainNavigationHtml::createHtmlMenu($item,$nbMainNavigation->items)) {
+                            if($htmlMenu = Nab_MainNavigationHtml::createHtmlMenu($item,$nbMainNavigation->items,$nbMainNavigation)) {
                                 echo $htmlMenu;
                             }
                         }
@@ -139,26 +139,19 @@ $args = array(
         <span class="mobile-close-icon" data-target="#mobileMenu"><i class="fa fa-times-circle fa-2x"></i> </span>
 
 
-        <!-- -->
-        <div class="nb-tran-icon">
-            <!-- carting here -->
-            <?php 
-                //hooked: nabco_furnitures_cart_link_display - 10
-                do_action('nabco_furnitures_header_display_fragment'); 
-            ?>
-        </div>
+      
         <!-- search navigation -->
         <?php get_template_part( 'sidebar-templates/sidebar', 'front-search' ) ?>
-
-
 
         <?php if($nbMainNavigation->haveItems()) : ?>
             <div class="menu-primary-container">
                 <ul class="navbar-nav cust-navbar-item mr-auto">
                     <?php foreach($nbMainNavigation->items as $item) :  ?>
+                        
                         <?php 
                             $subHtmls = ""; 
                             $li_css = array();
+                            if($item->menu_item_parent != 0) continue;
                         ?>
                         <?php if(in_array('has_children',$item->classes)) { 
                                 $li_css = array("has_children","dropdown","menu-item-has-children");
@@ -184,10 +177,6 @@ $args = array(
                                 href="<?php echo $item->url; ?>" 
                                 title="<?php echo $item->title; ?>" 
                                 class="nav-link"><?php echo $item->title; ?></a>
-
-                            <!-- Sub Menu  -->
-                            <?php echo $subHtmls; ?>
-                            <!-- end submenu -->
                         </li>        
                     <?php endforeach; ?>
                 </ul>

@@ -2,7 +2,6 @@
 (function() {
     
     var $ = jQuery;
-    
     $(document).on( 'scroll', function(){
         if ($(window).scrollTop() > 100) {
             $('.scroll-top-wrapper').addClass('show');
@@ -17,9 +16,7 @@
     $('.scroll-top-wrapper').on('click', scrollToTop);
     
     function scrollToTop() {
-        
         verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
-        
         element = $('body');
         offset = element.offset();
         offsetTop = offset.top;
@@ -29,7 +26,19 @@
 
 });
 
+jQuery(document).ready(function($) {
 
+    var win = $(window);
+    var navBar = $(".nb-navbar-js");
+
+    var offsetTop = navBar.offset().top;
+    var sticky = function(){ 
+        
+        win.scrollTop() > offsetTop ? navBar.addClass('sticky') : navBar.removeClass('sticky')
+    }
+
+    win.scroll(sticky);
+});
 
 //common
 jQuery(document).ready(function($) {
@@ -44,22 +53,15 @@ jQuery(document).ready(function($) {
 
 //navigation
 jQuery(document).ready(function($) {
-    
     //check if subnav set to active
     var groupSubnavs = $(".nb-dropdown-subnav");
-    
     groupSubnavs.each(function(key,item) {
-
         var groupItem = $(this).data("group");
-
         initNavMenu(groupItem);
-
     });
 
     function initNavMenu(groupName) {
-
         var subnavs = $("." + groupName);
-
         subnavs.each(function() {
             if($(this).hasClass("active")) {
                 

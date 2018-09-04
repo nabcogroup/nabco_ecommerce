@@ -11,19 +11,21 @@ class Nb_WoocommerceSingleProduct {
         * Hook: woocommerce_before_single_product.
         * @hooked wc_print_notices - 10 
         ******************************************/
-        add_action('woocommerce_before_single_product',[$this,'beforeSingleProduct'],5);
-        
-        add_action( 'woocommerce_after_single_product',[$this,'afterSingleProduct'],15);
-
-        add_action('woocommerce_before_add_to_cart_form',[$this,'beforeCartForm'],10);
-        
-        add_action( 'woocommerce_after_add_to_cart_form', [$this,'afterCartForm'],10 );
+        // add_action('woocommerce_before_single_product',[$this,'beforeSingleProduct'],5);
+        // add_action( 'woocommerce_after_single_product',[$this,'afterSingleProduct'],15);
+        // add_action('woocommerce_before_add_to_cart_form',[$this,'beforeCartForm'],10);
+        // add_action( 'woocommerce_after_add_to_cart_form', [$this,'afterCartForm'],10 );
 
         //change meta position
         remove_action('woocommerce_single_product_summary','woocommerce_template_single_meta',40);
-        
         add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 7);
         
+
+        remove_action('woocommerce_single_product_summary','woocommerce_template_single_price',10);
+        remove_action('woocommerce_single_product_summary','woocommerce_template_single_excerpt',20);
+
+        add_action('woocommerce_single_product_summary','woocommerce_template_single_excerpt',10);
+        add_action('woocommerce_single_product_summary','woocommerce_template_single_price',20);
 
         //
         //insert dynamic price display
@@ -42,21 +44,17 @@ class Nb_WoocommerceSingleProduct {
          /****************** 
           * Hook: woocommerce_before_add_to_cart_quantity & woocommerce_after_add_to_cart_quantity
          */
-         add_action( 'woocommerce_before_add_to_cart_quantity', array($this,'beforeAddToCartQuantityWrapper'),10 );
-         
-         add_action( 'woocommerce_after_add_to_cart_quantity', array($this,'afterAddToCartQuantityWrapper'), 10 );
+         //add_action( 'woocommerce_before_add_to_cart_quantity', array($this,'beforeAddToCartQuantityWrapper'),10 );
+         //add_action( 'woocommerce_after_add_to_cart_quantity', array($this,'afterAddToCartQuantityWrapper'), 10 );
 
         
         //insert class in product variation selection
         add_filter('woocommerce_dropdown_variation_attribute_options_args',[$this,'dropdownVariationOptionsAddBootstrapForm']);
-
-
         add_filter('woocommerce_product_review_comment_form_args',[$this,'changeCommentAuthorField'],10);
-
-        add_filter('woocommerce_product_review_comment_form_args',[$this,'changeCommentSubmitButton'],20);
-        
+        add_filter('woocommerce_product_review_comment_form_args',array($this,'changeCommentSubmitButton'),20);
     }
 
+   
     public function changeCommentSubmitButton($comment_form) {
 
         $comment_form['submit_button'] = '<div class="form-group text-right"><input name="%1$s" type="submit" id="%2$s" class="%3$s btn btn-secondary" value="%4$s" /></div>';

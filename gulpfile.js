@@ -42,6 +42,7 @@ var paths = {
 
 // Gulp task to minify CSS files
 gulp.task('sass', function () {
+  
   return gulp.src(paths.sass.input)
     // Compile SASS files
     .pipe(sass({

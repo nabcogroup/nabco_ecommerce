@@ -50,11 +50,41 @@
     <header id="main-header">
         <div class="navbar navbar-expand-md navbar-light nb-header">
             <div class="container">
+
                 <!-- Your site title as branding in the menu -->
-                <?php 
-                    $logo_path = get_theme_mod('nb_header_logo');
-                ?>
-                <a class="navbar-brand mr-auto" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo $logo_path; ?>" alt=""></a>
+                <?php if(has_custom_logo()) : ?>
+                    <?php 
+                        $custom_logo_id = get_theme_mod( 'custom_logo' );
+                        $logo_path = wp_get_attachment_image_src( $custom_logo_id , 'full' ); 
+                    ?>
+                    <a class="navbar-brand mr-auto" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo esc_url($logo_path[0]); ?>" alt=""></a>
+                <?php else : ?>
+
+                <?php endif ?>
+                
+                <div class="collapse navbar-collapse">
+                    <div class="row mr-auto pl-5">
+                        <?php 
+                            if(get_theme_mod('nb_header_social_api','none') == 'basic') {
+                                get_template_part( 'sidebar-templates/sidebar', 'social' ); 
+                            }
+                        ?>
+                    </div>
+                </div>
+
+                <div class="row float-right">
+                    <div class="d-none d-sm-block">
+                        <?php get_template_part( 'sidebar-templates/sidebar', 'front-search' ) ?>
+                    </div>
+                    <div class="nb-tran-icon">
+                        <!-- carting here -->
+                        <?php 
+                            //hooked: nabco_furnitures_cart_link_display - 10
+                            //hooked: nabco_furnitures_woocommerce_customer_account - 20
+                            do_action('nabco_furnitures_header_display_fragment'); 
+                        ?>
+                    </div>
+                </div>
                 
                 <button class="navbar-toggler" type="button" 
                         data-toggle="collapse" 
@@ -65,65 +95,39 @@
                         <span class="navbar-toggler-icon"></span>
 
                 </button>
+
+
+               
                 
-                <div class="collapse navbar-collapse">
-                    <div class="row mr-auto pl-5">
-                        <?php 
-                            if(get_theme_mod('nb_header_social_api','none') == 'basic') {
-                                get_template_part( 'sidebar-templates/sidebar', 'social' ); 
-                            }
-                        ?>
-                    </div>
-                    <div class="row ml-auto">
-                        <?php get_template_part( 'sidebar-templates/sidebar', 'front-search' ) ?>
-                        <div class="nb-tran-icon">
-                            <!-- carting here -->
-                            <?php 
-                                //hooked: nabco_furnitures_cart_link_display - 10
-                                do_action('nabco_furnitures_header_display_fragment'); 
-                            ?>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-        <div class="search-section-wrapper d-none d-md-block">
-            <div class="container">
-                <div class="row">
-                </div>
-            </div>
-        </div>  
+        
 	</header>
 	
 	<main class="main-wrapper">
 
     <!-- top header -->
     <?php if(!is_front_page()) : ?> 
-        
         <div class="header-menu-wrapper">
             <?php get_template_part( 'template-parts/menu/menu', 'main' ) ?>
         </div>
+        
         <?php
+
         //check if underconstruction
         if(get_theme_mod('nb_underconstruction', 'full_prod') == 'development') {
-            
             get_template_part('template-parts/content-loop/content', 'under-construction');
-
             get_footer();
-            
             exit;
         }?>
 
+        <!-- opening container -->
         <div class="container">
-            <div class="row col-md-12 my-3" >
-                <?php 
-                    if(is_page('checkout'))  {
-                        echo sprintf("<a href='/cart' class='nb-wc-cart-breadcrumbs'> <i class='fa fa-mail-reply'></i> %s</a>",__("Back to Cart")); 
-                    }
-                ?>
-            </div>
-        </div>
-
-    <?php else : ?>
-
+            <?php 
+                if(is_page('checkout'))  {
+                    echo '<div class="row col-md-12 my-3" >';
+                    echo sprintf("<a href='/cart' class='nb-wc-cart-breadcrumbs'> <i class='fa fa-mail-reply'></i> %s</a>",__("Back to Cart")); 
+                    echo '</div>';
+                }
+            ?>
     <?php endif; ?>

@@ -9,7 +9,7 @@
 <?php if($nbMainNavigation->haveItems()) : ?>
 
 <?php foreach($nbMainNavigation->items as $item) { ?>
-    <div class="col-md-4 py-1 px-1">
+    <div class="col-md-4 p-0">
     <?php
         $thumbnail_id = get_woocommerce_term_meta($item->object_id,'thumbnail_id',true); 
         $img_src = wp_get_attachment_image_src( $thumbnail_id,'medium' );

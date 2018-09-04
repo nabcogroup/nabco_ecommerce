@@ -8,7 +8,14 @@ p {
 }
 
 a {
-    color: #030303;
+    color: $nb-link-color;
+    &:hover {
+        color: $nb-link-color;
+    }
+}
+
+h1,h2,h3 {
+    color: $nb-p-color;
 }
 
 h1 {
@@ -36,6 +43,10 @@ address {
     color: $nb-p-color;
     border-bottom: 1px solid $nb-gray-lighter;
     padding-bottom: 10px;
+}
+
+h3.nb-text-title {
+    font-size: 1.2rem;
 }
 
 .to-upper {

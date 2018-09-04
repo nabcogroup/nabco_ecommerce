@@ -1,26 +1,18 @@
 <?php
 
 class Nab_MainNavigation {
-
-    private static $instance = null;
+    
     public $items = array();
     
     public static function createInstance($args = array()) {
-        if($instance == null) {
-            static::$instance = new static($args);
-        }
-
-        return static::$instance;
+       return new Nab_MainNavigation($args);
     }
 
     public function __construct($args = array()) {
 
         $locations = get_nav_menu_locations();
-
         if(isset($locations[$args['location']])) {
-            
             $menu = get_term($locations[$args['location']],'nav_menu');
-            
             $this->items = wp_get_nav_menu_items( $menu->name );
         }
     }
@@ -29,21 +21,61 @@ class Nab_MainNavigation {
         return count($this->items) > 0 ? true : false;
     }
 
+    public function getProducts($id) {
+        
+        $args = array(
+            'post_type'             => array('product','product_variation'),
+            'post_status'           => 'publish',
+            'posts_per_page'         =>  7,
+            'tax_query'             => array(
+                array(
+                    'taxonomy'  => 'product_cat',
+                    'field'     => 'term_id', 
+                    'terms'     => $id
+                ),
+            )
+        );
+        
+        $theProducts = new WP_Query($args);
+        
+        $productArgs = [];
+        
+        if($theProducts->have_posts()) {
+
+            while($theProducts->have_posts()) {
+                $theProducts->the_post();
+                $productArg = array(
+                    'permalink' =>  get_the_permalink(),
+                    'title'     =>  get_the_title()
+                );
+                //get the product information
+                array_push($productArgs,$productArg);
+            }
+        }
+        
+        wp_reset_postdata();
+    
+        return $productArgs;
+    }
+
 
 }
 
 class Nab_MainNavigationHtml {
 
-    public static function createHtmlMenu(&$item,&$items) {
+    public static function createHtmlMenu(&$item,&$items,&$navObject) {
         
         if($item->menu_item_parent != 0) return false;
         
         $cssDropdown = "";
         $anchorCssDropdown = "";
+        $childrenOutput = "";
+        $classes = "";
         if(in_array('has_children',$item->classes)) {
             $cssDropdown = "nb-dropdown";
             $anchorCssDropdown = "nb-dropdown-toggle";
-            $childrenOutput = static::createHtmlSubMenu($item->ID, $items);
+            $childrenOutput = static::createHtmlSubMenu($item->ID, $items,$navObject);
+            $classes = implode(" ",$item->classes);
         }
 
         $anchor = "<a class='nb-item-menu {$anchorCssDropdown}'  href='{$item->url}'>{$item->title}</a>";
@@ -55,12 +87,12 @@ class Nab_MainNavigationHtml {
     
 
 
-    public static function createHtmlSubMenu($id, &$items) {
+    public static function createHtmlSubMenu($id, &$items,&$navObject) {
         
         $imageHtmls = [];
         
         $childrenOutput = "<!--children wrapper --><div class='nb-dropdown__wrapper'>";
-        $childrenOutput .= "<div class='container row m-0 full-container'>";
+        $childrenOutput .= "<div class='container row m-0 p-0 full-container'>";
         $childrenOutput .= "<!-- submenu --><div class='col-4 m-0 p-0'>";
         $childrenOutput .= "<!-- list opening --><ul class='nb-dropdown-subnav' data-group='{$id}'>";
         
@@ -72,16 +104,32 @@ class Nab_MainNavigationHtml {
         foreach($items as $subnav) {
             //subnavigation
             if ( $subnav->menu_item_parent == $id) {
-                $image = wp_get_attachment_image_src(get_woocommerce_term_meta($subnav->object_id,'thumbnail_id',true),'medium' );
-                $imageHtmls[$subnav->object_id] = array(
-                       "title"  =>  $subnav->title,
-                       "image"  =>  "<img src='{$image[0]}' alt='{$subnav->title}' class='nb-wc-product-feature' />"
+
+                $images = wp_get_attachment_image_src(get_woocommerce_term_meta($subnav->object_id,'thumbnail_id',true),'medium' );
+                
+                $imageArgs[$subnav->object_id] = array(
+                       "title"      =>  $subnav->title,
+                       "url"        =>  $subnav->url,
+                       "src"        =>  $images[0],
+                       "class"      =>  "prod_cat-image-{$subnav->ID} nb-wc-product-feature",
+                       "products"   =>  $navObject->getProducts($subnav->object_id)
                 );
 
-                $childrenList .= "<li class='js-subnav-icon nb-category-subnav {$id} ". ($isActive ? 'active' : '') . "' data-container='product_catkey_{$subnav->object_id}'>";
-                $childrenList .= "<a href='{$subnav->url}'>{$subnav->title}</a>";
+                $style = "";
+                $classes = "";
+                if(count($subnav->classes) > 0) {
+                    $url = get_template_directory_uri() . '/dist/imgs/icons/' . $subnav->classes[0] . '.png';
+                    $style = "background:url({$url}) 5% 50% no-repeat;";
+                    $classes = implode(" ", $subnav->classes);
+                }
+                $childrenList .= "<li class='js-subnav-icon nb-category-subnav {$id} ". ($isActive ? 'active' : '') . "' 
+                                        data-container='product_catkey_{$subnav->object_id}'>";
+                $childrenList .= "<a href='{$subnav->url}' class='nb-icon {$classes}' style='{$style}'>{$subnav->title}</a>";
                 $childrenList .= "</li>";
                 
+
+
+
                 //one time activation
                 if($isActive) $isActive = false;
             }
@@ -93,7 +141,7 @@ class Nab_MainNavigationHtml {
         $childrenOutput .= "<div class='col-8 p-0 m-0'>";
         $childrenOutput .= "<div class='nb-dropdown-container'>";
         
-        $childrenOutput .=  static::createImageList($imageHtmls);
+        $childrenOutput .=  static::createImageList($imageArgs);
         
         $childrenOutput .= "</div>";
         $childrenOutput .= "</div>";
@@ -106,17 +154,20 @@ class Nab_MainNavigationHtml {
 
     public static function createImageList($imageArgs) {
 
-        $html = "<!-- product wrapper --> <div class='nb-wc-product-menu-wrapper'>";
+        $html = "";
         
-        foreach($imageArgs as $key => $image) {
-            $html .= "<nav id='product_catkey_{$key}' class='nb-wc-menu-product category-{$key}'>"; 
-            $html .= "<!-- row --><div class='row'>";
-            $html .= "<!-- image column --><div class='col-md-12'><p class='nb-text-title'>{$image['title']} Collection</p> {$image['image']}</div>";
+        foreach($imageArgs as $key => $arg) {
+            $html .= "<nav id='product_catkey_{$key}' class='nb-wc-menu-product category-{$key}'  style='background:url({$arg['src']}) top left no-repeat;background-size:cover;height:100%'>"; 
+            $html .= "<!-- row --><div class='row m-0' style='height:100%'>";
+            $html .= "<div class='col-md-6 subnav-top-product-list' style='background:rgba(255,255,255,0.7);height:100%'><ul>";
+            foreach($arg['products'] as $product) {
+                $html .= "<li><a href='{$product['permalink']}'>{$product['title']}</a></li>";
+            }
+            $html .= sprintf("<li><a href='%s'>%s</a></li>",$arg['url'],__('See more...'));
+            $html .= "</ul></div>";
             $html .= "</div><!-- end row-->";
             $html .= "</nav>";
         }
-        
-        $html .= "</div><!--end -->";
         
 	    return $html;
     }

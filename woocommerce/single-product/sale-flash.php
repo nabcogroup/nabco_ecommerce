@@ -27,7 +27,7 @@ global $post, $product;
 	
 	<?php $html = nabco_furniture_sale_percentage($product); ?>
 	
-	<?php echo apply_filters( 'woocommerce_sale_flash', '<span class="onsale ml-3">' .  $html.  esc_html__( ' Sale! ', 'woocommerce' ) . '</span>', $post, $product ); ?>
+	<?php echo apply_filters( 'woocommerce_sale_flash', '<span class="onsale">' .  $html.  esc_html__( ' Sale! ', 'woocommerce' ) . '</span>', $post, $product ); ?>
 	
 
 <?php endif;

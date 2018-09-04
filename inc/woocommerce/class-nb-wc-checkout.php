@@ -5,23 +5,14 @@ class Nb_WoocommerceCheckout {
 
     public function __construct() {
 
-
         add_action('woocommerce_before_checkout_form',[$this,'beforeCheckoutFormBootstrapWrapper'],10);
-
-        
-
         add_action('woocommerce_after_checkout_form',[$this,'endCheckoutFormBootstrapWrapper'],10);
 
         // Hook in to modify checkout fields into bootstrap 
         add_filter( 'woocommerce_checkout_fields' , [$this,'customOverrideFields'] );
-
-
         add_filter( 'woocommerce_cart_item_name', [$this,'cartItemName'], 10,2);
-        
         add_filter('woocommerce_order_button_html',[$this,'changeOrderButtonHtmlToBootstrap']);
-
-
-       add_filter('woocommerce_checkout_login_message',[$this,'changeCheckoutLoginMessage']);
+        //add_filter('woocommerce_checkout_login_message',[$this,'changeCheckoutLoginMessage']);
 
        
        add_filter('woocommerce_thankyou_order_received_text',[$this,'changeThankyouReceivedText']);
@@ -122,7 +113,7 @@ class Nb_WoocommerceCheckout {
     }
 
     public function endCheckoutFormBootstrapWrapper() {
-        echo "<!-- end row wrapper --></div>";
+        echo "</div><!-- end row wrapper -->";
     }
 
 }

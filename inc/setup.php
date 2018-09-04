@@ -299,7 +299,7 @@ function nabco_furnitures_pre_loading_script() {
 <?php 	
 }
 
-add_action('nabco_furniture_after_content','nabco_furnitures_pre_loading_script',10);
+
 
 function nabco_furniture_youtube_script() {
 
@@ -309,7 +309,6 @@ function nabco_furniture_youtube_script() {
 
 <script>
 	jQuery(document).ready(function() {
-
 		if(window.matchMedia("(min-width: 640px)").matches) { 
 			//ignore
 		}
@@ -326,6 +325,4 @@ function nabco_furniture_youtube_script() {
 	<?php
 
 }
-
-add_action('nabco_furniture_after_content','nabco_furniture_youtube_script',20);
 
