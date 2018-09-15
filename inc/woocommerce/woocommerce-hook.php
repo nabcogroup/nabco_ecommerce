@@ -2,18 +2,6 @@
 
 
 
-
-require_once get_template_directory() . '/inc/woocommerce/class-nb-wc-cart.php';
-
-require_once get_template_directory() . '/inc/woocommerce/class-nb-wc-acct.php';
-
-require_once get_template_directory() . '/inc/woocommerce/class-nb-wc-checkout.php';
-
-require_once get_template_directory() . '/inc/woocommerce/class-nb-wc-loop.php';
-
-require_once get_template_directory() . '/inc/woocommerce/class-nb-wc-single.php';
-
-
 //modify price display on variation
 add_filter('woocommerce_available_variation','nabco_furniture_set_variation_price',10,3);
 

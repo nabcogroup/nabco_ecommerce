@@ -28,9 +28,7 @@ class Nab_SearchProductWidget extends WP_Widget {
 
         // before and after widget arguments are defined by themes
         echo $args['before_widget'];
-        
         echo nabco_furnitures_product_form_search();
-
         echo $args['after_widget'];
     }
 

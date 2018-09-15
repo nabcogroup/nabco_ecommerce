@@ -1,0 +1,41 @@
+
+
+@-webkit-keyframes buttonBack {
+    from {
+        background: transparent;
+    }
+    to {
+        background: $nb-link-color;
+    }
+} 
+
+@keyframes buttonBack {
+    from {
+        background: transparent;
+    }
+    to {
+        background: $nb-link-color;
+    }
+}
+
+.nb-btn {
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    &.nb-link-sale {
+        border: 1px solid $nb-color-brown;
+        background: transparent;
+        text-decoration: none;
+        color: $nb-color-brown;
+        @include transition(all 1s ease);
+        &:hover {
+            background: $nb-color-brown;
+            color: #fff;
+            @include transition(all 1s ease);
+        }
+    }
+
+    &.nb-block {
+        display: block;
+    }
+}

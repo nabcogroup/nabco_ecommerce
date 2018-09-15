@@ -58,7 +58,7 @@ get_header( 'shop' );
 	?>
 </div>
 
-	<div class="row">
+	<div class="row woocommerce-shop-page">
 		<div class="col-md-9">
 			<?php if ( woocommerce_product_loop() ) { ?>
 		

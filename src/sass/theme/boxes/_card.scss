@@ -69,6 +69,7 @@
         border: none !important;
 
         position:relative;
+        
         &::before {
             display: inline-block;
             font-weight: 900;
@@ -80,7 +81,6 @@
             top: 0;
             left: 0;
         }
-
     }
 
     ul.menu {
@@ -223,6 +223,118 @@ $front-image-height-responsive: 200px;
         
     }
 
+}
+
+.card-product-thumbnail {
+    width: 100%;
+    position:relative;
+    overflow: hidden;
+    height: 330px;
+    
+    
+    .card-img-top {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top:0;
+        left:0;
+        z-index: 2;
+        object-fit: cover;
+        @include transition(all .2s ease-in-out);
+    }
+
+    .card-title {
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+        z-index: 5;
+        text-transform: uppercase;
+        color: #fff;
+        font-size: 1.2rem;
+    }
+
+    &:hover {
+        .card-img-top {
+            @include the-transform(scale(1.1));
+        }
+        .shadow {
+            @include fun-animation(fadeIn);    
+        }
+    }
+    
+    .shadow {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top:0;
+        left: 0;
+        opacity: 0;
+        overflow: hidden;
+    }
+    
+    .shadow {
+        background: rgba($color: #000000, $alpha: 0.5);
+        z-index: 3;
+        border: 10px solid rgba($color: #000000, $alpha: 0.2);
+
+        &::before {
+            content: '';
+            height: 1px;
+            background: #fff;
+            position: absolute;
+            top: 25px;
+            display: block;
+            width:0;
+            transform-origin: top right;
+            right: 20px;
+            left: 25px;
+        }
+
+        &::after {
+            content: '';
+            width: 1px;
+            background: #fff;
+            position: absolute;
+            top: -10px;
+            bottom: 25px;
+            right: 25px;
+            display: block;
+            height: 0;
+            
+        }
+        
+        &:hover {
+            &::before {
+                @include transition(all 0.5s ease-in-out);
+                width:100%;
+            }
+
+            &::after {
+                @include transition(all 0.5s ease-in-out);
+                height: 100%;
+            }
+
+        }
+
+
+    }
+
+    
+
+
+    
+    &.nb-top-slider {
+        margin-bottom: 10px;
+    }
+
+    &.collection_side {
+        height: 680px;
+    }
+
+    &.collection_top {
+        width: 100%;
+        margin-bottom: 20px;
+    }
 }
 
 

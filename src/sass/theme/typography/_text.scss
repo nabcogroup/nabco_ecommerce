@@ -32,6 +32,14 @@ address {
 }
 
 
+.nb-anchor-wrapper {
+    color: transparent;
+    text-decoration: none;
+    &:hover {
+        color: transparent;
+    }
+}
+
 //text
 .nb-text-hl {
     color: #f5f5f5;

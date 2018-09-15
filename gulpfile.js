@@ -95,7 +95,7 @@ gulp.task('scripts-all', function() {
 // Clean output directory
 gulp.task('clean', () => del(['dist/css','dist/js']));
 
-gulp.task('watch',['clean'],function () {
+gulp.task('watch',['clean','sass','scripts-all'],function () {
   
   gulp.watch(paths.sass.watch, ['sass']);
   gulp.watch(paths.scripts.input,['scripts-all']);

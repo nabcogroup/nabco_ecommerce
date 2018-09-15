@@ -14,8 +14,10 @@
 <?php if(!is_front_page()) : ?> 
   </div> <!-- closing container -->
 <?php endif ?>
-  
+
   </main>
+
+<?php get_template_part('template-parts/content','dialog');?>
 
 <!-- footer -->
 <footer id="footer-full" class="footer-wrapper">
@@ -27,7 +29,7 @@
           <small class="nb-text-white align-middle p-0 m-0">&copy; All Rights Reserved 2018</small>
         </div>
         <div class="col-md-6 col-sm-12">
-          <?php get_template_part( 'template-parts/content', 'socialicon' ) ?>
+          <?php echo nabcofurnitures_do_shortcode('ns-social-link',array()); ?>
         </div>
       </div>
     </div>

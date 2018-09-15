@@ -18,13 +18,11 @@
 function nabco_furnitures_woocommerce_setup() {
 	
 	add_theme_support( 'woocommerce' );
-	
 	add_theme_support( 'wc-product-gallery-zoom' );
-	
 	add_theme_support( 'wc-product-gallery-lightbox' );
-	
 	add_theme_support( 'wc-product-gallery-slider' );
 }
+
 add_action( 'after_setup_theme', 'nabco_furnitures_woocommerce_setup' );
 
 /**
@@ -92,9 +90,6 @@ if ( ! function_exists( 'nabco_furnitures_woocommerce_cart_link_fragment' ) ) {
 		return $fragments;
 	}
 }
-
-
-
 
 
 add_filter( 'woocommerce_add_to_cart_fragments', 'nabco_furnitures_woocommerce_cart_link_fragment' );
@@ -195,63 +190,4 @@ add_action('nabco_furnitures_header_display_fragment','nabco_furnitures_woocomme
 
 
 
-//quantity
-function nabco_furnitures_qty_input() {
 
-?>
-	<script>
-		jQuery(document).ready(function($) {
-			//control
-			$(document).on('click','#qtyInc',function(e) {
-				var input = $(this).prev('input.qty');
-				var inputValue = parseInt(input.val());
-				var step = input.attr('step');
-				step = 'undefined' !== typeof(step) ? parseInt(step) : 1;
-				if(inputValue < 100) {
-					input.val( inputValue + step ).change();
-				}
-			})
-
-			$(document).on('click','#qtyDec',function(e) {
-				var input = $(this).next('input.qty');
-				
-				var inputValue = parseInt(input.val());
-				var step = input.attr('step');
-				step = 'undefined' !== typeof(step) ? parseInt(step) : 1;
-				if (inputValue > 1) {
-					input.val( inputValue - step ).change();
-				}
-			})
-		})
-	</script>
-
-<?php 
-	
-}
-
-add_action('wp_footer','nabco_furnitures_qty_input');
-
-
-function nabco_furnitures_wc_dashboard_button() {
-	if(!is_page('my-account')) {
-		return false;
-	}
- ?>
-
-<script>
-	jQuery(document).ready(function($) {
-		$(".nb-wc-mob-nav-button").on("click",function() {
-			if(!$(".woocommerce-MyAccount-navigation").hasClass('mobile-button-active')) {
-				$(".woocommerce-MyAccount-navigation").addClass('mobile-button-active');
-			}
-			else {
-				$(".woocommerce-MyAccount-navigation").removeClass('mobile-button-active');
-			}
-		});
-	})
-</script>
-
-<?php
-}
-
-add_action('wp_footer','nabco_furnitures_wc_dashboard_button');

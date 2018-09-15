@@ -6,20 +6,18 @@ class Nb_WoocommerceMyAccount {
 
         //add wrapper to auth header
         add_action( 'woocommerce_auth_page_header', [$this,'authPageHeader'], 10);
-
         add_action('woocommerce_auth_page_footer',[$this,'authPageFooter'],10);
-
         add_filter( 'woocommerce_account_menu_items', [$this,'accountMenuItemsArgs']);
-
         add_filter('nb_wc_order_status_class',[$this,'setClassStatus']);
-
-         // Hook in to modify checkout fields into bootstrap 
-         add_filter( 'woocommerce_form_field_args' , [$this,'customOverrideAddressFields'] );
-
+         
+        // Hook in to modify checkout fields into bootstrap 
+        add_filter( 'woocommerce_form_field_args' , [$this,'customOverrideAddressFields'] );
         add_filter( 'woocommerce_my_account_my_address_formatted_address', [$this,'addressFormated']);
-
         add_filter( 'woocommerce_default_address_fields', [$this,'customOverrideDefaultAddress']);
 
+
+        add_action('nabco_furnitures_header_display_fragment',array($this,'customer_account'),20);
+        add_action('wp_footer',array($this,'dashboard_button_script'),10);
     }
 
 
@@ -92,8 +90,48 @@ class Nb_WoocommerceMyAccount {
         echo "</div>";
     }
 
+    
+    public function customer_account() {
+        if(!is_user_logged_in()) {
+            $description = __('Sign-in');
+        }
+        else {
+            $current_user = wp_get_current_user();
 
+            $description = $current_user->user_login;
+        }
 
+	    echo '<div>' . sprintf('<a href="%s" class="user-content"><i class="fa fa-user"></i> <small>%s</small></a>',get_permalink(get_option('woocommerce_myaccount_page_id')),$description) . '</div>' ;
+    }
+
+    
+    /*
+        Script to add in my account for mobile responsive to control navigation
+        Trigger only when my account page render
+    */
+    public function dashboard_button_script() {
+
+        if(!is_page('my-account')) {
+            return false;
+        }
+        ?>
+
+        <script>
+            jQuery(document).ready(function($) {
+                console.log("navigation mobile");
+                $(".nb-wc-mob-nav-button").on("click",function() {
+                    if(!$(".woocommerce-MyAccount-navigation").hasClass('mobile-button-active')) {
+                        $(".woocommerce-MyAccount-navigation").addClass('mobile-button-active');
+                    }
+                    else {
+                        $(".woocommerce-MyAccount-navigation").removeClass('mobile-button-active');
+                    }
+                });
+            })
+        </script>
+
+        <?php
+    }
 }
 
-$authPage = new Nb_WoocommerceMyAccount(); 
+return new Nb_WoocommerceMyAccount(); 

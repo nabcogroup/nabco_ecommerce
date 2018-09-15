@@ -25,7 +25,7 @@ global $post, $product;
 ?>
 <?php if ( $product->is_on_sale() ) : ?>
 	
-	<?php $html = nabco_furniture_sale_percentage($product); ?>
+	<?php $html = apply_filters('nabco_furniture_sale_percentage',$product); ?>
 	
 	<?php echo apply_filters( 'woocommerce_sale_flash', '<span class="onsale">' .  $html.  esc_html__( ' Sale! ', 'woocommerce' ) . '</span>', $post, $product ); ?>
 	

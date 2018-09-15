@@ -127,4 +127,4 @@ class Nb_WoocommerceThankyouPage {
 
 }
 
-$nbCheckout = new Nb_WoocommerceCheckout();
+return new Nb_WoocommerceCheckout();

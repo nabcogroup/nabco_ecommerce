@@ -1,39 +1,10 @@
-//scroll effect
-(function() {
-    
-    var $ = jQuery;
-    $(document).on( 'scroll', function(){
-        if ($(window).scrollTop() > 100) {
-            $('.scroll-top-wrapper').addClass('show');
-            $('#nab-nav').addClass('fixed-top');
-        } 
-        else {
-            $('.scroll-top-wrapper').removeClass('show');
-            $('#nab-nav').removeClass('fixed-top');
-        }
-    });
-    
-    $('.scroll-top-wrapper').on('click', scrollToTop);
-    
-    function scrollToTop() {
-        verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
-        element = $('body');
-        offset = element.offset();
-        offsetTop = offset.top;
-        
-        $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
-    }
-
-});
-
 jQuery(document).ready(function($) {
 
     var win = $(window);
     var navBar = $(".nb-navbar-js");
 
     var offsetTop = navBar.offset().top;
-    var sticky = function(){ 
-        
+    var sticky = function(){
         win.scrollTop() > offsetTop ? navBar.addClass('sticky') : navBar.removeClass('sticky')
     }
 
@@ -47,7 +18,6 @@ jQuery(document).ready(function($) {
         $target = $(this).data("target");
         $($target).removeClass("show");
     });
-
 });
 
 
@@ -94,11 +64,7 @@ jQuery(document).ready(function($) {
     }
 });
 
-(function() {
-
-    var $ = jQuery;
-    
-    
+jQuery(document).ready(function($) {
     var headerTarget = jQuery("#social-header");
     var icon = $(".js-icon");
     
@@ -126,11 +92,8 @@ jQuery(document).ready(function($) {
     
     icon.on("click", function(e) { 
         e.preventDefault();
-        
         var socialTitle = $("#social-title");
         var title = $(this).data('title');
-        
-        
         if(current != "") {
             previous = current;
             current = $(this).data('container');
@@ -148,6 +111,6 @@ jQuery(document).ready(function($) {
         
 
     });
-})();
+});
 
 //video

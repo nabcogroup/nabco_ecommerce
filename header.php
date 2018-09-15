@@ -65,8 +65,11 @@
                 <div class="collapse navbar-collapse">
                     <div class="row mr-auto pl-5">
                         <?php 
+
                             if(get_theme_mod('nb_header_social_api','none') == 'basic') {
+
                                 get_template_part( 'sidebar-templates/sidebar', 'social' ); 
+                                
                             }
                         ?>
                     </div>

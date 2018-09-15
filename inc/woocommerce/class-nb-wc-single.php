@@ -1,68 +1,61 @@
 <?php
 
 class Nb_WoocommerceSingleProduct {
-
-
+   
     public function __construct() {
         
-      
-        /******************************************
-        * add wrapper to wc print notice
-        * Hook: woocommerce_before_single_product.
-        * @hooked wc_print_notices - 10 
-        ******************************************/
-        // add_action('woocommerce_before_single_product',[$this,'beforeSingleProduct'],5);
-        // add_action( 'woocommerce_after_single_product',[$this,'afterSingleProduct'],15);
-        // add_action('woocommerce_before_add_to_cart_form',[$this,'beforeCartForm'],10);
-        // add_action( 'woocommerce_after_add_to_cart_form', [$this,'afterCartForm'],10 );
-
-        //change meta position
-        remove_action('woocommerce_single_product_summary','woocommerce_template_single_meta',40);
-        add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 7);
         
-
+        /**************************************************
+         * content-single-product.php
+         * 
+         * remove all default template location [meta,price,exerpt]
+         * change the position to fit into theme
+         * 
+         * remove sale flash in before single product summary
+         * insert sale flash after sale price
+         **************************************************/
+        remove_action('woocommerce_single_product_summary','woocommerce_template_single_meta',40);
         remove_action('woocommerce_single_product_summary','woocommerce_template_single_price',10);
         remove_action('woocommerce_single_product_summary','woocommerce_template_single_excerpt',20);
-
+        
+        add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 7);
         add_action('woocommerce_single_product_summary','woocommerce_template_single_excerpt',10);
-        add_action('woocommerce_single_product_summary','woocommerce_template_single_price',20);
+        add_action('woocommerce_single_product_summary',array($this,'show_price_without_variation'),1);
 
-        //
-        //insert dynamic price display
-        add_action('woocommerce_single_product_summary',[$this,'productVariationPrice'],1);
-
-        /**************************************************
-		* Hook: woocommerce_before_single_product_summary.
-		*
-		* @hooked woocommerce_show_product_sale_flash - 10
-		**************************************************/
         remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash',10);
-
         add_action('nb_woocommerce_after_sales_price','woocommerce_show_product_sale_flash',10);
-        
 
-         /****************** 
-          * Hook: woocommerce_before_add_to_cart_quantity & woocommerce_after_add_to_cart_quantity
-         */
-         //add_action( 'woocommerce_before_add_to_cart_quantity', array($this,'beforeAddToCartQuantityWrapper'),10 );
-         //add_action( 'woocommerce_after_add_to_cart_quantity', array($this,'afterAddToCartQuantityWrapper'), 10 );
-
+        //modify price display on variation
+        add_filter('woocommerce_available_variation',array($this,'set_variation_price'),10,3);
+        add_filter('nabco_furniture_sale_percentage',array($this,'sale_percentage_by_discount'),10,1);
         
-        //insert class in product variation selection
-        add_filter('woocommerce_dropdown_variation_attribute_options_args',[$this,'dropdownVariationOptionsAddBootstrapForm']);
-        add_filter('woocommerce_product_review_comment_form_args',[$this,'changeCommentAuthorField'],10);
-        add_filter('woocommerce_product_review_comment_form_args',array($this,'changeCommentSubmitButton'),20);
+        /** 
+         * source: class-wcml-attributes.php 
+        */
+        add_filter('woocommerce_dropdown_variation_attribute_options_args',array($this,'dropdown_variation_attribute_options_args'));
+
+        add_filter('woocommerce_product_review_comment_form_args',[$this,'comment_author_field'],10);
+        add_filter('woocommerce_product_review_comment_form_args',array($this,'comment_submit_button'),20);
+        
+        
+       
     }
 
-   
-    public function changeCommentSubmitButton($comment_form) {
-
+    /** 
+     * hooked-filter: woocommerce_product_review_comment_form_args
+     * change submit button into bootstrap theme format
+    */
+    public function comment_submit_button($comment_form) {
         $comment_form['submit_button'] = '<div class="form-group text-right"><input name="%1$s" type="submit" id="%2$s" class="%3$s btn btn-secondary" value="%4$s" /></div>';
-
         return $comment_form;
     }
 
-    public function changeCommentAuthorField($comment_form) {
+    /**
+     *  hooked: woocommerce_product_review_comment_form_args
+     *  @used: apply_filter
+     *  - change review field to bootstrap format
+     ***********************/
+    public function comment_author_field($comment_form) {
         
         $commenter = wp_get_current_commenter();
 
@@ -91,70 +84,83 @@ class Nb_WoocommerceSingleProduct {
         return $comment_form;
 
     }
-
-    public function addVariationBootstrapWrapper() {
-        echo "<div class='row'>";
-    }
-
-    public function addVariationBootstrapClosing() {
-        echo "</div>";
-    }
   
-    public function dropdownVariationOptionsAddBootstrapForm($args) {
+    /**
+    *   hooked: woocommerce_dropdown_variation_attribute_options_args
+    *   @used: apply_filter 
+    *   - add form control to make bootstap form
+    **************************************/
+    public function dropdown_variation_attribute_options_args($args) {
         
         $args['class'] = 'form-control';
         
         return $args;
     }
 
-    /*
-    *   Remove the Price range
-    */
-    public function productVariationPrice() {
-        
+    /**
+    *   hooked: woocommerce_single_product_summary
+    *   - add only if not variable product
+    ***************************/
+    public function show_price_without_variation() {
         if(is_product()) {
-
             global $product;
-
-            if($product->is_type('variable')) {
-
-               remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+            if(false === $product->is_type('variable')) {
+               add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price',20);
+            }
+            else {
 
             }
-            
+        }
+    }
+
+    /**
+    * hooked: woocommerce_available_variation
+    * - add discount price in sale price in variation
+    * @param $args,$object,$variation
+    * @return html with price and discount
+    ************************/
+    public function set_variation_price($args,$object,$variation) {
+        $htmlSaleFlash = "";
+        if(isset($args['price_html'])) {
+            if($variation->is_on_sale())  {
+                $discountHtml = $this->sale_percentage_by_discount($variation);
+                $htmlSaleFlash = sprintf("<span class='onsale ml-3'>%s %s</span>",$discountHtml,esc_html__( ' Sale! ', 'woocommerce' ));
+            }
+            $priceHtml = sprintf("<span>%s</span>",__('Price'));
+            $args["price_html"] = "<p class='price'>{$priceHtml}: {$variation->get_price_html()} {$htmlSaleFlash}</p>";
         }
 
-        
+        return $args;
     }
 
-    public function beforeAddToCartQuantityWrapper() {
-        echo '<!-- wrapper quantity --><div class="col-md-6">';
+    /**
+     *  hooked: nabco_furniture_sale_percentage - added in single-product/sale-flash.php
+     *  - added sale flash with discount only when in product single
+     *  - added when variation price is enabled since we remove the main price range
+     */
+    public function sale_percentage_by_discount($product) {
+
+        if(is_product()) {
+
+            $showPercentage = get_theme_mod('show_percentage',true);
+            
+            $html = "";
+            if($showPercentage) {
+                $regularPrice = ($product->get_regular_price() == "") ? 0 : $product->get_regular_price();
+                $salePrice = $product->get_sale_price(); 
+                $percentage = (floatval($regularPrice) - floatval($salePrice)) / floatval($regularPrice) * 100; 
+                $html = round($percentage) . '% off';
+            }
+
+            return $html;
+        }
     }
-
-    public function afterAddToCartQuantityWrapper() {
-        echo '</div><!-- end wrapper -->';
-    }
-
-    public function beforeCartForm() {
-        echo "<div class='my-3 cart-form-wrapper'>";
-    }
-
-    public function afterCartForm() {
-        echo "</div>";
-    }
+    
 
 
-    public function beforeSingleProduct() {
-
-        echo "<!-- product wrapper --><div class='woocommerce-content-single-product-wrapper'>";
-
-    }
-
-    public function afterSingleProduct() {
-
-        echo "</div><!-- end product wrapper -->";
-
-    }
+  
 }
 
-$singleProduct = new Nb_WoocommerceSingleProduct();
+
+
+return new Nb_WoocommerceSingleProduct();

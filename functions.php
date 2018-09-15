@@ -8,61 +8,34 @@
  */
 
 
+//include
+require get_template_directory() . '/inc/class/team_dev_customizer.php';	//customize control helper
 
-require_once get_template_directory() . '/inc/class/team_dev_customizer.php';
+require get_template_directory() . '/inc/navigation/class-nb-mainmenu.php';	//main navigation
+require get_template_directory() . '/inc/navigation/class-wp-bootstrap-navwalker.php';	//main navigation
 
-require_once get_template_directory() . '/inc/class/class-wp-bootstrap-navwalker.php';
+require get_template_directory() . '/inc/customizer/class-nab-frontpage-customizer.php'; //Customizer additions.
 
-require_once get_template_directory() . '/inc/class/search_widget.php';
+require get_template_directory() . '/inc/widgets/class-widget-setup.php'; //register sidebar widget
+require get_template_directory() . '/inc/widgets/search-widget.php';	    //search in the header		
 
-require_once get_template_directory() . '/inc/class/class-nb-mainmenu.php';
-
-require get_template_directory() . '/inc/setup.php';
-
-require get_template_directory() . '/inc/widgets.php';
-
-require get_template_directory() . '/inc/enqueue.php';
 
 /**
- * Implement the Custom Header feature.
+ * Theme Setup
  */
-require get_template_directory() . '/inc/custom-header.php';
+require get_template_directory() . '/inc/theme/theme-helper.php';
+require get_template_directory() . '/inc/theme/class-theme-setup.php';
+require get_template_directory() . '/inc/theme/template-tags.php';
+require get_template_directory() . '/inc/theme/theme-function.php';
+require get_template_directory() . '/inc/theme/short-code.php'; 	//shortcode;
+require get_template_directory() . '/inc/theme/theme-hook.php'; 	//theme hook 
 
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
-require get_template_directory() . '/inc/template-functions.php';
-
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Additional shortcode function
- */
-require get_template_directory() . '/inc/short-code.php';
-
-/**
- * Load Jetpack compatibility file.
- */
-if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
-}
 
 /**
  * Load WooCommerce compatibility file.
  */
 if ( class_exists( 'WooCommerce' ) ) {
-	
-	require get_template_directory() . '/inc/nab-wc-setup.php';
-
-	require_once get_template_directory() . '/inc/woocommerce/woocommerce-hook.php';
-
-	require get_template_directory() . '/inc/woocommerce/wc-meta-product.php';
+	require get_template_directory() . '/inc/woocommerce/class-nb-wc-setup.php';
+	//require get_template_directory() . '/inc/woocommerce/woocommerce-hook.php';
 }
+

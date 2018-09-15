@@ -319,3 +319,45 @@ $prefix : '.nb';
 		}
 	}
 }
+
+//front view component
+.front-view {
+	
+	position: relative;
+	width:100%;
+	overflow: hidden;
+	height: 450px;
+
+	.products {
+		overflow: hidden;
+		display: block;
+		width:100%;
+	}
+}
+
+//pagingation
+.woocommerce-pagination {
+	width:100%;
+	border-top: 1px solid $nb-gray-lighter;
+	border-bottom: 1px solid $nb-gray-lighter;
+	margin: 5px 0;
+	padding: 0;
+	.page-numbers {
+		list-style: none;
+		display:block;
+		padding: 5px 0;
+		margin: 0 auto;
+		width: auto;
+		
+		li {
+			padding: 5px 10px;
+			border: 1px solid $nb-gray-lighter;
+			float: left;
+			margin-left: 10px;
+			;
+		}
+		&::after {
+			@include clearfloats();
+		}
+	}
+}
