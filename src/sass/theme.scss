@@ -4,35 +4,24 @@
 
 
 @import "./assets/fontawesome/font-awesome"; // <------- Font Awesome Icon font
-
 @import './theme/bootstrap4/bootstrap4';
 
-
-@import './theme/variable-site/theme_variables';
-
-
+@import './theme/variable-site/_variables';
 @import './theme/mixins/mixins';
-
 @import './theme/mixins/animation';
 
+//Elements
 @import "./theme/elements/elements.scss";
 
-@import "./theme/typography/text.scss";
 
+//navigations
+@import "./theme/navigation/navigations";
 
-@import "./theme/boxes/components";
-@import "./theme/boxes/card";
-@import "./theme/boxes/social";
+//layouts
+@import "./theme/layout/layouts";
 
-@import "./theme/navigation/breadcrumb";
-@import "./theme/navigation/main-navigation";
-@import "./theme/navigation/social-navigation";
-@import "./theme/navigation/buttons";
-
-@import "./theme/layout/footer";
-@import "./theme/layout/page";
-@import "./theme/layout/form";
-@import "./theme/layout/section";
+//modules
+@import "./theme/modules/modules";
 
 
 

@@ -60,7 +60,7 @@ $sticker-content-height: ($social-height - $social-header-height);
                 top: 0;
                 left: 0;
                 height: 100%;
-                padding: $nb-padding-small-horizontal;
+                padding: $nb-psh;
                 z-index: 999;
 
             }
@@ -83,4 +83,26 @@ $sticker-content-height: ($social-height - $social-header-height);
 
 .container-hide {
     display:none !important;
+}
+
+//social icons list
+.nb-social-icons {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    ::after {
+        @include clearfix;
+    }
+    li {
+        float: left;
+        a {
+            &.social-link {
+                padding: 0 10px;
+                color: map-get($theme-colors,"warning");
+            }
+        }     
+        &.form-item {
+            padding: 0 15px;
+        }
+    }
 }

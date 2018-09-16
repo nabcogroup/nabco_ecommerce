@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 wc_print_notices();
 
 do_action( 'woocommerce_before_checkout_form', $checkout );
-
+echo '<div class="row">';
 echo '<div class="col-md-12">';
 
 // If checkout registration is disabled and not logged in, the user cannot checkout
@@ -75,6 +75,6 @@ echo '</div>';
 			</div>
 		</form>
 	</div>
-
+</div>
 	<?php do_action( 'woocommerce_after_checkout_form', $checkout ); ?>
 

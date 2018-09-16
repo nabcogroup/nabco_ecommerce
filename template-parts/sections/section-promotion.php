@@ -45,7 +45,7 @@
         <div class="row justify-content-center my-5">
             <div class='col-md-3'>
                 <?php if(!empty($page_link)) : ?>
-                    <?php echo sprintf('<a href="%s" class="nb-btn nb-link-sale nb-block">%s</a>', $page_link,__('View More')); ?>
+                    <?php echo sprintf('<a href="%s" class="btn-link-sale" style="display:block;text-align:center">%s</a>', $page_link,__('View More')); ?>
                 <?php endif; ?>
             </div>
         </div>

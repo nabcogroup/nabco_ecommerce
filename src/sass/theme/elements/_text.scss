@@ -1,0 +1,30 @@
+
+
+
+.to-upper {
+    text-transform: uppercase;
+}
+
+
+//footer
+.nb-footer-text-wrapper {
+    text-align: left;
+    @include media-breakpoint-down(sm) {
+        text-align: center;
+    }
+}
+
+
+/*
+	category title icon
+*/
+
+.nb-title-ico {
+	bottom:15px;
+	&.billing-address {
+        @include fa-icon("\f015",true,true);
+	}
+}
+
+
+

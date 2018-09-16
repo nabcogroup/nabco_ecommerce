@@ -1,41 +1,41 @@
 body {
     font-size: 100%;
-    font-family: $global-font-family;
-    font-size: $standard-font-size;
-    background: #fff;
+    font-family: $nb-global-ff;
+    font-size: $nb-standard-fs;
+    background: $nb-bg;
 }
 
 
 
-.nb-form {
-    .input-group {
-        .form-control {
-            border: 1px solid $nb-color-brown;
-            @include box-shadow(transparent);
-            @include border-left-radius(0%);
-            
-            &::focus {
-                border: 1px solid $nb-color-brown;
-            }
-        }
-
-        .input-group-text {
-            @include border-radius(0%);
-            background-color: transparent;
-            border: 1px solid $nb-color-brown;
-            &:hover {
-                background-color: $nb-color-creme;
-            }
-        }
+address {
+    abbr {
+        display:block;
+        padding:0;
+        margin: 0;
+        font-size: calc(10px + 0.2vw);
     }
 }
 
 
-//override
-.__youtube_prefs__ {
-    width: 100% !important;
+p {
+    line-height: $nb-line-height;
+    color: $nb-p-color;
+    font-size: $nb-standard-fs;
 }
 
-.woocommerce-info {
-    
+a {
+    color: $nb-link;
+    &:hover {
+        color: $nb-link-hover;
+    }
+    &:active {
+        color: $nb-link-active;
+    }
 }
+
+
+@import "forms";
+@import "headers";
+@import "text";
+
+

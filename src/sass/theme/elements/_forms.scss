@@ -1,0 +1,122 @@
+
+.nb-form {
+    .input-group {
+        .form-control {
+            border: 1px solid map-get($theme-colors,"brown");
+            @include box-shadow(transparent);
+            @include border-left-radius(0%);
+            
+            &::focus {
+                border: 1px solid map-get($theme-colors,"brown");
+            }
+        }
+
+        .input-group-text {
+            @include border-radius(0%);
+            background-color: transparent;
+            border: 1px solid map-get($theme-colors,"brown");
+            &:hover {
+                background-color: $nb-link;
+            }
+        }
+    }
+}
+
+/**
+Woocommerce 3.4.1
+*/
+
+/**
+ * Password strength meter
+ */
+ .woocommerce-password-strength {
+	text-align: right;
+	&.strong {
+		color: map-get($theme-colors,"success")
+	}
+
+	&.short {
+		color: map-get($theme-colors,"danger")
+	}
+
+	&.bad {
+		color: map-get($theme-colors,"danger")
+	}
+
+	&.good {
+		color: map-get($theme-colors,"danger")
+	}
+}
+
+/**
+ * Forms
+ */
+.form-row {
+	&.woocommerce-validated {
+		input.input-text {
+			box-shadow: inset 2px 0 0 map-get($theme-colors,"danger");
+		}
+	}
+
+	&.woocommerce-invalid {
+		input.input-text {
+			box-shadow: inset 2px 0 0 map-get($theme-colors,"danger");
+		}
+	}
+}
+
+
+.required {
+	color: map-get($theme-colors,"danger");
+}
+
+
+/**
+Qty Input
+*/
+$prefix : '.nb';
+.quantity {
+	.screen-reader-text {
+		font-size: 12px;
+	}
+	
+	#{$prefix}-input-group-wrapper {
+		position:relative;
+		display: flex;
+	}
+	
+	#{$prefix}-wc-input-qty {
+		  display: inline-block;
+		  border: 1px solid map-get($theme-colors,"light");
+		  text-align:center;
+		  padding: 5px 0;
+		  &.qty {
+			width: 3rem;
+			@include media-breakpoint-down(md)  {
+				width:100%;
+			}
+			
+		}
+	}
+	
+	#{$prefix}-wc-input-qty__modifier,
+	#{$prefix}-wc-input-qty {
+		user-select: none;
+		  outline: none;
+	}
+	
+	#{$prefix}-wc-input-qty__modifier {
+		padding:5px;
+		width: 2rem;
+		background: map-get($theme-colors,"light");
+		color: $nb-p-color;
+		text-align: center;
+		border: 1px solid map-get($theme-colors,"light");
+	
+		&:hover {
+			cursor: pointer;
+			background: map-get($theme-colors,"light");
+			color: white;
+		}
+	}
+}

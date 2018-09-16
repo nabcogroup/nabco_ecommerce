@@ -1,30 +1,4 @@
 
-@keyframes fadeOut {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@-webkit-keyframes fadeOut {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-//helper
-@mixin clearfloats() {
-    display: block;
-    content:'';
-    clear: both;
-}
-
-
 //effect
 @mixin transform($tran...) {
     -webkit-transform: $tran;
@@ -32,11 +6,26 @@
     -ms-transform: $tran;
     -o-transform: $tran;
     transform: $tran;
-
 }
 
 
-//style
+//position
+@mixin nb-top-left($top:0,$left:0) {
+    top: $top;
+    left: $left;
+    position: absolute;
+}
+
+@mixin nb-margin-padding($margin:0,$padding:0) {
+    margin: $margin;
+    padding: $padding;
+}
+
+@mixin nb-width-height($width:100%,$height:100%) {
+    width: $width;
+    height: $height;
+}
+
 
 
 
@@ -49,7 +38,6 @@
 }
 
 @mixin animated() {
-   
     @include media-breakpoint-up(sm) {
         -webkit-animation-duration: 1s;
         animation-duration: 1s;
@@ -58,21 +46,47 @@
     }
 }
 
-@mixin fun-animation($name, $duration : 1s) {
+
+
+@mixin fun-animation($name, $duration : 1s,$timing: ease,$count: 1,$fill: forwards) {
     
     animation-name: $name;
     animation-duration:$duration;
-    animation-iteration-count: 1;
-    animation-timing-function: ease;
-    animation-fill-mode: forwards;
+    animation-iteration-count: $count;
+    animation-timing-function: $timing;
+    animation-fill-mode: $fill;
     -webkit-animation-name: $name;
     -webkit-animation-duration:$duration;
-    animation-iteration-count: 1;
-    animation-timing-function: ease;
-    animation-fill-mode: forwards;
+    animation-iteration-count: $count;
+    animation-timing-function: $timing;
+    animation-fill-mode: $fill;
     -moz-animation-name: $name;
     -moz-animation-duration:$duration;
-    animation-iteration-count: 1;
-    animation-timing-function: ease;
-    animation-fill-mode: forwards;
+    animation-iteration-count: $count;
+    animation-timing-function: $timing;
+    animation-fill-mode: $fill;
+}
+
+
+@mixin fa-icon($content, $bold:false,$absolute: false) {
+    @if $bold {
+        font-weight: bold;
+    }
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    
+    @if $absolute = true {
+        position: absolute;
+    }
+    
+    font-family: "FontAwesome";
+    
+    content: $content;
+}
+
+//header 
+@mixin headers($margin: 0,$border: false) {
+    margin: $margin;
+    padding: 0;
+    border-bottom: 1px solid map-get($theme-colors,"light");
 }

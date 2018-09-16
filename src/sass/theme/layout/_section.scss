@@ -1,24 +1,21 @@
 //section
 .nb-section {
+
     .nb-section-title-wrapper {
         margin-bottom: 35px;
         text-align: center;
     }
     
     &.slider-section {
-
         height: 400px;
         overflow: hidden;
         position: relative;
-
         @include media-breakpoint-down(lg) {
             height: 350px;
         }
-
         @include media-breakpoint-down(md) {
             height: 260px;
         }
-
         @include media-breakpoint-down(sm) {
             height: 320px;
             .videoContainer__video {
@@ -26,9 +23,6 @@
                 object-fit: cover;
             }
         }
-
-        
-
         .loading-bar-wrapper {
             position: absolute;
             display: flex;
@@ -38,22 +32,20 @@
             width: 100%;
             height: 500px;
             z-index: 980;
-            background: $nb-gray-dark;
-            color: #fff;
-
+            background: map-get($theme-colors,"dark");
+            color: map-get($theme-colors,"light");
             .fa {
-                color: #fff;
+                color: map-get($theme-colors,"white");
             }
         }
-
     }
     
     &.undercon-section {
         width:100%;
-        background: #fff;
+        background: map-get($theme-colors,"white");
         .header-group {
             text-align: center;
-            p{
+            p {
                 text-align: center;
             }
         }
@@ -62,15 +54,13 @@
     &.collection-section {
         width:  100%;
         min-height: 200px;
-        background-color: #f5f5f5;
+        background-color: map-get($theme-colors,"white");
         padding: 15px 0;
     }
-    
-    
 
     &.full-section {
         width:  100%;
-        background-color: #fff;
+        background-color: map-get($theme-colors,"white");
     }
 
     &.testimony-section {
@@ -90,6 +80,7 @@
     text-align: center;
     display: inline-block;
     text-transform: uppercase;
+
     &:after, &:before {
         content: '';
         position: absolute;
@@ -98,7 +89,7 @@
 
     &:after {
         height: 2px;
-        background-color: $nb-gray-light;
+        background-color: map-get($theme-colors,"light");
         left: 25%;
         right: 25%;
     }
@@ -107,7 +98,7 @@
         width: 15px;
         height: 15px;
         border: 3px solid #fff;
-        background-color: $nb-link-color;
+        background-color: $nb-link;
         left: 50%;
         transform: translatex(-50%);
         bottom: -6px;
@@ -117,5 +108,47 @@
 }
 
 
+/*********
+Woocommers 3.4.1  
+**/
+.related {
+    @include make-row();
+    > h2 {
+        @include make-col-ready();
+        @include media-breakpoint-up(sm) {
+            @include make-col(12);
+        }
+        border-bottom: 1px solid $nb-gray-lighter;
+    }
+    
 
+    .columns-4 {
+        @include make-col-ready();
+        @include media-breakpoint-up(sm) {
+            @include make-col(3);
+        }
+    }
+
+    .column-3 {
+        @include make-col-ready();
+        @include media-breakpoint-up(sm) {
+            @include make-col(4);
+        }
+    }
+}
+
+
+//front view component
+.front-view {
+	position: relative;
+	width:100%;
+	overflow: hidden;
+	height: 450px;
+
+	.products {
+		overflow: hidden;
+		display: block;
+		width:100%;
+	}
+}
 

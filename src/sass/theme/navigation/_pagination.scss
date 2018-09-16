@@ -1,0 +1,27 @@
+
+//woocommerce pagingation
+.woocommerce-pagination {
+	width:100%;
+	border-top: 1px solid map-get($theme-colors,"light");
+	border-bottom: 1px solid map-get($theme-colors,"light");
+	margin: 5px 0;
+	padding: 0;
+	.page-numbers {
+		list-style: none;
+		display:block;
+		padding: 5px 0;
+		margin: 0 auto;
+		width: auto;
+		
+		li {
+			padding: 5px 10px;
+			border: 1px solid map-get($theme-colors,"light");
+			float: left;
+			margin-left: 10px;
+			;
+		}
+		&::after {
+			@include clearfix;
+		}
+	}
+}

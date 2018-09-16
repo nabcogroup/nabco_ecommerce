@@ -1,0 +1,189 @@
+
+//background color
+$nb-bg-color: map-get($theme-colors,"white");
+
+//primary color
+$nb-bgnav: #fff;
+$nb-color: #b7924e;
+$nb-bg-color: #f5f5f5;
+$nb-link-color: #ff9801;
+$nb-secondary: #616A6B;
+
+
+//gray group
+$nb-gray-darker:  lighten(#000, 13.5%); // #222
+$nb-gray-dark:    lighten(#000, 20%);   // #333
+$nb-gray:         lighten(#000, 33.5%); // #555
+$nb-gray-light:   lighten(#000, 46.7%); // #777
+$nb-gray-lighter: lighten(#000, 93.5%); // #eee
+
+
+//color
+/*theme color*/
+$nb-color-red: #60212b;
+$nb-color-orange: #F7DC6F;
+$nb-color-light: #fefefe;
+$nb-color-violet: #293845;
+$nb-color-blue: #4f6373;
+$nb-color-brown: #8f8164;
+$nb-color-creme: #b7924e;
+$nb-color-dark: #3d3d3d;
+$nb-color-footer: #f8f9fa;
+
+//custom padding
+
+/*padding base*/
+$nb-padding-base-vertical:          6px;
+$nb-padding-base-horizontal:        12px;
+
+$nb-padding-large-vertical:         10px;
+$nb-padding-large-horizontal:       16px;
+
+$nb-padding-small-vertical:         5px;
+$nb-padding-small-horizontal:       10px;
+
+$nb-padding-xs-vertical:            1px;
+$nb-padding-xs-horizontal:          5px;
+
+$nb-padding-default:                30px;
+$nb-padding-header:                 15px;
+
+$nb-line-height-large:              1.33;
+$nb-line-height-small:              1.5;
+
+$nb-border-radius-base:             4px;
+$nb-border-radius-large:            6px;
+$nb-border-radius-small:            3px;
+
+$nb-component-active-color:         #fff;
+$nb-component-active-bg:            $nb-color-creme;
+
+$nb-caret-width-base:               4px;
+$nb-caret-width-large:              5px;
+
+
+$nb-p-color: #262626;//#616A6B;  
+
+//text sizing
+$standard-menu-size: calc(10px + 0.2vw);
+$standard-font-size: calc(12px + 0.2vw);
+$h1-size: calc(1.5em + 0.5vw);
+
+$small-h1-rem: 1.2em;
+
+$global-font-family:  'Open Sans', Courier, monospace; //'Roboto', sans-serif;
+$secondary-font-family: 'Open Sans', Courier, monospace;
+
+
+//social color
+$fb-color: #3B5998;
+$twitter-color: #1DA1F2;
+$instagram-color: #262626;
+$youtube-color: #DB4437;
+
+
+// //product collection
+// .card {
+//     &.card-product-collection {
+        
+//         border-radius: 0 !important;
+//         border:none;
+//         padding: 5px;
+//         .card-img-wrapper {
+//             position: relative;
+//             height: $front-image-height-responsive;
+//             overflow: hidden;
+
+//             &::after,&::before {
+//                 content: '';
+//                 display: block;
+//                 position: absolute;
+//             }
+
+//             &::after {
+//                 width: 20px;
+//                 height: 100%;
+//                 border-left: 2px solid map-get($theme-colors,"white");
+//                 bottom:-50em;
+//                 right: 0;
+//                 @include transition(all 0.5s ease-in-out);
+//             }
+           
+
+//             &::before {
+//                 width: 100%;
+//                 height: 20px;
+//                 border-left: 2px solid map-get($theme-colors,"white");
+//                 top:0;
+//                 left: -50em;
+//                 @include transition(all 0.5s ease-in-out);
+//             }
+
+//             &:hover {
+//                 &::after {
+//                     bottom:0;
+//                     @include transition(all 0.5s ease-in-out);
+//                 }
+//                 &::before {
+//                     left:0;
+//                     @include transition(all 0.5s ease-in-out);
+//                 }
+//             }
+
+//             @include media-breakpoint-up(sm) {
+//                 height: $front-image-height;
+//             }
+
+//             img.card-top-img {
+//                 width: 100%;
+//                 height: 100%;
+//             }
+
+//             .card-product-shadow {
+//                 background: rgba($color: #000000, $alpha: 0.3);
+//                 position: absolute;
+//                 width: 100%;
+//                 height: 100%;
+//                 display: none;
+//             }
+
+//             &:hover {
+//                 cursor: pointer;
+//                 .card-product-shadow {
+//                     display: block; 
+//                     @include fun-animation(fadeOut);       
+//                 }
+
+//                 a.card-product-shop-link {
+//                     display: block;
+//                     @include fun-animation(fadeOut); 
+//                 }
+//             }
+
+//             a.card-product-shop-link {
+//                 position: absolute;
+//                 padding: 5px 10px;
+//                 border: 1px solid map-get($theme-colors,"light");
+//                 color: map-get($theme-colors,"light");
+//                 text-decoration: none;
+//                 display: none;
+//                 top: 50%;
+//                 left: 50%;
+//                 margin: -10px -25px;
+               
+//             }
+    
+
+//         }
+
+//         .card-title {
+//             font-weight: 900;
+//             padding: 5px;
+//             color: $nb-p-color;
+//             text-align: center;
+//             line-height: 1.2em;
+//             text-transform: uppercase;
+//             letter-spacing: 0.2em;
+//         }
+//     }
+// }

@@ -1,0 +1,38 @@
+
+/*padding base*/
+$nb-pbv: 15px;
+$nb-pbh: 30px;
+$nb-plv: 10px;
+$nb-plh: 16px;
+$nb-psv: 5px;
+$nb-psh: 10px;
+$nb-pxsv: 1px;
+$nb-pxsh: 5px;
+
+//line height
+$nb-line-height: 1.7rem;
+
+//radius
+
+
+//active link
+$nb-link-active: map-get($theme-colors,"primary");
+$nb-link-hover: map-get($theme-colors,"primary");
+$nb-link: map-get($theme-colors,"warning");
+$nb-link-size: 0.8rem;
+$nb-link-small: 0.6rem;
+
+$nb-p-color: map-get($theme-colors,"dark");
+$nb-p-size: 0.8rem;
+
+//header
+$nb-h1-standard: 1.2;
+
+//text sizing
+$nb-standard-ms: 0.9rem;
+$nb-standard-fs: 0.9rem;
+
+$nb-global-ff:  'Open Sans', Courier, monospace; //'Roboto', sans-serif;
+$nb-secondary-ff: 'Open Sans', Courier, monospace;
+$nb-star-ff: 'star';
+$nb-bg: map-get($theme-colors,"white");

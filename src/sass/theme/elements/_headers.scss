@@ -1,0 +1,15 @@
+
+@for $i from 1 through 6 {
+    h#{$i} {
+       font-size: ($nb-h1-standard - $i / 10) + "rem"; 
+       @include headers();
+       color: $nb-p-color;
+    }
+}
+
+.nb-text-title {
+    font-size: $nb-h1-standard + "rem";
+    color: $nb-p-color;
+    border-bottom: 1px solid $nb-gray-lighter;
+    padding-bottom: $nb-plv;
+}

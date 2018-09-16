@@ -1,49 +1,39 @@
-@mixin menu-animation($name) {
-    animation-name: $name;
-    animation-duration:.5s;
-    animation-iteration-count: 1;
-    animation-timing-function: ease;
-    animation-fill-mode: forwards;
-    -webkit-animation-name: $name;
-    -webkit-animation-duration:.5s;
-    -webkit-animation-iteration-count: 1;
-    -webkit-animation-timing-function: ease;
-    -webkit-animation-fill-mode: forwards;
-    -moz-animation-name: $name;
-    -moz-animation-duration:.5s;
-    -moz-animation-iteration-count: 1;
-    -moz-animation-timing-function: ease;
-    -moz-animation-fill-mode: forwards;
-}
-
-@mixin navicon() {
-    font-weight: bold;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    position: absolute;
-    font-family: "FontAwesome";
-    content: "\f107";
-    position: absolute;
-}
-
 //Main header Navigation
 .nb-header {
-    border-bottom: 1px solid $nb-color-creme;
-    padding: $nb-padding-header 0;
-    background: #fff;
+    border-bottom: 1px solid $nb-link;
+    padding: $nb-pbv 0;
+    background: map-get($theme-colors,"white");
 }
 
+//footer 
+.menu-footer {
+    ul.menu {
+        margin:0;
+        padding:0;
+        list-style: none;
+        li {
+            a {
+                padding: 2px 0;
+                
+                font-size: $standard-menu-size;
+                color: $nb-link-color;
+                
+            }
+            position: relative;
+           
+        }
+    }    
+}
 
 //page navigation
 .nb-page-nav {
-
-    padding: $nb-padding-header 0;
+    padding: $nb-pbv 0;
     display: block;
     float: right;
+    
     > ul {
         list-style: none;
-        margin: 0;
-        padding: 0;
+        @include nb-margin-padding();
         float:left;
         li {
             float: left;
@@ -55,7 +45,7 @@
     }
 
     &::after {
-        @include clearfloats();
+        @include clearfix();
     }
 }
 
@@ -71,32 +61,29 @@
     @include transition(left 0.1s ease);
     
     .mobile-close-icon {
-        color: #fff;
-        position: absolute;
+        color: map-get($theme-colors,"white");
+        @include nb-top-left();
         z-index: 9001;
-        top: 0;
-        left: 0;
         padding: 5px;
     }
     
     .navbar-nav {
-        color: $nb-gray-lighter;
+        color: map-get($theme-colors,"light");
         li.menu-item {
             .nav-link {
                 text-align: left;
                 display: block;
-                color: $nb-gray-lighter;
-                border-bottom: 1px solid #f5f5f5;
-                color: #f5f5f5;
+                color: map-get($theme-colors,"light");
+                border-bottom: 1px solid map-get($theme-colors,"light");
+                color: map-get($theme-colors,"light");
                 padding: 10px 0 10px 15px;
                 position: relative;
+                
                 &::before {
                     display: inline-block;
-                    content: '»';
-                    position: absolute;
-                    top: 6px;
-                    left: 0;
-                    color: $nb-color-brown;
+                    content: $nb-bc-icons;
+                    @include nb-top-left(6px,0);
+                    color: map-get($theme-colors,"warning");
                 }
             }
             ul.dropdown-menu {
@@ -106,7 +93,7 @@
                 background-color: transparent;
                 border: none;
                 a.dropdown-item {
-                    color: $nb-gray-lighter;
+                    color: map-get($theme-colors,"light");
                     &:hover {
                         background: transparent;
                     }
@@ -120,25 +107,17 @@
     }
 }
 
-.search-section-wrapper {
-    padding: $nb-padding-header 0;
-    background-color: #fff;
-    border-bottom: 1px solid $nb-color-creme;
-}
-
-
-
 $dropdown-width: 500px;
 
 //main - menu
 .nb-navbar {
-
     padding:0;
-    background: $nb-color-dark;
+    background: map-get($theme-colors,"dark");
 
     &.sticky {
         position: fixed;
-        top: 0; left: 0;
+        top: 0; 
+        left: 0;
         z-index: 100;
         width:100%;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
@@ -146,8 +125,7 @@ $dropdown-width: 500px;
 
     ul.nb-menu {
         list-style: none;
-        padding: 0;
-        margin: 0;
+        @include nb-margin-padding();
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -155,35 +133,33 @@ $dropdown-width: 500px;
         //for none dropdown
         li.nb-link {
             position: relative;
-            padding: $nb-padding-header 0;
-
+            padding: $nb-pbv 0;
             > a.nb-item-menu {
                 display: block;
                 color: #f5f5f5;
                 padding: 0 25px;
-                
-                font-size: calc(10px + 0.2vw);
+                font-size: $nb-standard-fs;
                 text-decoration: none;
                 text-transform: uppercase;
                 letter-spacing: 1px;
-                
             }
 
             &::before {
                 position: absolute;
                 height: 0;
                 content: '';
-                background-color: $nb-color-creme;
+                background-color: map-get($theme-colors,"warning");
                 width: 100%;
                 display: block;
                 bottom:0;
                 left:0;
-                
+                @include transition(height 1.2s ease-in-out);
             }
 
             &:hover {
                 &::before {
                     height: 2px;
+                    @include transition(height 1.2s ease-in-out)
                 }
             }
         }
@@ -191,17 +167,16 @@ $dropdown-width: 500px;
         //dropdown list
         li.nb-dropdown {
             a.nb-dropdown-toggle {
-                
                 display: block;
                 padding: 0 25px;
-                color: #f5f5f5;
+                color: map-get($theme-colors,"light");
                 text-decoration: none;
                 text-transform: uppercase;
                 letter-spacing: 1px;
                 position: relative;
 
                 &::after {
-                    @include navicon();
+                    @include fa-icon($nb-fa-angle-down,true,true);
                     bottom: 0px;
                     right: 10px;
                 }
@@ -224,23 +199,20 @@ $dropdown-width: 500px;
             &:hover {
                 .nb-dropdown__wrapper {
                     display: block;
-                    @include menu-animation(fadeOut);
+                    @include fun-animation(fadeOut,$fill:both);
                 }
             }
         
             &__wrapper {
                 display: none;
-                transition: opacity 1.2s ease;
-                background: #fff;
-                position: absolute;
+                @include transition(opacity 1.2s ease);
+                background: map-get($theme-colors,"white");
+                @include nb-top-left(100%,0);
                 width: $dropdown-width;
                 height: 220px;
                 padding: 0;
-                border: 1px solid $nb-gray-lighter;
-                left: 0;
-                top:100%;
+                border: 1px solid map-get($theme-colors,"light");;
                 z-index: 9000;
-                
                 .full-container { 
                     height: 100%;
                 }
@@ -248,8 +220,7 @@ $dropdown-width: 500px;
             
             .nb-dropdown-container {
                 position: relative;
-                width: 100%;
-                height: 100%;
+                @include nb-width-height(100%,100%);
                 padding: 0;
                 border-left: 1px solid rgba($color: #000000, $alpha: 0.3);
                 overflow: hidden;
@@ -284,16 +255,13 @@ $dropdown-width: 500px;
                     }
         
                     &.active {
-                        background-color: $nb-gray-lighter;
+                        background-color: map-get($theme-colors,"light");
                         a.nb-icon {
-                            color: $nb-color-creme;
+                            color: map-get($theme-colors,"warning");
                         }
                     }
                 }
             }
-
-
-
         }
     }
 }

@@ -80,7 +80,7 @@ class Nb_Woocommerce_Setup {
     */
     public function woocommerce_scripts() {
 	
-        wp_enqueue_style( 'nabco-furnitures-woocommerce-style', get_template_directory_uri() . '/dist/css/woocommerce.css' );
+        //wp_enqueue_style( 'nabco-furnitures-woocommerce-style', get_template_directory_uri() . '/dist/css/woocommerce.css' );
         $font_path   = WC()->plugin_url() . '/assets/fonts/';
         $inline_font = '@font-face {
                 font-family: "star";

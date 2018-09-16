@@ -1,0 +1,28 @@
+
+/**
+ * Notices
+ */
+ .woocommerce-message,
+ .woocommerce-info,
+ .woocommerce-error,
+ .woocommerce-noreviews,
+ p.no-comments {
+     @include clearfix;
+     clear: both;
+ }
+ 
+ 
+ .woocommerce-noreviews,
+ p.no-comments
+ {
+     background-color: map-get($theme-colors,"success");
+ }
+ 
+ .woocommerce-message {
+     padding: 10px 5px;
+     margin: 10px 0;
+     background: map-get($theme-colors,"light");
+     font-family: $nb-global-ff;
+     font-size: 12px;
+     border-bottom: 2px solid map-get($theme-colors,"brown");
+ }	

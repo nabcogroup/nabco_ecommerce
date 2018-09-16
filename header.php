@@ -65,20 +65,19 @@
                 <div class="collapse navbar-collapse">
                     <div class="row mr-auto pl-5">
                         <?php 
-
                             if(get_theme_mod('nb_header_social_api','none') == 'basic') {
-
                                 get_template_part( 'sidebar-templates/sidebar', 'social' ); 
-                                
                             }
                         ?>
                     </div>
                 </div>
 
                 <div class="row float-right">
+                    
                     <div class="d-none d-sm-block">
                         <?php get_template_part( 'sidebar-templates/sidebar', 'front-search' ) ?>
                     </div>
+
                     <div class="nb-tran-icon">
                         <!-- carting here -->
                         <?php 
@@ -87,6 +86,7 @@
                             do_action('nabco_furnitures_header_display_fragment'); 
                         ?>
                     </div>
+                    
                 </div>
                 
                 <button class="navbar-toggler" type="button" 

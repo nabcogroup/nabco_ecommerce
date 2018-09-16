@@ -3,10 +3,10 @@
 #footer-full {
     min-height: 300px;
     width:100%;
-    background: $nb-color-footer;
+    background: map-get($theme-background,"footer");
 }
 
 .footer-bottom {
-    background: $nb-color-dark;
+    background: map-get($theme-background,"bottom-footer");
     padding: 5px 0;
 }
