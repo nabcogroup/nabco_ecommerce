@@ -10,9 +10,13 @@
 @import './theme/mixins/mixins';
 @import './theme/mixins/animation';
 
+
+
+//modules
+@import "./theme/modules/modules";
+
 //Elements
 @import "./theme/elements/elements.scss";
-
 
 //navigations
 @import "./theme/navigation/navigations";
@@ -20,8 +24,8 @@
 //layouts
 @import "./theme/layout/layouts";
 
-//modules
-@import "./theme/modules/modules";
+@import "./theme/woocommerce/woocommerce";
+
 
 
 

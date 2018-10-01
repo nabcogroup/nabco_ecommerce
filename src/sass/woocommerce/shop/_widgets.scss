@@ -91,7 +91,6 @@
 	}
 	
 	&_product_categories {
-
 		ul.product-categories {
 			list-style: none;
 			margin: 0;
@@ -102,6 +101,7 @@
 				color: $nb-gray-darker;
 				padding: 5px 0;
 				font-size: 0.9em;
+				display: block;
 				
 				a {
 					float: left;
@@ -124,7 +124,7 @@
 				}
 	
 				&::after {
-					@include clearfloats();
+					@include clearfix;
 				}
 			}
 		}

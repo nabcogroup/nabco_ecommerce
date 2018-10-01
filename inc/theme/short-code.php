@@ -23,7 +23,7 @@ function nabco_furnitures_list_child_pages() {
 
     $string =  "";
     if ( $childpages ) {
-        $string = '<ul>'.$parent.$childpages.'</ul>';
+        $string = '<ul class="float-right">'.$parent.$childpages.'</ul>';
     }
      
     return $string;

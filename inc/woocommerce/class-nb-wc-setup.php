@@ -15,6 +15,10 @@ class Nb_Woocommerce_Setup {
 
         add_action( 'after_setup_theme', array($this,'woocommerce_setup') );
         add_action( 'wp_enqueue_scripts', array($this,'woocommerce_scripts') );
+        
+
+        //remove breadcrumbs in woocommerce page
+        remove_action('woocommerce_before_main_content','woocommerce_breadcrumb',20);
 
         /**
         * Disable the default WooCommerce stylesheet.
@@ -93,7 +97,7 @@ class Nb_Woocommerce_Setup {
                 font-style: normal;
             }';
 
-        wp_add_inline_style( 'nabco-furnitures-woocommerce-style', $inline_font );
+        wp_add_inline_style( 'nabco-furnitures-style', $inline_font );
     }
 
 }

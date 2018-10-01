@@ -88,5 +88,25 @@
 @mixin headers($margin: 0,$border: false) {
     margin: $margin;
     padding: 0;
-    border-bottom: 1px solid map-get($theme-colors,"light");
+    @if $border {
+        border-bottom: 1px solid map-get($theme-colors,"light");
+    }
+}
+
+@mixin clearfix() {
+    display:block;
+    clear:both;
+    content: '';
+}
+
+@mixin sale-badge-red() {
+    padding: 5px;
+    background: map-get($theme-colors,"danger");
+    color: map-get($theme-colors,"light");
+}
+
+@mixin transformSkewScale($x, $y) {
+    -webkit-transform: skew($x) scaleX($y);
+    -ms-transform: skew($x) scaleX($y);
+    transform: skew($x) scaleX($y);
 }

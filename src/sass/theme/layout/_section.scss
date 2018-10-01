@@ -1,10 +1,6 @@
 //section
 .nb-section {
-
-    .nb-section-title-wrapper {
-        margin-bottom: 35px;
-        text-align: center;
-    }
+    text-align: center;
     
     &.slider-section {
         height: 400px;
@@ -54,7 +50,7 @@
     &.collection-section {
         width:  100%;
         min-height: 200px;
-        background-color: map-get($theme-colors,"white");
+        background-color: map-get($theme-colors,"light");
         padding: 15px 0;
     }
 
@@ -71,7 +67,7 @@
 
  //heading section
  .nb-section-title {
-    font-size: 1.9rem;
+    font-size: $nb-h1-standard;
     margin-top: 20px;
     margin-bottom: 20px;
     padding-bottom: 20px;
@@ -89,15 +85,15 @@
 
     &:after {
         height: 2px;
-        background-color: map-get($theme-colors,"light");
+        background-color: map-get($theme-colors,"dark-light");
         left: 25%;
         right: 25%;
     }
 
-    &::before {
+    &:before {
         width: 15px;
         height: 15px;
-        border: 3px solid #fff;
+        border: 3px solid map-get($theme-colors,"white");
         background-color: $nb-link;
         left: 50%;
         transform: translatex(-50%);
@@ -107,35 +103,78 @@
     }
 }
 
+.site-wide-section {
+    @include nb-margin-padding();
+    width: 100%;
+    padding: $nb-pbv 0;
+    text-align:center;
+    .site-section-header {
+        padding-bottom: $nb-psv;
+        font-size: $nb-h1-sm + rem;
+        @include media-breakpoint-up(sm) {
+            font-size: $nb-h1-standard;
+
+        }
+
+        position: relative;
+        text-align: center;
+        display: inline-block;
+        text-transform: uppercase;
+        margin: 25px 0;
+        &:after, &:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+        }
+    
+        &:after {
+            height: 2px;
+            left: 25%;
+            right: 25%;
+        }
+    
+        &:before {
+            width: 15px;
+            height: 15px;
+            background-color: $nb-link;
+            left: 50%;
+            transform: translatex(-50%);
+            bottom: -6px;
+            z-index: 9;
+            border-radius: 50%;
+        }
+    }
+
+    &.site-white {
+        background: map-get($theme-colors,"white");
+        .site-section-header {
+            &:after {
+                background-color: map-get($theme-colors,"dark-light");
+            }
+            &:before {
+                border: 3px solid map-get($theme-colors,"white");
+            }
+        }
+    }
+
+    &.site-light {
+        background: map-get($theme-colors,"light");
+        .site-section-header {
+            &:after {
+                background-color: map-get($theme-colors,"dark-light");
+            }
+            &:before {
+                border: 3px solid map-get($theme-colors,"light");
+            }
+        }
+    }
+}
+
 
 /*********
 Woocommers 3.4.1  
 **/
-.related {
-    @include make-row();
-    > h2 {
-        @include make-col-ready();
-        @include media-breakpoint-up(sm) {
-            @include make-col(12);
-        }
-        border-bottom: 1px solid $nb-gray-lighter;
-    }
-    
 
-    .columns-4 {
-        @include make-col-ready();
-        @include media-breakpoint-up(sm) {
-            @include make-col(3);
-        }
-    }
-
-    .column-3 {
-        @include make-col-ready();
-        @include media-breakpoint-up(sm) {
-            @include make-col(4);
-        }
-    }
-}
 
 
 //front view component

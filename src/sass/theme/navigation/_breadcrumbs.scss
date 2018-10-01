@@ -3,10 +3,9 @@
 .woocommerce-breadcrumb {
     
     padding: 15px 0;
-    color: $nb-gray-dark;
-    font-size: calc(10px + 0.2vw);
+    color: map-get($theme-colors, "dark" );
     a {
-        color: $nb-color-creme;
+        color: map-get($theme-colors, "warning" );
         text-decoration: none;
     }
 }

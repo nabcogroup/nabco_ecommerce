@@ -11,14 +11,12 @@
 //include
 require get_template_directory() . '/inc/class/team_dev_customizer.php';	//customize control helper
 
-require get_template_directory() . '/inc/navigation/class-nb-mainmenu.php';	//main navigation
-require get_template_directory() . '/inc/navigation/class-wp-bootstrap-navwalker.php';	//main navigation
+require get_template_directory() . '/inc/components/navigation/class-nb-mainmenu.php';				//main navigation
+require get_template_directory() . '/inc/components/navigation/class-wp-bootstrap-navwalker.php';	//main navigation
+require get_template_directory() . '/inc/components/widgets/class-widget-setup.php'; 				//register sidebar widget
+require get_template_directory() . '/inc/components/widgets/search-widget.php';	    				//search in the header		
 
 require get_template_directory() . '/inc/customizer/class-nab-frontpage-customizer.php'; //Customizer additions.
-
-require get_template_directory() . '/inc/widgets/class-widget-setup.php'; //register sidebar widget
-require get_template_directory() . '/inc/widgets/search-widget.php';	    //search in the header		
-
 
 /**
  * Theme Setup
@@ -36,6 +34,5 @@ require get_template_directory() . '/inc/theme/theme-hook.php'; 	//theme hook
  */
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce/class-nb-wc-setup.php';
-	//require get_template_directory() . '/inc/woocommerce/woocommerce-hook.php';
 }
 

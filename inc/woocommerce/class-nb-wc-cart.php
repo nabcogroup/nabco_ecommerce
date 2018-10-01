@@ -1,5 +1,10 @@
 <?php
 
+
+class Nb_WooCommerceMiniCart {
+
+}
+
 class Nb_WoocommerceCart {
     
     public static $instance;
@@ -24,6 +29,7 @@ class Nb_WoocommerceCart {
          *  nabco_furnitures_display_fragment - added to display in theme header
         *************************************/
         add_filter( 'woocommerce_add_to_cart_fragments', array($this,'cart_link_fragment') );
+        
         add_action('nabco_furnitures_header_display_fragment',array($this,'header_cart'), 10 );
         
         /*****************************
@@ -33,16 +39,7 @@ class Nb_WoocommerceCart {
 
     }
 
-    /** 
-     * hooked: woocommerce_widget_cart_item_quantity
-     * - modify qty item in minicart to match in theme
-    */
-    public function mini_cart_item_qty($content,$item,$key) {
-        
-        $content = "<span class='quantity'><strong>Quantity:&nbsp;</strong>{$item['quantity']}</span>";
-        
-        return $content;
-    }
+   
     
     /**
      * hooked: wc_add_to_cart_message_html
@@ -60,7 +57,19 @@ class Nb_WoocommerceCart {
         else :
             $message    = sprintf('%s <a href="%s" class="button btn btn-sm btn-success">%s</a> ',__('Product successfully added to your cart.', 'woocommerce') ,get_permalink(wc_get_page_id ('cart')), __('View Cart &rarr;', 'woocommerce'));
         endif;
-            return $message;
+
+        return $message;
+    }
+
+     /** 
+     * hooked: woocommerce_widget_cart_item_quantity
+     * - modify qty item in minicart to match in theme
+    */
+    public function mini_cart_item_qty($content,$item,$key) {
+        
+        $content = "<span class='quantity'><strong>Quantity:&nbsp;</strong>{$item['quantity']}</span>";
+        
+        return $content;
     }
 
     /**
@@ -71,11 +80,8 @@ class Nb_WoocommerceCart {
 	 */
 	public function cart_link_fragment( $fragments ) {
 		ob_start();
-        
         $this->cart_link();
-        
-        $fragments['a.cart-contents'] = ob_get_clean();
-        
+        $fragments['a.cart-management'] = ob_get_clean();
         return $fragments;
     }
 
@@ -88,9 +94,8 @@ class Nb_WoocommerceCart {
 	 */
 	public function cart_link() {
 		?>
-            <a class="cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'nabco-furnitures' ); ?>">
+            <a id="cart_management" class="cart-collections cart-management" href="#" title="<?php esc_attr_e( 'View your shopping cart', 'nabco-furnitures' ); ?>">
                 <i class="fa  fa-shopping-bag "></i>
-                
                 <?php
                 $item_count_text = sprintf(
                     /* translators: number of items in the mini cart. */
@@ -117,22 +122,27 @@ class Nb_WoocommerceCart {
 		} else {
 			$class = '';
 		}
-		?>
-		<div class="mr-3">
+        
+        ?>
+        
+        <div class="mr-3">
 			<ul id="site-header-cart" class="site-header-cart">
 				<li class="<?php echo esc_attr( $class ); ?>">
 					<?php $this->cart_link(); ?>
 				</li>
-				<li class="d-none d-sm-block">
-					<?php
+            </ul>
+            <div>
+                <?php
 					$instance = array('title' => '');
 					the_widget( 'WC_Widget_Cart', $instance );
-					?>
-				</li>
-			</ul>
-		</div>
+                ?>
+            </div>
+        </div>
+        
 		<?php
     }
+
+    
     
         
     /** 

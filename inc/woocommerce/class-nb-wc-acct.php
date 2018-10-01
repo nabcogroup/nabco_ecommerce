@@ -101,7 +101,7 @@ class Nb_WoocommerceMyAccount {
             $description = $current_user->user_login;
         }
 
-	    echo '<div>' . sprintf('<a href="%s" class="user-content"><i class="fa fa-user"></i> <small>%s</small></a>',get_permalink(get_option('woocommerce_myaccount_page_id')),$description) . '</div>' ;
+	    echo '<div>' . sprintf('<a href="%s" class="user-content"><i class="fa fa-user"></i> <small class="d-none d-sm-inline">%s</small></a>',get_permalink(get_option('woocommerce_myaccount_page_id')),$description) . '</div>' ;
     }
 
     

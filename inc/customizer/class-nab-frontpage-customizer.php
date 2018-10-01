@@ -1,16 +1,17 @@
 <?php
 
-
 class Nab_Customizer {
 
 
     public function __construct() {
 
-        add_action( 'customize_preview_init', array($this,'customizePreviewJs'));
+        //add_action( 'customize_preview_init', array($this,'customizePreviewJs'));
         add_action('customize_register', array($this,'addPostMessageSupport'));
         add_action('customize_register', array($this,'themeGeneralSettingRegister'));
         add_action('customize_register', array($this,'sectionSetting'));
         
+        // Register scripts and styles for the controls.
+		add_action( 'customize_controls_enqueue_scripts', array( $this, 'customizePreviewJs' ), 0 );
     }
 
 
@@ -45,9 +46,9 @@ class Nab_Customizer {
     public function themeGeneralSettingRegister($wp_customize) {
 
         $nabCustomizer = new TeamDevCustomizer($wp_customize,'nabco');
+
         $nabCustomizer->addPanel('nabco_theme_setting_panel', 'Nabco Theme Setting','Theme General Setting',120);
         $nabCustomizer->addSection('nabco_theme_layout_option', 'Layout Section','Layout Setting',120,'nabco_theme_setting_panel');
-        
 
         //container 
         $nabCustomizer->addSelectControl('nb_container',  [
@@ -66,9 +67,11 @@ class Nab_Customizer {
         );
 	
         //select for development and production mode
-        $nabCustomizer->addSelectControl('nb_underconstruction',  [
-            'default'   =>  'development',
-            'type'      =>  'theme_mod'],
+        $nabCustomizer->addSelectControl('nb_underconstruction',
+            [
+                'default'   =>  'development',
+                'type'      =>  'theme_mod'
+            ],
             [
                 'label'         =>  __('Stage Type', 'nabco'),
                 'section'   =>  'nabco_theme_layout_option',
@@ -120,7 +123,6 @@ class Nab_Customizer {
     public function sectionSetting($wp_customize) {
 
         $nabCustomizer = new TeamDevCustomizer($wp_customize,'nabco');
-        $nabCustomizer->addPanel('nabco_theme_setting_panel', 'Nabco Theme Setting','Theme General Setting',120);
 
         $nabCustomizer->addSection('nabco_slider_section_option', 'Slider Section','Slider Configuration',10,'nabco_theme_setting_panel');
         
@@ -162,11 +164,15 @@ class Nab_Customizer {
 
         $pages = get_pages();
         $choices = array();
+        
         if($pages) {
+            
             $choices['none'] = '--Select Page--';
+            
             foreach($pages as $page) {
                 $choices[get_page_link($page->ID)] =  $page->post_title;
             }
+            
             $nabCustomizer->addSelectControl('promotion_page_link',
                 array('default'   =>  'none','type'		=>	'theme_mod'),
                 array(
@@ -237,7 +243,7 @@ class Nab_Customizer {
      * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
      */
     public function customizePreviewJs() {
-        wp_enqueue_script( 'nabco-furnitures-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20151215', true );
+        wp_enqueue_script( 'nabco-furnitures-customizer', get_template_directory_uri() . '/dist/js-admin/customizer.js', array( 'customize-preview' ), '20151215', true );
     }
 }
 

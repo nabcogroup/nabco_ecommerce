@@ -26,7 +26,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-sm-12 nb-footer-text-wrapper">
-          <small class="nb-text-white align-middle p-0 m-0">&copy; All Rights Reserved 2018</small>
+          <small class="text-light align-middle p-0 m-0">&copy; All Rights Reserved 2018</small>
         </div>
         <div class="col-md-6 col-sm-12">
           <?php echo nabcofurnitures_do_shortcode('ns-social-link',array()); ?>

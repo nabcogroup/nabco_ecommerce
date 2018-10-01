@@ -27,6 +27,7 @@ if ( post_password_required() ) {
 }
 ?>
 <div id="product-<?php the_ID(); ?> " <?php wc_product_class("row"); ?>>
+    
     <div class="col-md-6">
         <?php
             /**

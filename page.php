@@ -12,29 +12,56 @@
  * @package nabcofurn_us
  */
 
+
+
 get_header();
+
+$page_sidebar = get_theme_mod('nabcofurniture_theme_page_layout', '' );
+
 ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
+<!-- Section: Page Header -->
 
-		<?php
-		while ( have_posts() ) :
-			the_post();
+<?php if(!is_front_page()) : ?>
+<article class="page-wrapper">
+	<div class="row">
+		<?php if ($page_sidebar == 'sidebar') : ?>
+			<div class="col-md-9">
+		<?php else : ?>
+			<div class="col-md-12">
+		<?php endif; ?>
+		
+		<?php if(have_posts()) : ?>
+			<?php while(have_posts()) : the_post(); ?>
+				<div class="row">
+					<nav class="nb-page-nav col-md-6 ml-auto">
+						<?php echo nabco_furnitures_list_child_pages(); ?>
+					</nav>
+				</div>
 
-			get_template_part( 'template-parts/content', 'page' );
+				<div class="row">
+					<div class="col-md-12">
+						<?php the_title('<h1 class="entry-title blog-post-title">','</h1>') ?>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="body-content col-md-12">
+						<?php the_content(); ?>
+					</div>
+				</div>
 
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
+			<?php endwhile; ?>
+		</div>
+		<?php endif; ?>
 
-		endwhile; // End of the loop.
-		?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
-<?php
-get_sidebar();
-get_footer();
+		<?php //enable sidebar ?>		
+		<?php if ($page_sidebar == 'sidebar') : ?>
+			<div class="col-md-3">
+			<?php  get_sidebar(); ?>
+			</div>
+		<?php endif; ?>
+	</div>
+</article>
+<?php endif; ?>
+<?php get_footer(); ?>

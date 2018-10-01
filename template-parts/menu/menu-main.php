@@ -1,6 +1,8 @@
 <?php 
     
     $nbMainNavigation = Nab_MainNavigation::createInstance(array('location' => 'primary')); 
+
+    $page_link = get_theme_mod('promotion_page_link','');
 ?>
 
 
@@ -17,7 +19,10 @@
                             }
                         }
                     ?>
-
+                    <?php echo nabcofurnitures_do_shortcode('ns-sale-text', array(
+                      'wrapper_open'    =>  '<li class="nb-link" style="background:green"><a href="'. $page_link .'" class="nb-item-menu item-menu-special">',
+                      'wrapper_close'   =>  '</a></li>'
+                    )); ?>
                 </ul>
 
             <?php } ?>
@@ -76,6 +81,10 @@
                                 class="nav-link"><?php echo $item->title; ?></a>
                         </li>        
                     <?php endforeach; ?>
+                    <?php echo nabcofurnitures_do_shortcode('ns-sale-text', array(
+                      'wrapper_open'    =>  '<li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-763 nav-item"><a href="' . $page_link . '" class="nav-link">',
+                      'wrapper_close'   =>  '</a></li>'
+                    )); ?>
                 </ul>
             </div>
         <?php endif; ?>

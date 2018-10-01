@@ -10,7 +10,7 @@
         &:hover {
             cursor: pointer;
             .card-top-img {
-                @include the-transform(scale(1.1));
+                @include transform(scale(1.1));
             }
         }
     }
@@ -77,14 +77,12 @@ $front-image-height-responsive: 200px;
     position:relative;
     overflow: hidden;
     height: 330px;
-    
-    
+
     .card-img-top {
         width: 100%;
         height: 100%;
-        position: absolute;
-        top:0;
-        left:0;
+        
+        @include nb-top-left();
         z-index: 2;
         object-fit: cover;
         @include transition(all .2s ease-in-out);
@@ -102,7 +100,7 @@ $front-image-height-responsive: 200px;
 
     &:hover {
         .card-img-top {
-            @include the-transform(scale(1.1));
+            @include transform(scale(1.1));
         }
         .shadow {
             @include fun-animation(fadeIn);    
@@ -110,20 +108,17 @@ $front-image-height-responsive: 200px;
     }
     
     .shadow {
-        position: absolute;
+        @include nb-top-left();
+        z-index: 3;
+        background: rgba($color: #000000, $alpha: 0.5);
+        border: 10px solid rgba($color: #000000, $alpha: 0.2);
         width: 100%;
         height: 100%;
-        top:0;
-        left: 0;
         opacity: 0;
         overflow: hidden;
     }
     
     .shadow {
-        background: rgba($color: #000000, $alpha: 0.5);
-        z-index: 3;
-        border: 10px solid rgba($color: #000000, $alpha: 0.2);
-
         &::before {
             content: '';
             height: 1px;
@@ -162,8 +157,6 @@ $front-image-height-responsive: 200px;
             }
 
         }
-
-
     }
 
     
@@ -175,7 +168,9 @@ $front-image-height-responsive: 200px;
     }
 
     &.collection_side {
-        height: 680px;
+        @include media-breakpoint-up(sm) {
+            height: 680px;
+        }
     }
 
     &.collection_top {
@@ -198,15 +193,28 @@ $front-image-height-responsive: 200px;
         position: relative;
     }
 
+    .white-shadow {
+        position: absolute;
+        width: 200px;
+        height: 100%;
+        background: rgba($color: #fff, $alpha: 0.5);
+        z-index: 2;
+        top: 0;
+        left: 0;
+    }
+
     &:hover {
         img {
-            @include the-transform(scale(1.1));
+            @include transform(scale(1.1));
             @include transition(all .2s ease-in-out);
         }
     }
     img {
         width:100%;
-        object-fit: cover;
+        height: 100%;
+        @include media-breakpoint-up(sm) {
+            object-fit: cover;
+        }
         @include transition(all .2s ease-in-out);
     }
 
@@ -223,12 +231,13 @@ $front-image-height-responsive: 200px;
     }
 
     .woocommerce-loop-product__title {
-        font-size: 1rem;
+        font-size: 0.8rem;
         color: $nb-p-color;
         text-transform: capitalize;
         text-align:center;
         padding: 5px 0;
         font-weight: bold;
+        margin-bottom: 2px;
     }
 
     .star-rating {
@@ -259,3 +268,6 @@ $front-image-height-responsive: 200px;
         color: $nb-p-color;
     }
 }
+
+
+//thumbnail transformation

@@ -35,22 +35,21 @@
 
     <?php 
 
-        /************** 
-         * Hook: nabco_furniture_before_content
-         * 
-         * @hooked: nabco_furniture_pre_loading - 10
-        */
-
-        if( get_theme_mod('nb_theme_debug','false') == 'false') {
+        if('false' == intval(get_theme_mod('nb_theme_debug','false'))) {
+            /************** 
+             * Hook: nabco_furniture_before_content
+             * 
+             * @hooked: nabco_furniture_pre_loading - 10
+            */
             do_action('nabco_furniture_before_content'); 
         }
+       
     ?>
 
     <!-- ******************* The Header Area ******************* -->
     <header id="main-header">
         <div class="navbar navbar-expand-md navbar-light nb-header">
             <div class="container">
-
                 <!-- Your site title as branding in the menu -->
                 <?php if(has_custom_logo()) : ?>
                     <?php 
@@ -58,6 +57,7 @@
                         $logo_path = wp_get_attachment_image_src( $custom_logo_id , 'full' ); 
                     ?>
                     <a class="navbar-brand mr-auto" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo esc_url($logo_path[0]); ?>" alt=""></a>
+                    
                 <?php else : ?>
 
                 <?php endif ?>
@@ -98,13 +98,19 @@
                         <span class="navbar-toggler-icon"></span>
 
                 </button>
-
-
-               
                 
             </div>
         </div>
         
+        <!-- announcement -->
+        <?php 
+            
+            echo nabcofurnitures_do_shortcode('ns-announcement',array(
+                'classes' => array('text-center')
+            ));
+
+        ?>
+
 	</header>
 	
 	<main class="main-wrapper">
@@ -126,11 +132,15 @@
 
         <!-- opening container -->
         <div class="container">
-            <?php 
+            <?php
                 if(is_page('checkout'))  {
                     echo '<div class="row col-md-12 my-3" >';
                     echo sprintf("<a href='/cart' class='nb-wc-cart-breadcrumbs'> <i class='fa fa-mail-reply'></i> %s</a>",__("Back to Cart")); 
                     echo '</div>';
+                }
+                else {
+                    // hooked: woocommerce_breadcrumb
+                    do_action('nabco_furniture_before_page_loop');
                 }
             ?>
     <?php endif; ?>

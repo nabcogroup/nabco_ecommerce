@@ -2,9 +2,10 @@
 /*padding base*/
 $nb-pbv: 15px;
 $nb-pbh: 30px;
-$nb-plv: 10px;
-$nb-plh: 16px;
-$nb-psv: 5px;
+
+$nb-plv: 30px;
+$nb-plh: 36px;
+$nb-psv: $nb-plv /2;
 $nb-psh: 10px;
 $nb-pxsv: 1px;
 $nb-pxsh: 5px;
@@ -19,18 +20,20 @@ $nb-line-height: 1.7rem;
 $nb-link-active: map-get($theme-colors,"primary");
 $nb-link-hover: map-get($theme-colors,"primary");
 $nb-link: map-get($theme-colors,"warning");
-$nb-link-size: 0.8rem;
+$nb-link-size: 0.9rem;
 $nb-link-small: 0.6rem;
 
 $nb-p-color: map-get($theme-colors,"dark");
-$nb-p-size: 0.8rem;
+$nb-p-size: 1rem;
 
 //header
-$nb-h1-standard: 1.2;
+$nb-h1-standard: 1.5;
+$nb-h1-sm: 1.2;
 
 //text sizing
-$nb-standard-ms: 0.9rem;
+$nb-standard-ms: 1rem;
 $nb-standard-fs: 0.9rem;
+$nb-standard-ss: 0.9rem;
 
 $nb-global-ff:  'Open Sans', Courier, monospace; //'Roboto', sans-serif;
 $nb-secondary-ff: 'Open Sans', Courier, monospace;

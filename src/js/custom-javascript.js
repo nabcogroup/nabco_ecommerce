@@ -21,21 +21,31 @@ jQuery(document).ready(function($) {
 });
 
 
+
+
 //navigation
 jQuery(document).ready(function($) {
+    
     //check if subnav set to active
     var groupSubnavs = $(".nb-dropdown-subnav");
+    
+
     groupSubnavs.each(function(key,item) {
+        
         var groupItem = $(this).data("group");
+        
         initNavMenu(groupItem);
     });
 
     function initNavMenu(groupName) {
         var subnavs = $("." + groupName);
+        
         subnavs.each(function() {
+
             if($(this).hasClass("active")) {
                 
                 var subnav = $(this).data("container");
+                console.log(subnav);
                 $("#" + subnav).show();
             }
         });

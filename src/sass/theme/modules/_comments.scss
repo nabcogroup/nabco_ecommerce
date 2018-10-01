@@ -1,0 +1,21 @@
+
+/*
+* Comment
+*/
+.commentlist {
+	list-style: none;
+	margin: 0;
+	padding:0;
+}
+
+.comment_container {
+	display: flex;
+	flex-direction: row;
+	.avatar {
+		margin: 15px;
+	}
+	border-bottom: 1px solid #f5f5f5;
+}
+.comment-respond {
+	margin: 25px 0 10px 0;
+}

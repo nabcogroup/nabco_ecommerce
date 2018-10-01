@@ -1,0 +1,122 @@
+
+
+@mixin woocom-navicon() {
+    font-weight: bold;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    font-family: "FontAwesome";
+    position: absolute;
+    right:0;
+    bottom:15px;
+}
+
+
+.nb-wc-mob-nav-button {
+    display:none;
+    padding: 5px 2px;
+    border: 1px solid map-get($theme-colors,"dark");
+    width: 100%;
+    background: transparent;
+    margin-bottom: 15px;
+    position: relative;
+
+    &::after {
+        @include fa-icon('\f107',true,true);
+        right: 5px;
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .nb-wc-mob-nav-button {
+        display:block;
+    }
+}
+
+.woocommerce-MyAccount-navigation {
+    padding: 10px;
+    border:none;
+    
+    @include media-breakpoint-down(sm) {
+        display:none;
+        &.mobile-button-active {
+            display:block !important;
+        }
+    }
+
+    > ul {
+        list-style:none;
+        margin: 0;
+        padding:0;
+        width:100%; 
+
+        li.woocommerce-MyAccount-navigation-link {
+            position: relative;
+            color: $nb-p-color;
+            a {
+                padding: 15px 0;
+                display: block;
+                color: $nb-p-color;
+                @include transition(all 0.2s,ease);
+                text-decoration: none;
+                &:hover {
+                    color: $nb-link;
+                }
+            }
+
+            &:hover {
+                border-bottom: 1px solid $nb-link;
+                color: $nb-link;;
+                @include transition(all 0.2s,ease);
+            }
+            border-bottom: 1px solid map-get($theme-colors,"light");
+            
+            &:after {
+                @include woocom-navicon();
+            }
+
+            &.is-active {
+                color: $nb-link;
+                a {
+                    color: $nb-link;
+                }
+            }
+            
+            &.woocommerce-MyAccount-navigation-link--dashboard {
+                &:after {
+                    content: '\f0e4';
+                }
+            }
+
+            &.woocommerce-MyAccount-navigation-link--orders {
+                &:after {
+                    content: '\f291';
+                }
+            }
+
+            &.woocommerce-MyAccount-navigation-link--downloads {
+                &:after {
+                    content: '\f0ed';
+                }
+            }
+
+            &.woocommerce-MyAccount-navigation-link--edit-address {
+                &:after {
+                    content: '\f041';
+                }
+            }
+
+            &.woocommerce-MyAccount-navigation-link--edit-account {
+                &:after {
+                    content: '\f007';
+                }
+            }
+            &.woocommerce-MyAccount-navigation-link--customer-logout {
+                &:after {
+                    content: '\f08b';
+                }
+            }
+        }
+    }
+}
+

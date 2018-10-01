@@ -33,11 +33,11 @@
 ?>
 
 <?php if(!empty($product_sale_content)) : ?>
-<section class="nb-section full-section">
+<section class="site-wide-section site-white">
     <div class="container">
         <div class="row">
-            <div class="nb-section-title-wrapper col-md-12">
-                <h3 class="nb-section-title"><?php echo wp_kses_post($title); ?></h3>
+            <div class="col-md-12">
+                <h3 class="site-section-header"><?php echo wp_kses_post($title); ?></h3>
             </div>
 
             <?php echo $product_sale_content; ?>

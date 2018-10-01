@@ -68,115 +68,24 @@ function nabcofurnitures_pre_loading_style() {
 	<style>
 			#nb-loader-wrapper {
 				position: fixed;
-				top: 0;
-				left: 0;
 				width: 100%;
 				height: 100%;
-				z-index: 1000;
-			}
-	
-			#nb-loader {
+				z-index: 99999999;
 				display: block;
-				position: relative;
-				left: 50%;
-				top: 50%;
-				width: 150px;
-				height: 150px;
-				margin: -75px 0 0 -75px;
-				border-radius: 50%;
-				border: 3px solid transparent;
-				border-top-color: #3498db;
-	
-				-webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-				animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+				background: #ccc;
 			}
-			#nb-loader:before {
-				content: "";
-				position: absolute;
-				top: 5px;
-				left: 5px;
-				right: 5px;
-				bottom: 5px;
-				border-radius: 50%;
-				border: 3px solid transparent;
-				border-top-color: #e74c3c;
-	
-				-webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-				animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
-		}
-	
-		#nb-loader:after {
-			content: "";
-			position: absolute;
-			top: 15px;
-			left: 15px;
-			right: 15px;
-			bottom: 15px;
-			border-radius: 50%;
-			border: 3px solid transparent;
-			border-top-color: #f9c922;
-	
-			-webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-			  animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
-		}
-	
-	
-			
-		#nb-loader-wrapper .nb-loader-section {
-			position: fixed;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			top: 0;
-			width: 51%;
-			height: 100%;
-			background: #f5f5f5;
-			z-index: 1000;
-		}
-	
-		#nb-loader-wrapper .nb-loader-section.section-left {left: 0;}
-		#nb-loader-wrapper .nb-loader-section.section-right {right: 0;}
-		#nb-loader {
-			z-index: 1001; /* anything higher than z-index: 1000 of .loader-section */
-		}	
-	
-		.nb-loaded #nb-loader-wrapper .nb-loader-section.section-left,
-		.nb-loaded #nb-loader-wrapper .nb-loader-section.section-right {
-			display:none;
-		}
-	
-	
-		.nb-loaded #nb-loader {
-			opacity: 0;
-			-webkit-transition: all 0.3s ease-out; 
-			transition: all 0.3s ease-out;
-		}
-	
-		.nb-loaded #nb-loader-wrapper .nb-loader-section.section-right,
-		.nb-loaded #nb-loader-wrapper .nb-loader-section.section-left {
-			-webkit-transition: all 0.3s 0.3s ease-out; 
-			transition: all 0.3s 0.3s ease-out;
-		}
-	
-		.nb-loaded #nb-loader-wrapper {
-			visibility: hidden;
-		}
-	
-		.#nb-loader-wrapper .nb-loader-section.section-right,
-		.#nb-loader-wrapper .nb-loader-section.section-left {
-			-webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-			transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-		}
-	
-		.nb-loaded #nb-loader-wrapper {
-			-webkit-transform: translateY(-100%);
-			-ms-transform: translateY(-100%);
-			transform: translateY(-100%);
-	
-			-webkit-transition: all 0.3s 1s ease-out; 
-			transition: all 0.3s 1s ease-out;
-		}
+
+			.nb-loaded #nb-loader-wrapper {
+				display:none !important;
+
+			}
+
+			#nb-loader {
+				width: 100%;
+				width: 100%;
+				height: 100%;
+				background: #ccc;
+			}
 	
 	</style>
 	<?php
@@ -188,8 +97,6 @@ function nabcofurnitures_pre_loading() {
     
         <div id="nb-loader-wrapper">
             <div id="nb-loader"></div>
-            <div class="nb-loader-section section-left"></div>
-            <div class="nb-loader-section section-right"></div>
         </div>
     <?php
 }
@@ -201,10 +108,14 @@ function nabcofurnitures_collection_navigation() {
 	$renders = array();
     if($nbMainNavigation->haveItems()) {
         foreach($nbMainNavigation->items as $item) {
-            $classes = $item->classes;
-            $thumbnail_id = get_woocommerce_term_meta($item->object_id,'thumbnail_id',true); 
+			
+			$classes = $item->classes;
+			
+			$thumbnail_id = get_woocommerce_term_meta($item->object_id,'thumbnail_id',true); 
+			
             $img_src = wp_get_attachment_image_src( $thumbnail_id,'full' );
-            $attr = array(
+			
+			$attr = array(
                 'img' => $img_src[0],
                 'class' => implode(' ',$classes), 
                 'title' => $item->title,
@@ -226,7 +137,7 @@ function nabcofurnitures_collection_navigation() {
 
 	<div class="col-md-8">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12 mb-1">
 				<a href="<?php echo $renders['top']['permalink']; ?>" class="nb-anchor-wrapper">
 					<div class='<?php echo $renders['top']['class'] ?> card-product-thumbnail wow bounceInUp'>
 						<div class="shadow"></div>
@@ -236,7 +147,7 @@ function nabcofurnitures_collection_navigation() {
 				</a>
 			</div>
 			<?php foreach($renders['mini'] as $render) : ?>
-			<div class="col-md-6">
+			<div class="col-md-6 mb-1">
 					<a href="<?php echo $render['permalink']; ?>" class="nb-anchor-wrapper">
 					<div class='<?php echo implode(' ', $render['class']); ?> card-product-thumbnail wow bounceInUp'>
 						<div class="shadow"></div>
@@ -251,11 +162,13 @@ function nabcofurnitures_collection_navigation() {
 
 	<!-- side -->
 	<div class="col-md-4">
+		<a href="<?php echo $renders['side']['permalink']; ?>" class="nb-anchor-wrapper">
 		<div class='<?php echo $renders['side']['class'] ?> card-product-thumbnail wow bounceInRight'>
 			<div class="shadow"></div>
 			<img src="<?php echo $renders['side']['img']; ?>" class="card-img-top"/>
 			<h3 class="card-title"><?php echo $renders['side']['title']; ?></h3>
 		</div>
+		</a>
 	</div>
 
 	<?php

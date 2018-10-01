@@ -26,7 +26,7 @@ class Nab_WidgetSetup {
             'name'          => __( 'Footer Full', 'nabco-furnitures' ),
             'id'            => 'footerfull',
             'description'   => 'Full sized footer widget with dynamic grid',
-            'before_widget'  => '<div id="%1$s" class=" %2$s '. $this->countWidgets( 'footerfull' ) .' mb-3"  ><div class="card card-footer-wrapper">', 
+            'before_widget'  => '<div id="%1$s" class=" %2$s '. $this->countWidgets( 'footerfull' ) .' mb-3"  ><div class="card card-transparent menu-footer">', 
             'after_widget'   => '</div></div><!-- .footer-widget -->', 
             'before_title'   => '<div class="card-header widget-title">', 
             'after_title'    => '</div>', 

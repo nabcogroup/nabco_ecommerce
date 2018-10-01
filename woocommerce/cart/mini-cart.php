@@ -70,12 +70,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 		?>
 	</ul>
 	<div class="row my-3 mx-0">
-		<div class="col-md-4">
-			<a href="<?php echo esc_url( wc_get_cart_url() ) ?>" 
-				class="button wc-forward"> <?php echo esc_html__( 'View Cart', 'woocommerce' ) ?> 
-			</a>
-		</div>
-		<div class="col-md-8 text-right">
+		<div class="col-md-12 text-right">
 			<span class="woocommerce-mini-cart__total total">
 				<strong><?php _e( 'Subtotal', 'woocommerce' ); ?>:</strong> 
 				<?php echo WC()->cart->get_cart_subtotal(); ?>

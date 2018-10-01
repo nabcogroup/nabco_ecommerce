@@ -14,10 +14,8 @@
         li {
             a {
                 padding: 2px 0;
-                
-                font-size: $standard-menu-size;
-                color: $nb-link-color;
-                
+                color: $nb-link;
+                font-size: $nb-standard-ss;
             }
             position: relative;
            
@@ -25,12 +23,24 @@
     }    
 }
 
+
+.nb-tran-icon {
+    padding: 7px;
+    margin-right: 15px;
+    display: flex;
+    flex-direction: row;
+	
+	.user-content {
+		color: $nb-p-color;
+	}
+}
+
+
+
 //page navigation
 .nb-page-nav {
     padding: $nb-pbv 0;
     display: block;
-    float: right;
-    
     > ul {
         list-style: none;
         @include nb-margin-padding();
@@ -81,7 +91,7 @@
                 
                 &::before {
                     display: inline-block;
-                    content: $nb-bc-icons;
+                    content: $nb-bc-icon;
                     @include nb-top-left(6px,0);
                     color: map-get($theme-colors,"warning");
                 }
@@ -107,19 +117,20 @@
     }
 }
 
-$dropdown-width: 500px;
+$dropdown-width: 700px;
+$dropdown-height: 300px;
 
 //main - menu
 .nb-navbar {
+    
     padding:0;
     background: map-get($theme-colors,"dark");
-
+    width:100%;
     &.sticky {
         position: fixed;
         top: 0; 
         left: 0;
         z-index: 100;
-        width:100%;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     }
 
@@ -153,13 +164,13 @@ $dropdown-width: 500px;
                 display: block;
                 bottom:0;
                 left:0;
-                @include transition(height 1.2s ease-in-out);
+                
             }
 
             &:hover {
                 &::before {
                     height: 2px;
-                    @include transition(height 1.2s ease-in-out)
+                    
                 }
             }
         }
@@ -199,29 +210,46 @@ $dropdown-width: 500px;
             &:hover {
                 .nb-dropdown__wrapper {
                     display: block;
-                    @include fun-animation(fadeOut,$fill:both);
+                    @include fun-animation(fadeIn,$fill:both);
                 }
             }
         
             &__wrapper {
                 display: none;
+                opacity: 0;
                 @include transition(opacity 1.2s ease);
                 background: map-get($theme-colors,"white");
                 @include nb-top-left(100%,0);
                 width: $dropdown-width;
-                height: 220px;
+                height: $dropdown-height;
                 padding: 0;
                 border: 1px solid map-get($theme-colors,"light");;
                 z-index: 9000;
+
                 .full-container { 
                     height: 100%;
                 }
+
+                .nb-wc-menu-product {
+                    position: relative;
+                    display: none;
+
+                    .product-cat-thumbnail {
+
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        height: 150px;
+                        width: 200px;
+
+                    }
+                }
             }
             
-            .nb-dropdown-container {
+            &-container {
                 position: relative;
                 @include nb-width-height(100%,100%);
-                padding: 0;
+                padding: 10px 5px;
                 border-left: 1px solid rgba($color: #000000, $alpha: 0.3);
                 overflow: hidden;
 
@@ -231,7 +259,12 @@ $dropdown-width: 500px;
                         margin:0;
                         padding:0;
                         li {
-                            a {font-size: 0.7rem;color: $nb-p-color;}
+                            a {
+                                font-size: 0.8rem;
+                                color: map-get($theme-colors,"secondary");
+                                font-weight: 900;
+                                margin-bottom: 5px;
+                            }
                         }
                     }
                 }
@@ -243,6 +276,7 @@ $dropdown-width: 500px;
                 margin: 0;
                 width: 100%;
                 > li.nb-category-subnav {
+                    
                     .nb-icon {
                         padding: 5px 0 5px 30px;
                         position: relative;
@@ -256,6 +290,7 @@ $dropdown-width: 500px;
         
                     &.active {
                         background-color: map-get($theme-colors,"light");
+                        border-bottom: 2px solid map-get($theme-colors,"danger" );
                         a.nb-icon {
                             color: map-get($theme-colors,"warning");
                         }

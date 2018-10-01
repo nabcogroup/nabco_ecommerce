@@ -104,6 +104,7 @@ class Nb_WoocommerceProductLoop {
     public function orderby_catalog() {
 
         return array(
+            ''              =>  __('--Select Sort--'),
             'price'         =>  __('Sort by price: low to high','woocommerce'),
             'price-desc'    =>  __('Sort by price: high to low','woocommerce'),
             'date'          =>  __('Sort by new arrival','woocommerce'),

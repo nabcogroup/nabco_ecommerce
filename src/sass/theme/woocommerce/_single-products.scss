@@ -1,0 +1,232 @@
+/**
+ * Single Product
+ */
+ .stock {
+	&:empty:before {
+		display: none;
+	}
+
+	&.in-stock {
+		color: map-get($theme-colors,"success");
+	}
+
+	&.out-of-stock {
+		color: map-get($theme-colors,"danger");
+	}
+}
+
+.nb-wc-cart-wrapper {
+	position:relative;
+	.single_add_to_cart_button {
+		margin-top: 2px;
+		width: 100%;
+	}
+}
+
+.summary {
+	.onsale {
+		@include sale-badge-red();
+		display: inline-block;
+		border-radius: 5px;
+	}
+
+	.price {
+		text-transform: uppercase;
+		border-top: 1px solid map-get($theme-colors,"light");
+        border-bottom: 1px solid map-get($theme-colors,"light");
+        font-size: 1rem;
+	}
+
+	.posted_in {
+		font-size: 0.8em;
+		a {
+			padding: 5px 2px;
+			background: map-get($theme-colors,"light");
+		}
+	}
+	.product_title {
+		padding: 5px 0;
+		color: map-get($theme-colors, "warning" );
+		border-bottom: 1px solid map-get($theme-colors,"light");
+		letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-size: $nb-h1-standard + rem;
+	}
+	input.qty {
+		resize: horizontal;
+		text-align: center;
+		background: rgba($color: #fff, $alpha: 0.3);
+	}
+
+	.sku {
+		font-weight: 900;
+		color: map-get($theme-colors, "warning" );
+	}
+
+	.woocommerce-product-details__short-description {
+		margin: 15px 0;
+	}
+}
+
+.woocommerce-product-gallery {
+
+	position:relative;
+
+	.woocommerce-product-gallery__trigger {
+		position: absolute;
+		top: .875em;
+		right: .875em;
+		display: block;
+		height: 2em;
+		width: 2em;
+		z-index: 99;
+	}
+
+	.flex-control-nav {
+		padding: 15px 0;
+		display:block;
+		list-style: none;
+
+		li {
+			padding: 5px;
+			cursor: pointer;
+			float: left;
+			
+			img {
+				width: 50px; height: 50px;
+			}
+			
+			@include media-breakpoint-up(sm) {
+				img { width: 100px; height: 100px;}
+			}
+			
+			&:hover {
+				img {
+					border: 2px solid map-get($theme-colors,"brown");
+				}
+			}
+		}
+		&:after {
+			clear: both;
+			content: '';
+			display:block;
+		}
+	}
+}
+
+
+/**
+ * Tabs
+ */
+
+ .woocommerce-tabs {
+	margin: 15px 0;
+	ul.tabs {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		text-align: left;
+		display: flex;
+		li {
+			margin: 0;
+			position: relative;
+			border: 1px solid map-get($theme-colors,"light");
+			background:  map-get($theme-colors,"white");
+			border-top-right-radius: 5px;
+			border-top-left-radius: 5px;
+			a {
+				padding: 1em 10px;
+				display: block;
+				text-decoration: none;
+				text-transform: uppercase;
+				font-size: 12px;
+				transform: translate3d();
+				color:map-get($theme-colors,"brown");
+			}
+
+			&.active {
+				
+				background: map-get($theme-colors,"secondary");
+				a {
+					color: #f5f5f5 !important;
+				}
+			}
+		}
+	}
+
+	.woocommerce-Tabs-panel {
+		//border: 1px solid map-get($theme-colors,"light");;
+		padding: 10px;
+		background: #fff;
+		border-top: 1px solid map-get($theme-colors,"light");
+		
+		h2:first-of-type {
+			margin-bottom: 1em;
+			color: $nb-p-color;
+			font-size: 1.2em;
+			border-bottom: 1px solid #f5f5f5;
+			padding-bottom: 10px;
+		}
+	}
+}
+
+table.shop_attributes {
+	width: 100%;
+	th {
+		padding: 5px;
+		width: 20%;
+		border: 1px solid map-get($theme-colors,"light");;
+	}
+	td {
+		padding: 5px;
+		border: 1px solid map-get($theme-colors,"light");;
+		p{ 
+			margin: 0;
+			padding: 0;
+		}
+	}
+}
+
+//related products
+.related {
+	&.products {
+		> h2:first-of-type {
+			text-transform: uppercase;
+			border-bottom: 1px solid map-get($theme-colors,"light");;
+			color: $nb-p-color;
+			font-size: 1.5rem;
+		}
+	}
+}
+.related {
+	
+    > h2 {
+		
+		text-transform: uppercase;
+        color: $nb-p-color;
+        border-bottom: 1px solid map-get($theme-colors,"light");
+    }
+	
+	.products {
+		@include make-row();
+		
+		&.columns-4 {
+			.product {
+				@include make-col-ready();
+				@include media-breakpoint-up(sm) {
+					@include make-col(3);
+				}
+			}
+		}
+		
+		&.column-3 {
+			@include make-col-ready();
+			@include media-breakpoint-up(sm) {
+				@include make-col(4);
+			}
+		}
+	}
+
+
+	
+}
