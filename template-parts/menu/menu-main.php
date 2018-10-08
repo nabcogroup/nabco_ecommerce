@@ -1,20 +1,25 @@
 <?php 
     
     $nbMainNavigation = Nab_MainNavigation::createInstance(array('location' => 'primary')); 
-
+    $items = $nbMainNavigation->items;
+    $haveItems = $nbMainNavigation->haveItems();
     $page_link = get_theme_mod('promotion_page_link','');
+    $nbMainNavigation = null;
+    
 ?>
 
 
 <div class="d-none d-md-block">
     <nav class="nb-navbar nb-navbar-js">
+        
         <div class="container">
-            <?php if($nbMainNavigation->haveItems()) { ?>
+            <?php if($haveItems) { ?>
                 <ul class="nb-menu justify-content-center">
                     <?php
                         //loop
-                        foreach($nbMainNavigation->items as $item) {
-                            if($htmlMenu = Nab_MainNavigationHtml::createHtmlMenu($item,$nbMainNavigation->items,$nbMainNavigation)) {
+                        foreach($items as $item) {
+
+                            if($htmlMenu = Nab_MainNavigationHtml::createHtmlMenu($item,$items)) {
                                 echo $htmlMenu;
                             }
                         }
@@ -27,6 +32,10 @@
 
             <?php } ?>
         </div>
+        <?php 
+            //cart link 
+            do_action('after_menu_loop');
+        ?>
     </nav>
 </div>
 
@@ -40,35 +49,20 @@
 
         <span class="mobile-close-icon" data-target="#mobileMenu"><i class="fa fa-times-circle fa-2x"></i> </span>
 
-
-      
         <!-- search navigation -->
         <?php get_template_part( 'sidebar-templates/sidebar', 'front-search' ) ?>
 
-        <?php if($nbMainNavigation->haveItems()) : ?>
+        <?php if($haveItems) : ?>
             <div class="menu-primary-container">
                 <ul class="navbar-nav cust-navbar-item mr-auto">
-                    <?php foreach($nbMainNavigation->items as $item) :  ?>
+                    <?php foreach($items as $item) :  ?>
                         
                         <?php 
                             $subHtmls = ""; 
                             $li_css = array();
                             if($item->menu_item_parent != 0) continue;
                         ?>
-                        <?php if(in_array('has_children',$item->classes)) { 
-                                $li_css = array("has_children","dropdown","menu-item-has-children");
-                                $subHtmls = "<ul class='dropdown-menu' aria-labeled='menu-item-{$item->ID}'>";
-                                foreach($nbMainNavigation->items as $subnav) {
-                                    if($subnav->menu_item_parent == $item->ID) {
-                                        $subHtmls .= "<li itemscope='itemscope' itemtype='https://www.schema.org/SiteNavigationElement' id='menu-item-{$subnav->ID}' class='menu-item nav-item'>";
-                                        $subHtmls .= "<a id='menu-item-{$subnav->ID}' title='{$subnav->title}' href='{$subnav->url}' class='dropdown-item'>{$subnav->title}</a>";
-                                        $subHtmls .= "</li>";
-                                    }
-                                }
-                                $subHtmls .= "</ul>";
-                            }
-                        ?>
-
+                        
                         <li itemscope="itemscope" 
                             itemtype="https://www.schema.org/SiteNavigationElement" 
                             id="menu-item-<?php echo $item->ID; ?>" 

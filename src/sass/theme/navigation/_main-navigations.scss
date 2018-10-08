@@ -26,13 +26,14 @@
 
 .nb-tran-icon {
     padding: 7px;
-    margin-right: 15px;
     display: flex;
     flex-direction: row;
 	
 	.user-content {
 		color: $nb-p-color;
-	}
+    }
+    
+
 }
 
 
@@ -120,12 +121,27 @@
 $dropdown-width: 700px;
 $dropdown-height: 300px;
 
+
+
 //main - menu
 .nb-navbar {
-    
+    position:relative;
     padding:0;
     background: map-get($theme-colors,"dark");
     width:100%;
+
+    .cart-management {
+        position: absolute;
+        right: 20px;
+        display: none;
+        top: 5px;
+        padding:10px;
+        @include border-radius(50%);
+        background: map-get($theme-colors , "light" );
+
+        .count { font-weight: 900;}
+    }
+
     &.sticky {
         position: fixed;
         top: 0; 

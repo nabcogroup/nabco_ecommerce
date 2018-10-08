@@ -37,8 +37,6 @@ class Nb_WoocommerceSingleProduct {
         add_filter('woocommerce_product_review_comment_form_args',[$this,'comment_author_field'],10);
         add_filter('woocommerce_product_review_comment_form_args',array($this,'comment_submit_button'),20);
         
-        
-       
     }
 
     /** 
@@ -69,7 +67,6 @@ class Nb_WoocommerceSingleProduct {
                 <option value="2">' . esc_html__( 'Not that bad', 'woocommerce' ) . '</option>
                 <option value="1">' . esc_html__( 'Very poor', 'woocommerce' ) . '</option>
             </select></div></div>';
-
         }
 
         $comment_form['comment_field'] .= '<div class="comment-form-comment form-group row"><label for="comment" class="col-md-3 text-right">' . esc_html__( 'Your review', 'woocommerce' ) . '&nbsp;<span class="required">*</span></label><div class="col-md-9"><textarea id="comment" name="comment" class="form-control" cols="45" rows="8" aria-required="true" required></textarea></div></div>';

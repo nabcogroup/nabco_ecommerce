@@ -152,7 +152,7 @@ if ( ! function_exists( 'nabco_furnitures_woocommerce_header_cart' ) ) {
 			$class = '';
 		}
 		?>
-		<div class="mr-3">
+		<div class="wc-cart-mini-icon">
 			<ul id="site-header-cart" class="site-header-cart">
 				<li class="<?php echo esc_attr( $class ); ?>">
 					<?php nabco_furnitures_woocommerce_cart_link(); ?>
@@ -179,11 +179,10 @@ function nabco_furnitures_woocommerce_customer_account() {
 	}
 	else {
 		$current_user = wp_get_current_user();
-
 		$description = $current_user->user_login;
 	}
 
-	echo '<div>' . sprintf('<a href="%s" class="user-content"><i class="fa fa-user"></i> <small>%s</small></a>',get_permalink(get_option('woocommerce_myaccount_page_id')),$description) . '</div>' ;
+	echo '<div class="myacct-mini-icon">' . sprintf('<a href="%s" class="user-content"><i class="fa fa-user"></i> <small>%s</small></a>',get_permalink(get_option('woocommerce_myaccount_page_id')),$description) . '</div>' ;
 
 }
 

@@ -15,6 +15,8 @@ class Nb_WoocommerceProductLoop {
         add_action('woocommerce_before_shop_loop',[$this,'order_wrapper_closing'],35);
         add_action('woocommerce_before_shop_loop_item',[$this,'product_content_wrapper_opening']);
         add_action('woocommerce_after_shop_loop_item',[$this,'product_content_wrapper_closing']);
+
+        add_action('woocommerce_archive_description', [$this,'product_category_navigation'], 20);
         
         /** 
          * includes/wc-template-functions.php
@@ -28,11 +30,15 @@ class Nb_WoocommerceProductLoop {
         */
         remove_action( 'woocommerce_after_shop_loop_item','woocommerce_template_loop_add_to_cart'); //remove add to cart since it is not included in the theme requirements
         add_filter('woocommerce_sale_flash',[$this,'woocommerce_sale_flash_wrapper']);
+        
         remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail',10); //make a wrapper on the image by reposition
+        
         add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail',20);  //place in new location
         add_action('woocommerce_before_shop_loop_item_title',array($this,'thumbnail_wrapper_opening'),15);
         add_action('woocommerce_before_shop_loop_item_title',array($this,'thumbnail_wrapper_closing'),25);
         
+
+        /************************** */
     }
 
     /** 
@@ -102,13 +108,36 @@ class Nb_WoocommerceProductLoop {
      * - change the selection of catalog order by
      */
     public function orderby_catalog() {
-
         return array(
             ''              =>  __('--Select Sort--'),
             'price'         =>  __('Sort by price: low to high','woocommerce'),
             'price-desc'    =>  __('Sort by price: high to low','woocommerce'),
             'date'          =>  __('Sort by new arrival','woocommerce'),
         );
+    }
+
+    /**
+     * hooked: woocommerce_archive_description
+     * - create submenu on the the top of title
+     */
+    public function product_category_navigation() {
+        
+        $navigation_html = "";
+
+        if(is_tax('product_cat')) {
+            $cat = get_queried_object();
+            $children = get_terms( $cat->taxonomy, array('parent'    => $cat->term_id));
+            if($children && count($children) > 0) {
+                $navigation_html = "<ul class='nb-shop-navigation wc-shop-category-subnav'>";
+                foreach ($children as $key => $child) {
+                    $navigation_html .= sprintf("<li><a href='%s'>%s</a></li>", $child->slug,$child->name);
+                }
+                $navigation_html .= "</ul>";
+            }
+        }
+        
+        echo $navigation_html;
+
     }
 
    

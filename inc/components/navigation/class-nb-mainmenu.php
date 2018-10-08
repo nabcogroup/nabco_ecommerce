@@ -62,7 +62,7 @@ class Nab_MainNavigation {
 
 class Nab_MainNavigationHtml {
 
-    public static function createHtmlMenu(&$item,&$items,&$navObject) {
+    public static function createHtmlMenu(&$item,&$items) {
         
         if($item->menu_item_parent != 0) return false;
         
@@ -74,7 +74,7 @@ class Nab_MainNavigationHtml {
         if(in_array('has_children',$item->classes)) {
             $cssDropdown = "nb-dropdown";
             $anchorCssDropdown = "nb-dropdown-toggle";
-            $childrenOutput = static::createHtmlSubMenu($item->ID, $items,$navObject);
+            $childrenOutput = static::createHtmlSubMenu($item->ID, $items);
             $classes = implode(" ",$item->classes);
         }
 
@@ -87,7 +87,7 @@ class Nab_MainNavigationHtml {
     
 
 
-    public static function createHtmlSubMenu($id, &$items,&$navObject) {
+    public static function createHtmlSubMenu($id, &$items) {
         
         $imageHtmls = [];
         

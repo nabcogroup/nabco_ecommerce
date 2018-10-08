@@ -57,61 +57,49 @@
                         $logo_path = wp_get_attachment_image_src( $custom_logo_id , 'full' ); 
                     ?>
                     <a class="navbar-brand mr-auto" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo esc_url($logo_path[0]); ?>" alt=""></a>
-                    
                 <?php else : ?>
-
+                    
                 <?php endif ?>
-                
+
                 <div class="collapse navbar-collapse">
-                    <div class="row mr-auto pl-5">
-                        <?php 
-                            if(get_theme_mod('nb_header_social_api','none') == 'basic') {
-                                get_template_part( 'sidebar-templates/sidebar', 'social' ); 
-                            }
-                        ?>
+                    <div class="row" style="width:100%">
+                        <div class="col-md-4">
+                            <?php 
+                                if(get_theme_mod('nb_header_social_api','none') == 'basic') {
+                                    get_template_part( 'sidebar-templates/sidebar', 'social' ); 
+                                }
+                            ?>
+                        </div>
+                        <div class="col-md-8">
+                            <?php get_template_part( 'sidebar-templates/sidebar', 'front-search' ) ?>
+                        </div>
                     </div>
                 </div>
 
-                <div class="row float-right">
-                    
-                    <div class="d-none d-sm-block">
-                        <?php get_template_part( 'sidebar-templates/sidebar', 'front-search' ) ?>
-                    </div>
-
-                    <div class="nb-tran-icon">
-                        <!-- carting here -->
-                        <?php 
-                            //hooked: nabco_furnitures_cart_link_display - 10
-                            //hooked: nabco_furnitures_woocommerce_customer_account - 20
-                            do_action('nabco_furnitures_header_display_fragment'); 
-                        ?>
-                    </div>
-                    
+                <div class="nb-tran-icon">
+                    <!-- carting here -->
+                    <?php 
+                        //hooked: nabco_furnitures_cart_link_display - 10
+                        //hooked: nabco_furnitures_woocommerce_customer_account - 20
+                        do_action('nabco_furnitures_header_display_fragment'); 
+                    ?>
                 </div>
                 
                 <button class="navbar-toggler" type="button" 
-                        data-toggle="collapse" 
-                        data-target="#mobileMenu" 
-                        aria-controls="navbarSupportedContent" 
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    
-                        <span class="navbar-toggler-icon"></span>
-
+                            data-toggle="collapse" 
+                            data-target="#mobileMenu" 
+                            aria-controls="navbarSupportedContent" 
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        
+                            <span class="navbar-toggler-icon"></span>
                 </button>
-                
             </div>
         </div>
         
         <!-- announcement -->
-        <?php 
-            
-            echo nabcofurnitures_do_shortcode('ns-announcement',array(
-                'classes' => array('text-center')
-            ));
+        <?php echo nabcofurnitures_do_shortcode('ns-announcement',array('classes' => array('text-center'))); ?>
 
-        ?>
-
-	</header>
+	</header> <!-- END OF HEADER -->
 	
 	<main class="main-wrapper">
 

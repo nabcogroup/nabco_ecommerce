@@ -31,6 +31,7 @@ $formRowWidth: 100%;
 }
 
 
+
 //terms 
 .woocommerce-terms-and-conditions-wrapper {
     margin:25px 0;
@@ -82,4 +83,16 @@ $formRowWidth: 100%;
 //review order table
 .woocommerce-checkout-review-order-table {
     font-size: 0.9rem;
+}
+
+.woocommerce-checkout-payment {
+    #place_order {
+        display: block;
+        padding: 10px 5px;
+        width: 100%;
+        background-color: map-get($theme-colors, "primary" );
+        color: #fff;
+        border: 1px solid #fff;
+        cursor: pointer;
+    }
 }

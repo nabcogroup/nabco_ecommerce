@@ -6,12 +6,15 @@
         height: 400px;
         overflow: hidden;
         position: relative;
+
         @include media-breakpoint-down(lg) {
             height: 350px;
         }
+        
         @include media-breakpoint-down(md) {
             height: 260px;
         }
+        
         @include media-breakpoint-down(sm) {
             height: 320px;
             .videoContainer__video {
@@ -67,7 +70,7 @@
 
  //heading section
  .nb-section-title {
-    font-size: $nb-h1-standard;
+    font-size: $nb-h1-standard + rem;
     margin-top: 20px;
     margin-bottom: 20px;
     padding-bottom: 20px;
@@ -110,9 +113,9 @@
     text-align:center;
     .site-section-header {
         padding-bottom: $nb-psv;
-        font-size: $nb-h1-sm + rem;
+        font-size: 1.2rem;
         @include media-breakpoint-up(sm) {
-            font-size: $nb-h1-standard;
+            font-size: 1.8rem;
 
         }
 

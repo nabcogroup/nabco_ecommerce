@@ -77,3 +77,45 @@ Product Content Grid
        }
    }
 }
+
+/**
+Header Title
+*/
+.woocommerce-products-header {
+    text-transform: uppercase;
+
+}
+
+.nb-shop-navigation {
+    &.wc-shop-category-subnav {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: block;
+        width: 100%;
+        border-top: 1px solid map-get($theme-colors, "dark" );
+        border-bottom: 1px solid map-get($theme-colors, "dark" );
+        margin-bottom: 10px;
+        
+        li {
+            float: left;
+            padding: 5px;
+            margin-right: 10px;
+            a {
+                display: block;
+                position: relative;
+                text-align: center;
+            }
+
+            &:first-of-type {
+                a {
+                    text-align: left;
+                }
+            }
+        }
+
+        &:after {
+            @include clearfix;
+        }
+    }
+}

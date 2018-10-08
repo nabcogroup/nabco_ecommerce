@@ -46,7 +46,7 @@ get_header( 'shop' );
 	<?php endif; ?>
 </header>
 
-<div class="row col-md-12">
+<div class="row col-md-12 mx-0 px-0">
 	<?php
 		/******************************************************
 		 * Hook: woocommerce_archive_description.

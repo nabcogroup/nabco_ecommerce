@@ -12,6 +12,5 @@ if(!is_active_sidebar( 'topheader-search-sidebar' ))  {
 
 
 ?>
-<div>
-    <?php dynamic_sidebar('topheader-search-sidebar') ?>
-</div>
+
+<?php dynamic_sidebar('topheader-search-sidebar') ?>

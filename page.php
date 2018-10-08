@@ -41,7 +41,9 @@ $page_sidebar = get_theme_mod('nabcofurniture_theme_page_layout', '' );
 
 				<div class="row">
 					<div class="col-md-12">
-						<?php the_title('<h1 class="entry-title blog-post-title">','</h1>') ?>
+						<?php 
+							the_title('<h1 class="entry-title blog-post-title">','</h1>') 
+						?>
 					</div>
 				</div>
 				

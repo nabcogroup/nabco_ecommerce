@@ -185,3 +185,10 @@
 	font-size: 1.2rem;
 	z-index: 999;
 }
+
+.myaccount-mini-icon {
+	margin:0;
+    padding: 10px 15px;
+    background: map-get($theme-colors,"light" );
+    @include border-radius(5px);
+}

@@ -66,6 +66,13 @@
 	.woocommerce-product-details__short-description {
 		margin: 15px 0;
 	}
+	#enquiry {
+		input.wpi-button {
+			width: 100%;
+			background: map-get($theme-colors , "secondary" );
+			color: white;
+		}
+	}
 }
 
 .woocommerce-product-gallery {

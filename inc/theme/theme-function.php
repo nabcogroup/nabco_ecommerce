@@ -108,11 +108,8 @@ function nabcofurnitures_collection_navigation() {
 	$renders = array();
     if($nbMainNavigation->haveItems()) {
         foreach($nbMainNavigation->items as $item) {
-			
 			$classes = $item->classes;
-			
 			$thumbnail_id = get_woocommerce_term_meta($item->object_id,'thumbnail_id',true); 
-			
             $img_src = wp_get_attachment_image_src( $thumbnail_id,'full' );
 			
 			$attr = array(
@@ -126,18 +123,26 @@ function nabcofurnitures_collection_navigation() {
             }
             else if(in_array('collection_side',$classes)) {
                 $renders['side'] = $attr;
+			}
+			else if(in_array('collection_top_mini', $classes)) {
+                $renders['mini_top'][] =   $attr;
             }
+			else if(in_array('collection_footer',$classes)) {
+
+			}
             else {
                 $renders['mini'][] =   $attr;
             }
         }   
 	}
 
+	$nbMainNavigation = null;
+
 	?>
 
 	<div class="col-md-8">
 		<div class="row">
-			<div class="col-md-12 mb-1">
+			<div class="col-md-12">
 				<a href="<?php echo $renders['top']['permalink']; ?>" class="nb-anchor-wrapper">
 					<div class='<?php echo $renders['top']['class'] ?> card-product-thumbnail wow bounceInUp'>
 						<div class="shadow"></div>
@@ -146,10 +151,38 @@ function nabcofurnitures_collection_navigation() {
 					</div>
 				</a>
 			</div>
-			<?php foreach($renders['mini'] as $render) : ?>
-			<div class="col-md-6 mb-1">
+			<?php foreach($renders['mini_top'] as $render) : ?>
+			<div class="col-md-6  mb-3">
 					<a href="<?php echo $render['permalink']; ?>" class="nb-anchor-wrapper">
-					<div class='<?php echo implode(' ', $render['class']); ?> card-product-thumbnail wow bounceInUp'>
+					<div class='<?php  echo   $render['class']; ?> card-product-thumbnail wow bounceInUp'>
+						<div class="shadow"></div>
+						<img src="<?php echo $render['img']; ?>" class="card-img-top"/>
+						<h3 class="card-title"><?php echo $render['title']; ?></h3>
+					</div>
+					</a>
+			</div>
+			<?php endforeach; ?>
+		</div>
+	</div>
+
+	<!-- side -->
+	<div class="col-md-4 mb-3">
+		<a href="<?php echo $renders['side']['permalink']; ?>" class="nb-anchor-wrapper">
+		<div class='<?php echo $renders['side']['class'] ?> card-product-thumbnail wow bounceInRight'>
+			<div class="shadow"></div>
+			<img src="<?php echo $renders['side']['img']; ?>" class="card-img-top"/>
+			<h3 class="card-title"><?php echo $renders['side']['title']; ?></h3>
+		</div>
+		</a>
+	</div>
+	<!-- bottom -->
+	<?php if(isset($renders['mini'])) : ?>
+	<div class="col-md-12">
+		<div class="row">
+			<?php foreach($renders['mini'] as $render) : ?>
+				<div class="col-md-4 mb-3">
+					<a href="<?php echo $render['permalink']; ?>" class="nb-anchor-wrapper">
+					<div class='<?php  echo   $render['class']; ?> card-product-thumbnail wow bounceInUp'>
 						<div class="shadow"></div>
 						<img src="<?php echo $render['img']; ?>" class="card-img-top"/>
 						<h3 class="card-title"><?php echo $render['title']; ?></h3>
@@ -159,17 +192,7 @@ function nabcofurnitures_collection_navigation() {
 			<?php endforeach; ?>
 		</div>
 	</div>
-
-	<!-- side -->
-	<div class="col-md-4">
-		<a href="<?php echo $renders['side']['permalink']; ?>" class="nb-anchor-wrapper">
-		<div class='<?php echo $renders['side']['class'] ?> card-product-thumbnail wow bounceInRight'>
-			<div class="shadow"></div>
-			<img src="<?php echo $renders['side']['img']; ?>" class="card-img-top"/>
-			<h3 class="card-title"><?php echo $renders['side']['title']; ?></h3>
-		</div>
-		</a>
-	</div>
+	<?php endif; ?>
 
 	<?php
 }

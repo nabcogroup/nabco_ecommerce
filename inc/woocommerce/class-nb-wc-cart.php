@@ -37,6 +37,11 @@ class Nb_WoocommerceCart {
         *****************************/
         add_action('wp_footer', array($this,'nabco_furnitures_qty_input_script' ) );
 
+
+        /**************
+        ***************/
+        add_action('after_menu_loop',array($this,'cart_link'));
+
     }
 
    
@@ -125,7 +130,7 @@ class Nb_WoocommerceCart {
         
         ?>
         
-        <div class="mr-3">
+        <div class="wc-minicart-icon">
 			<ul id="site-header-cart" class="site-header-cart">
 				<li class="<?php echo esc_attr( $class ); ?>">
 					<?php $this->cart_link(); ?>

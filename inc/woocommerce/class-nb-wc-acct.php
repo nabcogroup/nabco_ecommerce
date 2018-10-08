@@ -92,6 +92,7 @@ class Nb_WoocommerceMyAccount {
 
     
     public function customer_account() {
+        
         if(!is_user_logged_in()) {
             $description = __('Sign-in');
         }
@@ -101,7 +102,7 @@ class Nb_WoocommerceMyAccount {
             $description = $current_user->user_login;
         }
 
-	    echo '<div>' . sprintf('<a href="%s" class="user-content"><i class="fa fa-user"></i> <small class="d-none d-sm-inline">%s</small></a>',get_permalink(get_option('woocommerce_myaccount_page_id')),$description) . '</div>' ;
+	    echo '<div class="myaccount-mini-icon">' . sprintf('<a href="%s" class="user-content"><i class="fa fa-user"></i> <small class="d-none d-sm-inline">%s</small></a>',get_permalink(get_option('woocommerce_myaccount_page_id')),$description) . '</div>' ;
     }
 
     

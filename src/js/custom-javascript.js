@@ -4,8 +4,17 @@ jQuery(document).ready(function($) {
     var navBar = $(".nb-navbar-js");
 
     var offsetTop = navBar.offset().top;
+
     var sticky = function(){
-        win.scrollTop() > offsetTop ? navBar.addClass('sticky') : navBar.removeClass('sticky')
+        if(win.scrollTop() > offsetTop) {
+            navBar.addClass('sticky');
+                //sticky cart hide first 
+                $(".nb-navbar-js #cart_management").show();
+        }
+        else {
+            navBar.removeClass('sticky');
+            $(".nb-navbar-js #cart_management").hide();
+        }
     }
 
     win.scroll(sticky);

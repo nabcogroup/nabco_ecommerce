@@ -15,7 +15,7 @@ add_action('nabco_furniture_before_page_loop','woocommerce_breadcrumb');
 * Hooked in menu-main filter
 * Get all the products attached to that category
 */
-add_filter('nb_menu_subnavigation_loop_args','nabcofurnitures_product_navigations',10);
+//add_filter('nb_menu_subnavigation_loop_args','nabcofurnitures_product_navigations',10);
 
 /** 
  * 
