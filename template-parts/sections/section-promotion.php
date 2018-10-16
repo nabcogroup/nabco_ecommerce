@@ -39,7 +39,6 @@
             <div class="col-md-12">
                 <h3 class="site-section-header"><?php echo wp_kses_post($title); ?></h3>
             </div>
-
             <?php echo $product_sale_content; ?>
         </div>
         <div class="row justify-content-center my-5">

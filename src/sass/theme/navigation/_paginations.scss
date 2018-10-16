@@ -14,11 +14,27 @@
 		width: auto;
 		
 		li {
-			padding: 5px 10px;
-			border: 1px solid map-get($theme-colors,"light");
 			float: left;
 			margin-left: 10px;
-			;
+			a {
+				text-decoration: none;
+				&:hover {
+					background: map-get($theme-colors ,"warning" );
+					color: map-get($theme-colors,"dark");
+
+				}
+			}
+			.page-numbers {
+				padding: 5px 10px;
+				border: 1px solid map-get($theme-colors,"light");
+				@include border-radius(50%);
+			}
+
+
+			span.current {
+				background: map-get($theme-colors ,"primary" );
+				color: map-get($theme-colors ,"light" );
+			}
 		}
 		&::after {
 			@include clearfix;

@@ -1,5 +1,39 @@
 <?php
 
+/** 
+ * Custom Logo Hook
+*/
+
+function nabcofurniture_get_logo($args) {
+	$logo_path = wp_get_attachment_image_src($args['custom_logo_id'],$args['size'] ); 
+	return sprintf("<a class='navbar-brand mr-auto' href='%s'><img src='%s' alt='%s'/></a>",esc_url($args['link']),$logo_path[0],__('Nabco Logo'));
+}
+
+function nabcofurniture_get_product_search() {
+
+	?>
+	<form class="form-horizontal nb-form" style="display:block;" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+		<div class="col-md-12">
+			<div class="input-group">
+				<input 
+					type="text" 
+					id="woocommerce-product-search-field-0" 
+					class="form-control"
+					placeholder="<?php echo __( 'Search products&hellip;', 'woocommerce' ); ?>" 
+					aria-label="Search" 
+					name="s" 
+					value="<?php echo get_search_query(); ?>"
+				/>
+				<input type="hidden" name="post_type" value="product" />
+				<div class="input-group-append">
+					<button class="input-group-text btn btn-primary" id="basic-search" type="submit"><i class="fa fa-search"></i></button>
+				</div>
+			</div>
+		</div>
+	</form>
+	<?php
+}
+	
 
 
 /***
@@ -26,7 +60,11 @@ function nabcofurnitures_product_navigations($args) {
 	return $productArgs;
 }
 
-function nabcofurnitures_slider_scripts() {
+
+/************************** 
+ * 
+*****************************/
+function nabcofurniture_slider_scripts() {
 	if(!is_front_page()) return;
 
 ?>
@@ -47,7 +85,10 @@ function nabcofurnitures_slider_scripts() {
 <?php
 }
 
-function nabcofurnitures_pre_loading_scripts() {
+/** 
+ * 
+*/
+function nabcofurniture_pre_loading_scripts() {
 	if(is_customize_preview()) { return false; }
 	?>
 		<script>
@@ -60,7 +101,7 @@ function nabcofurnitures_pre_loading_scripts() {
 	<?php 	
 }
 
-function nabcofurnitures_pre_loading_style() {
+function nabcofurniture_pre_loading_style() {
 	
 	if(is_customize_preview()) { return false; }
 
@@ -91,7 +132,10 @@ function nabcofurnitures_pre_loading_style() {
 	<?php
 }
 
-function nabcofurnitures_pre_loading() {
+/** 
+ * 
+*/
+function nabcofurniture_pre_loading() {
 	if(is_customize_preview()) { return false; }
     ?>
     
@@ -101,8 +145,10 @@ function nabcofurnitures_pre_loading() {
     <?php
 }
 
-
-function nabcofurnitures_collection_navigation() {
+/**
+ * Product Collection Navigation
+*/
+function nabcofurniture_collection_navigation() {
 
 	$nbMainNavigation = Nab_MainNavigation::createInstance(array('location' => 'collection')); 
 	$renders = array();
@@ -128,7 +174,7 @@ function nabcofurnitures_collection_navigation() {
                 $renders['mini_top'][] =   $attr;
             }
 			else if(in_array('collection_footer',$classes)) {
-
+				
 			}
             else {
                 $renders['mini'][] =   $attr;
@@ -197,6 +243,59 @@ function nabcofurnitures_collection_navigation() {
 	<?php
 }
 
+
+/** 
+ *  Page that has a sub page function
+*/
+function nabcofurniture_list_child_pages() { 
+ 
+    global $post; 
+    $parent = "";
+    if ( is_page() && $post->post_parent ) {
+        $childpages = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->post_parent . '&echo=0' );
+        $parent = "<li><a href='". get_the_permalink($post->post_parent)."'>".get_the_title($post->post_parent)."</a></li>";
+    }
+    else {
+        $childpages = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->ID . '&echo=0' );
+        $parent = "<li><a class='parent' href='". get_the_permalink($post->ID)."'>". get_the_title($post->ID) ."</a></li>";
+
+    }
+    
+    
+    //include parent
+
+    $string =  "";
+    if ( $childpages ) {
+        $string = '<ul class="float-right">'.$parent.$childpages.'</ul>';
+    }
+     
+    return $string;
+     
+}
+     
+
+if(!function_exists('nabco_furnitures_card_wrapper')) :
+	function nabcofurniture_card_wrapper($atts,$content) {
+		$a = shortcode_atts( array(
+			'col'	=> '',
+			'title' => 'title',
+			'content' => 'content',
+		), $atts );
+
+		if($a['col'] != '') 
+			$output = '<!-- column start --><div class="col-md-'. esc_attr($a['col'])  .'">';
+		else
+			$output = '';
+        
+        $output .= "<blockquote class='wp-block-quote'>";
+        $output .= "<h2>". $a['title'] ."</h2>";
+        $output .= "<cite>" . $content ."</cite>";
+
+		if($a['col'] != '') $output = $output . '</div><!-- end of column -->';
+		return $output;
+
+	}
+endif;
 
 
 

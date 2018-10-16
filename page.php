@@ -35,7 +35,7 @@ $page_sidebar = get_theme_mod('nabcofurniture_theme_page_layout', '' );
 			<?php while(have_posts()) : the_post(); ?>
 				<div class="row">
 					<nav class="nb-page-nav col-md-6 ml-auto">
-						<?php echo nabco_furnitures_list_child_pages(); ?>
+						<?php echo nabcofurniture_list_child_pages(); ?>
 					</nav>
 				</div>
 

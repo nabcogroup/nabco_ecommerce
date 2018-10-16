@@ -27,7 +27,11 @@ $vid_post = get_theme_mod('nb_video_src', get_template_directory_uri() . '/dist/
 <?php endif; ?>
 
 <!-- promotion collection section -->
-<?php get_template_part('template-parts/sections/section','promotion') ?>
+
+<?php
+
+	 get_template_part('template-parts/sections/section','promotion') 
+?>
 
 <!-- product collection section -->
 <?php get_template_part('template-parts/sections/section','collection') ?>

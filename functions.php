@@ -25,8 +25,8 @@ require get_template_directory() . '/inc/theme/theme-helper.php';
 require get_template_directory() . '/inc/theme/class-theme-setup.php';
 require get_template_directory() . '/inc/theme/template-tags.php';
 require get_template_directory() . '/inc/theme/theme-function.php';
-require get_template_directory() . '/inc/theme/short-code.php'; 	//shortcode;
-require get_template_directory() . '/inc/theme/theme-hook.php'; 	//theme hook 
+//require get_template_directory() . '/inc/theme/short-code.php'; 	//shortcode;
+require get_template_directory() . '/inc/theme/theme-hook.php'; 	//theme hook 	
 
 
 /**

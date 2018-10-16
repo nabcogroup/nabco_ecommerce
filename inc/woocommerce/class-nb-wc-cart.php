@@ -30,7 +30,7 @@ class Nb_WoocommerceCart {
         *************************************/
         add_filter( 'woocommerce_add_to_cart_fragments', array($this,'cart_link_fragment') );
         
-        add_action('nabco_furnitures_header_display_fragment',array($this,'header_cart'), 10 );
+        add_action('nabcofurniture_header_display_fragment',array($this,'header_cart'), 10 );
         
         /*****************************
          * Qty Input script

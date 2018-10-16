@@ -16,7 +16,7 @@ class Nb_WoocommerceMyAccount {
         add_filter( 'woocommerce_default_address_fields', [$this,'customOverrideDefaultAddress']);
 
 
-        add_action('nabco_furnitures_header_display_fragment',array($this,'customer_account'),20);
+        add_action('nabcofurniture_header_display_fragment',array($this,'customer_account'),20);
         add_action('wp_footer',array($this,'dashboard_button_script'),10);
     }
 

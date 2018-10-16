@@ -1,7 +1,7 @@
 <?php
 
 
-add_action('widgets_init','nabco_furnitures_load_widget');
+//add_action('widgets_init','nabco_furnitures_load_widget');
 
 function nabco_furnitures_load_widget() {
     register_widget( 'Nab_SearchProductWidget' );

@@ -41,7 +41,7 @@
              * 
              * @hooked: nabco_furniture_pre_loading - 10
             */
-            do_action('nabco_furniture_before_content'); 
+            //do_action('nabco_furniture_before_content'); 
         }
        
     ?>
@@ -51,15 +51,18 @@
         <div class="navbar navbar-expand-md navbar-light nb-header">
             <div class="container">
                 <!-- Your site title as branding in the menu -->
-                <?php if(has_custom_logo()) : ?>
-                    <?php 
-                        $custom_logo_id = get_theme_mod( 'custom_logo' );
-                        $logo_path = wp_get_attachment_image_src( $custom_logo_id , 'full' ); 
-                    ?>
-                    <a class="navbar-brand mr-auto" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo esc_url($logo_path[0]); ?>" alt=""></a>
-                <?php else : ?>
-                    
-                <?php endif ?>
+                <?php 
+                    $custom_logo_id = get_theme_mod( 'custom_logo' );
+                    /** 
+                     * Hooked: 
+                     *      nabcofurniture_get_logo - 10
+                    */
+                    echo apply_filters('nabcofurniture_the_logo', array(
+                        'custom_logo_id' => get_theme_mod('custom_logo'),
+                        'link'  =>  home_url('/'),
+                        'size'  =>  'full'
+                    ));
+                ?>
 
                 <div class="collapse navbar-collapse">
                     <div class="row" style="width:100%">
@@ -71,7 +74,13 @@
                             ?>
                         </div>
                         <div class="col-md-8">
-                            <?php get_template_part( 'sidebar-templates/sidebar', 'front-search' ) ?>
+                            <?php  
+                                /** 
+                                * Hooked: 
+                                *  nabcofurniture_get_product_search - 10
+                                */
+                                do_action('nabcofurniture_on_header_loop')
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -81,7 +90,7 @@
                     <?php 
                         //hooked: nabco_furnitures_cart_link_display - 10
                         //hooked: nabco_furnitures_woocommerce_customer_account - 20
-                        do_action('nabco_furnitures_header_display_fragment'); 
+                        do_action('nabcofurniture_header_display_fragment'); 
                     ?>
                 </div>
                 
