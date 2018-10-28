@@ -41,7 +41,7 @@
              * 
              * @hooked: nabco_furniture_pre_loading - 10
             */
-            //do_action('nabco_furniture_before_content'); 
+            do_action('nabco_furniture_before_content'); 
         }
        
     ?>
@@ -119,13 +119,24 @@
         </div>
         
         <?php
-
-        //check if underconstruction
         if(get_theme_mod('nb_underconstruction', 'full_prod') == 'development') {
-            get_template_part('template-parts/content-loop/content', 'under-construction');
-            get_footer();
-            exit;
-        }?>
+            if(get_theme_mod('nb_uc_cover', 'all') == 'wc') {
+                if(is_woocommerce() || is_account_page()) {
+                    //check if underconstruction
+                    get_template_part('template-parts/content-loop/content', 'under-construction');
+                    get_footer();
+                    exit;
+                }
+            }    
+            else {
+                //check if underconstruction
+                get_template_part('template-parts/content-loop/content', 'under-construction');
+                get_footer();
+                exit;
+            }
+        }
+        ?>
+        
 
         <!-- opening container -->
         <div class="container">

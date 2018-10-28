@@ -10,7 +10,6 @@ jQuery(document).ready(function($) {
     $("body").on("click",".widget_shopping_cart_content", function(e) {e.stopPropagation();})
 
     $('body').on('click','.widget_shopping_cart',function(e) {
-        console.log("I was clicked");
         $(".widget_shopping_cart").removeClass("ns-area-show");
         $(".widget_shopping_cart").animate({opacity:'toggle'},300);
     });

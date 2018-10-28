@@ -34,11 +34,14 @@
 		text-transform: uppercase;
 		border-top: 1px solid map-get($theme-colors,"light");
         border-bottom: 1px solid map-get($theme-colors,"light");
-        font-size: 1rem;
+		font-size: 1rem;
+		color: map-get($theme-colors, "primary" );
+		padding: 10px 0;
 	}
 
 	.posted_in {
 		font-size: 0.8em;
+		text-transform: uppercase;
 		a {
 			padding: 5px 2px;
 			background: map-get($theme-colors,"light");
@@ -58,11 +61,16 @@
 		background: rgba($color: #fff, $alpha: 0.3);
 	}
 
+	.sku_wrapper {
+		margin-right: 15px;
+	}
+
 	.sku {
 		font-weight: 900;
 		color: map-get($theme-colors, "warning" );
 	}
 
+	
 	.woocommerce-product-details__short-description {
 		margin: 15px 0;
 	}

@@ -11,6 +11,27 @@
      clear: both;
  }
  
+
+ .woocommerce-message,
+ .woocommerce-info,
+ .woocommerce-error,
+ .woocommerce-noreviews {
+    padding: 10px 5px;
+    margin: 10px 0;
+    font-family: $nb-global-ff;
+    font-size: 12px;
+    
+    display: block;
+    width: 100%;
+    padding: 10px 5px;
+    margin: 10px 0;
+ }
+
+
+ .woocommerce-info {
+    border-left: 2px solid map-get($theme-colors,"warning");
+    background: map-get($theme-colors,"light");
+ }
  
  .woocommerce-noreviews,
  p.no-comments
@@ -22,14 +43,7 @@
  }
  
  .woocommerce-message {
-     padding: 10px 5px;
-     margin: 10px 0;
-     background: map-get($theme-colors,"light");
-     font-family: $nb-global-ff;
-     font-size: 12px;
-     border-bottom: 2px solid map-get($theme-colors,"brown");
-     display: block;
-     width: 100%;
-     
+    border-bottom: 2px solid map-get($theme-colors,"brown");
+    background: map-get($theme-colors,"light");
  }	
 

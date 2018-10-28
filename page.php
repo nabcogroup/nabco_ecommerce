@@ -17,7 +17,7 @@
 get_header();
 
 $page_sidebar = get_theme_mod('nabcofurniture_theme_page_layout', '' );
-
+$ecommerce_enabled = get_theme_mod('nabco_ecommerce_enabled_control');
 ?>
 
 <!-- Section: Page Header -->
@@ -42,14 +42,22 @@ $page_sidebar = get_theme_mod('nabcofurniture_theme_page_layout', '' );
 				<div class="row">
 					<div class="col-md-12">
 						<?php 
-							the_title('<h1 class="entry-title blog-post-title">','</h1>') 
+							the_title('<h1 class="entry-title blog-post-title to-upper">','</h1>') 
 						?>
 					</div>
 				</div>
 				
 				<div class="row">
 					<div class="body-content col-md-12">
-						<?php the_content(); ?>
+						<?php if($ecommerce_enabled == 'disabled') : ?>
+							<?php if(is_page('cart') || is_page('my-account')) :?>
+								<h1>THIS PAGE IS NOT ENABLED</h1>
+							<?php else : ?>
+								<?php the_content(); ?>
+							<?php endif; ?>
+						<?php else : ?>
+							<?php the_content(); ?>
+						<?php endif; ?>	
 					</div>
 				</div>
 

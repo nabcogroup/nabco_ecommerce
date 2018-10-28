@@ -15,8 +15,12 @@ class Nb_WoocommerceProductLoop {
         add_action('woocommerce_before_shop_loop',[$this,'order_wrapper_closing'],35);
         add_action('woocommerce_before_shop_loop_item',[$this,'product_content_wrapper_opening']);
         add_action('woocommerce_after_shop_loop_item',[$this,'product_content_wrapper_closing']);
-
+        add_action('woocommerce_after_shop_loop_item',[$this,'product_content_wrapper_closing']);
+        
         add_action('woocommerce_archive_description', [$this,'product_category_navigation'], 20);
+
+        remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10);
+        add_action('woocommerce_after_shop_loop_item_title', array($this,'wc_loop_price'), 10);
         
         /** 
          * includes/wc-template-functions.php
@@ -31,6 +35,9 @@ class Nb_WoocommerceProductLoop {
         remove_action( 'woocommerce_after_shop_loop_item','woocommerce_template_loop_add_to_cart'); //remove add to cart since it is not included in the theme requirements
         add_filter('woocommerce_sale_flash',[$this,'woocommerce_sale_flash_wrapper']);
         
+
+
+
         remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail',10); //make a wrapper on the image by reposition
         
         add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail',20);  //place in new location
@@ -138,6 +145,20 @@ class Nb_WoocommerceProductLoop {
         
         echo $navigation_html;
 
+    }
+
+    public function wc_loop_price() {
+        
+        global $product;
+        $html = "";
+        if($product->is_on_sale()) {
+            $html .= "<strong class='price'><small>WAS</small> <strike>" . wc_price($product->get_regular_price()) . "</strike> <small>NOW</small> " .wc_price($product->get_sale_price())."</strong>"; 
+        }
+        else {
+            $html .= sprintf('<span class="price">%s</span>' ,$product->get_price_html());
+        }
+
+        echo $html;
     }
 
    

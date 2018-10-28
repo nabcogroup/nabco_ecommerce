@@ -22,15 +22,6 @@ class Nb_WoocommerceCart {
         
         add_filter( 'wc_add_to_cart_message_html',[$this,'cart_message_html'], 10);
         add_filter('woocommerce_widget_cart_item_quantity',[$this,'mini_cart_item_qty'],10,3);
-
-       
-        /** 
-         * Minicart
-         *  nabco_furnitures_display_fragment - added to display in theme header
-        *************************************/
-        add_filter( 'woocommerce_add_to_cart_fragments', array($this,'cart_link_fragment') );
-        
-        add_action('nabcofurniture_header_display_fragment',array($this,'header_cart'), 10 );
         
         /*****************************
          * Qty Input script
@@ -40,8 +31,17 @@ class Nb_WoocommerceCart {
 
         /**************
         ***************/
-        add_action('after_menu_loop',array($this,'cart_link'));
+        if(get_theme_mod('nabco_ecommerce_enabled_control') == 'enabled') {
+                /** 
+                * Minicart
+                *  nabco_furnitures_display_fragment - added to display in theme header
+                *************************************/
+                add_filter( 'woocommerce_add_to_cart_fragments', array($this,'cart_link_fragment') );
+        
+                add_action('nabcofurniture_header_display_fragment',array($this,'header_cart'), 10 );
 
+                add_action('after_menu_loop',array($this,'cart_link'));
+        }
     }
 
    

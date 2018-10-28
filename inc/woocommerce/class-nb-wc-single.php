@@ -27,7 +27,7 @@ class Nb_WoocommerceSingleProduct {
 
         //modify price display on variation
         add_filter('woocommerce_available_variation',array($this,'set_variation_price'),10,3);
-        add_filter('nabco_furniture_sale_percentage',array($this,'sale_percentage_by_discount'),10,1);
+        //add_filter('nabco_furniture_sale_percentage',array($this,'sale_percentage_by_discount'),10,1);
         
         /** 
          * source: class-wcml-attributes.php 
@@ -36,7 +36,12 @@ class Nb_WoocommerceSingleProduct {
 
         add_filter('woocommerce_product_review_comment_form_args',[$this,'comment_author_field'],10);
         add_filter('woocommerce_product_review_comment_form_args',array($this,'comment_submit_button'),20);
-        
+
+
+        //check if ecommerce enabled
+        if(get_theme_mod('nabco_ecommerce_enabled_control') != 'enabled') {
+            remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
+        }
     }
 
     /** 
@@ -102,10 +107,11 @@ class Nb_WoocommerceSingleProduct {
         if(is_product()) {
             global $product;
             if(false === $product->is_type('variable')) {
-               add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price',20);
+               //add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price',20);
+               add_action( 'woocommerce_single_product_summary', array($this,'wc_single_price'),20);
             }
             else {
-
+                
             }
         }
     }
@@ -151,6 +157,25 @@ class Nb_WoocommerceSingleProduct {
 
             return $html;
         }
+    }
+
+    public function wc_single_price() {
+
+        global $product, $post;
+
+        $html = "<p class='nb_wc_price_wrapper price my-2'>";
+        if($product->is_on_sale()) {
+            $html .=  "<span class='onsale'>".$this->sale_percentage_by_discount($product)."</span>";
+            $html .= "&nbsp;&nbsp;";     
+            $html .= "<strong>Was <strike>" . wc_price($product->get_regular_price()) . "</strike> Now <ins>" .wc_price($product->get_sale_price())."</ins></strong>"; 
+        }
+        else {
+            $html .= "";
+            $html .= sprintf('<strong class="mr-2">Price:</strong> %s' ,$product->get_price_html());
+        }
+        $html .= "</p>";
+
+        echo $html;
     }
     
 

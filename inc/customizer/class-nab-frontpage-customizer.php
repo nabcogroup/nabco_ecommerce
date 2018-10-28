@@ -84,6 +84,23 @@ class Nab_Customizer {
             ]
         );
 
+         //select for development and production mode
+         $nabCustomizer->addSelectControl('nb_uc_cover',
+         [
+             'default'   =>  'all',
+             'type'      =>  'theme_mod'
+         ],
+         [
+             'label'         =>  __('UC Cover', 'nabco'),
+             'section'   =>  'nabco_theme_layout_option',
+             'choices'       => array(
+                 'wc'       => __( 'Woocommerce', 'nabco' ),
+                 'all' => __( 'All Pages', 'nabco' ),
+             ),
+             'priority'  =>  '30'
+         ]
+     );
+
         //select for development and production mode
         $nabCustomizer->addSelectControl('nb_theme_debug',  [
             'default'   =>  'false',
@@ -214,8 +231,27 @@ class Nab_Customizer {
                     'label'         => __('Add Background'),
                     'description'   =>  __('Maximum 1MB Recommended Size (2100 x 500)'),
                     'priority'      => 10));
-
-
+        
+        
+        $nabCustomizer->addSection('nabco_ecommerce_section_option', 'Ecommerce Setting Section','Ecommerce Configuration',40,'nabco_theme_setting_panel');
+        $nabCustomizer->addSelectControl('nabco_ecommerce_enabled_control',
+            array('default'   =>  'enabled','type'		=>	'theme_mod'),
+            array(
+                'section'   =>  'nabco_ecommerce_section_option',
+                'label'		=>	__('Enable Ecommerce'),
+                'choices'	=>	array('enabled'=> 'Enabled','disabled' => 'Disabled', 'inquiry' => 'Inquiry'),
+                'priority'	=>	10
+            )
+        );
+        $nabCustomizer->addSelectControl('nabco_ecommerce_price_control',
+        array('default'   =>  'show','type'		=>	'theme_mod'),
+        array(
+            'section'   =>  'nabco_ecommerce_section_option',
+            'label'		=>	__('Price'),
+            'choices'	=>	array('show'=> 'Show Price','hide' => 'Hide Price'),
+            'priority'	=>	20
+        )
+    );
     }
 
     
