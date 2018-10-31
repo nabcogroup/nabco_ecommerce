@@ -1,6 +1,6 @@
 body {
     font-size: 100%;
-    font-family: $nb-global-ff;
+    font-family: $nb-secondary-ff;
     font-size: $nb-standard-fs;
     background: $nb-bg;
 }
@@ -33,6 +33,25 @@ a {
     }
 }
 
+
+a.btn-link-sale {
+    padding: 5px;
+    border: 1px solid map-get($theme-colors, 'warning' );
+    @include border-radius(10px);
+    text-decoration: none;
+    &:hover {
+        color:white;
+        background: map-get($theme-colors, 'warning' );
+    }
+}
+
+a.woocommerce-loop-product__link {
+    display:block;
+    text-decoration: none;
+    &:hover {
+        background: map-get($theme-colors, "light" );
+    }
+}
 
 @import "forms";
 @import "headers";

@@ -37,11 +37,11 @@
 ?>
 
 <!-- product collection section -->
-<section class="site-wide-section site-light">
+<section class="site-wide-section site-white">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h3 class="site-section-header"><?php echo wp_kses_post($title); ?></h3>
+				<h3 class="site-section-header-2"><span><?php echo wp_kses_post($title); ?></span></h3>
             </div>
             <!-- top side -->
             <div class="col-md-8">

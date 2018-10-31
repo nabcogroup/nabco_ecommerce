@@ -34,7 +34,18 @@ function nabcofurniture_get_product_search() {
 	<?php
 }
 	
+function nabcofurniture_adjust_header() {
+	if(current_user_can('manage_options') == 1) {
+		?>
+		<style type="text/css" media="screen">
+			body,html {
+				margin-top: 28px !important; 
+			}
+		</style>
+		<?php
 
+	}
+}
 
 /***
 Product Navigation to get product

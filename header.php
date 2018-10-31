@@ -25,6 +25,7 @@
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
     <?php wp_head(); ?>
 
+    
    <?php do_action('nabco_furnitures_style'); ?>
 
 </head>

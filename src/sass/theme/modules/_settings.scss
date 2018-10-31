@@ -160,28 +160,33 @@ $left: $left-offset - 15%;
     background: rgba($color: #000000, $alpha: 0.6);
     top:0;
     left: 0;
+
     .ns-container {
-        width: 373px;
+        width: 80%;
         height: 248px;
-        top: 150px;
+        top: 0;
         opacity: 0;
         left: 0;
+        right: 0;
+        margin: auto;
         z-index: 1001;
         position: absolute;
+        
 
+        
         @include media-breakpoint-up(sm) {
-            width: 573px;
-            height: 448px;
-            top: $top;
-            left: $left;
+            width: 558px;
+            height: 458px;
+            text-align: center;
+
         }
     }
 
     img {
-        width: 373px;
+        width: 100%;
         height: 248px;
+        display: inline-block;
         @include media-breakpoint-up(sm) {
-            width: 573px;
             height: 448px;
         }
     }

@@ -16,13 +16,12 @@
         );
         
         if($sale_approval_type == 'live') {
-            $product_sale_content = nabcofurnitures_do_shortcode('products',$args);
+            $product_sale_content = nabcofurnitures_do_shortcode('nb_sale_products',$args);
         }
         else if($sale_approval_type == 'review') {
-            
             if(is_user_logged_in()) 
             {
-                $product_sale_content = nabcofurnitures_do_shortcode('products',$args);
+                $product_sale_content = nabcofurnitures_do_shortcode('nb_sale_products',$args);
             }
         }
         else {
@@ -37,10 +36,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="site-section-header"><?php echo wp_kses_post($title); ?></h3>
+                <h3 class="site-section-header-2"><span><?php echo wp_kses_post($title); ?></span></h3>
             </div>
-            <?php echo $product_sale_content; ?>
-        </div>
+        </div>    
+        <?php echo $product_sale_content; ?>
         <div class="row justify-content-center my-5">
             <div class='col-md-3'>
                 <?php if(!empty($page_link)) : ?>

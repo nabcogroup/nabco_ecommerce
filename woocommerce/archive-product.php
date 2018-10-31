@@ -46,7 +46,8 @@ get_header( 'shop' );
 	<?php endif; ?>
 </header>
 
-<div class="row col-md-12 mx-0 px-0">
+
+<div class="col-md-12 mx-0 px-0">
 	<?php
 		/******************************************************
 		 * Hook: woocommerce_archive_description.
@@ -58,72 +59,73 @@ get_header( 'shop' );
 	?>
 </div>
 
-	<div class="row woocommerce-shop-page">
-		<div class="col-md-9">
-			<?php if ( woocommerce_product_loop() ) { ?>
-		
-			<?php
-					/**
-					 * Hook: woocommerce_before_shop_loop.
-					 *
-					 * @hooked wc_print_notices - 10
-					 * @hooked woocommerce_result_count - 20
-					 * @hooked woocommerce_catalog_ordering - 30
-					 */
-					do_action( 'woocommerce_before_shop_loop' );
-			?> 
+	<div class="woocommerce-shop-page">
+		<div class="row">
+			<div class="col-md-9">
+				<?php if ( woocommerce_product_loop() ) { ?>
 			
-				
-			<?php
-					woocommerce_product_loop_start();
-					//loop total 
-					if ( wc_get_loop_prop( 'total' ) ) {
-						while ( have_posts() ) {
-							the_post();
-
+					<?php
 							/**
-							 * Hook: woocommerce_shop_loop.
+							 * Hook: woocommerce_before_shop_loop.
 							 *
-							 * @hooked WC_Structured_Data::generate_product_data() - 10
+							 * @hooked wc_print_notices - 10
+							 * @hooked woocommerce_result_count - 20
+							 * @hooked woocommerce_catalog_ordering - 30
 							 */
-							do_action( 'woocommerce_shop_loop' );
-
-							wc_get_template_part( 'content', 'product' );
+							do_action( 'woocommerce_before_shop_loop' );
+					?> 
+				
+					
+					<?php
+							woocommerce_product_loop_start();
+							//loop total 
+							if ( wc_get_loop_prop( 'total' ) ) {
+								while ( have_posts() ) {
+									the_post();
+	
+									/**
+									 * Hook: woocommerce_shop_loop.
+									 *
+									 * @hooked WC_Structured_Data::generate_product_data() - 10
+									 */
+									do_action( 'woocommerce_shop_loop' );
+	
+									wc_get_template_part( 'content', 'product' );
+								}
+							}
+	
+							woocommerce_product_loop_end();
+	
+							/**
+							 * Hook: woocommerce_after_shop_loop.
+							 *
+							 * @hooked woocommerce_pagination - 10
+							 */
+							do_action( 'woocommerce_after_shop_loop' );
+						} 
+						else {
+							/**
+							 * Hook: woocommerce_no_products_found.
+							 *
+							 * @hooked wc_no_products_found - 10
+							 */
+							do_action( 'woocommerce_no_products_found' );
 						}
-					}
+					?>
+			</div>
 
-					woocommerce_product_loop_end();
-
+			<div class="col-md-3">
+				<?php 
 					/**
-					 * Hook: woocommerce_after_shop_loop.
-					 *
-					 * @hooked woocommerce_pagination - 10
-					 */
-					do_action( 'woocommerce_after_shop_loop' );
-				} 
-				else {
-					/**
-					 * Hook: woocommerce_no_products_found.
-					 *
-					 * @hooked wc_no_products_found - 10
-					 */
-					do_action( 'woocommerce_no_products_found' );
-				}
-?>
-		</div>
-		<div class="col-md-3">
-<?php 
-			/**
- 			* Hook: woocommerce_sidebar.
- 			*
- 			* @hooked woocommerce_get_sidebar - 10
- 			*/
-			do_action( 'woocommerce_sidebar' );
-?>
+					* Hook: woocommerce_sidebar.
+					*
+					* @hooked woocommerce_get_sidebar - 10
+					*/
+					do_action( 'woocommerce_sidebar' );
+				?>
+			</div>
 		</div>
 	</div>
-
-
 <?php
 
 /**

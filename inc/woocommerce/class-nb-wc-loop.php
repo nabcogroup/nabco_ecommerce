@@ -8,44 +8,87 @@ class Nb_WoocommerceProductLoop {
 
     public function __construct() {
         
-         /*********************************************************
-        * Location: template/archive-product.php
-        ********************************************/
-        add_action('woocommerce_before_shop_loop',[$this,'order_wrapper_opening'],5);
-        add_action('woocommerce_before_shop_loop',[$this,'order_wrapper_closing'],35);
-        add_action('woocommerce_before_shop_loop_item',[$this,'product_content_wrapper_opening']);
-        add_action('woocommerce_after_shop_loop_item',[$this,'product_content_wrapper_closing']);
-        add_action('woocommerce_after_shop_loop_item',[$this,'product_content_wrapper_closing']);
+        $actions = array(
+
+            /*********************************************************
+            * Location: template/archive-product.php
+            ********************************************/
+            // add_action('woocommerce_before_shop_loop',[$this,'order_wrapper_opening'],5);
+            // add_action('woocommerce_before_shop_loop',[$this,'order_wrapper_closing'],35);
+            'woocommerce_before_shop_loop' => array(
+                    array('action' => 'order_wrapper_opening','pos' => 5),
+                    array('action' => 'order_wrapper_closing','pos' => 35),
+            ),
+
+
+            //archive-product.php
+            //add_action('woocommerce_archive_description', [$this,'product_category_navigation'], 20);
+            'woocommerce_archive_description' => array(
+                array('action' => 'product_category_navigation','pos' => 20),
+            ),
+
+            
+            //content-product.php
+            // add_action('woocommerce_before_shop_loop_item',[$this,'product_content_wrapper_opening']);
+            'woocommerce_before_shop_loop_item' => array(
+                array('action' => 'product_content_wrapper_opening','pos' => 10),
+            ),
+
+            
+            //remove_action( 'woocommerce_after_shop_loop_item','woocommerce_template_loop_add_to_cart'); //remove add to cart since it is not included in the theme requirements
+            // add_action('woocommerce_after_shop_loop_item',[$this,'product_content_wrapper_closing']);
+            //content-product.php
+            'woocommerce_after_shop_loop_item' => array(
+                array('action' => 'product_content_wrapper_closing','pos' => 10),
+                array('action' => 'woocommerce_template_loop_add_to_cart','pos' => 10, 'func' => 'remove'),
+            ),
+
+            //remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail',10); //make a wrapper on the image by reposition
+            // add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail',20);  //place in new location
+            // add_action('woocommerce_before_shop_loop_item_title',array($this,'thumbnail_wrapper_opening'),15);
+            // add_action('woocommerce_before_shop_loop_item_title',array($this,'thumbnail_wrapper_closing'),25);
+            //content-product.php
+            'woocommerce_before_shop_loop_item_title' => array(
+                array('action' => 'woocommerce_template_loop_product_thumbnail','pos' => 10, 'func' => 'remove'),
+                array('action' => 'thumbnail_wrapper_opening','pos' => 15),
+                array('action' => 'woocommerce_template_loop_product_thumbnail','pos' => 20, 'func' => 'wc'),
+                array('action' => 'thumbnail_wrapper_closing','pos' => 25),
+            ),
+
+            // remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10);
+            // add_action('woocommerce_after_shop_loop_item_title', array($this,'wc_loop_price'), 10);
+            //content-product.php
+            'woocommerce_after_shop_loop_item_title' => array(
+                array('action' => 'woocommerce_template_loop_price','pos' => 10, 'func' => 'remove'),
+                array('action' => 'wc_loop_price','pos' => 10),
+            ),
+        );
+
+
+        foreach ($actions as $tag => $actions) {
+            foreach($actions as $value) {
+                $pos = isset($value['pos']) ? $value['pos'] : 10;
+                if(isset($value['func']) && $value['func'] == 'remove') {
+                    remove_action($tag, $value['action'],$pos);
+                }
+                else if(isset($value['func']) && $value['func'] == 'wc') {
+                    add_action($tag, $value['action'],$pos);
+                }
+                else {
+                    add_action($tag, array($this,$value['action']),$pos);
+                }
+            }
+        }
+
+        //archive-product.php
+        add_filter('woocommerce_catalog_orderby',[$this,'orderby_catalog'],10); //filter orderby
         
-        add_action('woocommerce_archive_description', [$this,'product_category_navigation'], 20);
-
-        remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10);
-        add_action('woocommerce_after_shop_loop_item_title', array($this,'wc_loop_price'), 10);
+        //content-product.php
+        add_filter('woocommerce_sale_flash',[$this,'woocommerce_sale_flash_wrapper']); //filter sale flash
         
-        /** 
-         * includes/wc-template-functions.php
-        */
-        add_filter('woocommerce_catalog_orderby',[$this,'orderby_catalog'],10);
+        add_filter('nb_wc_thumb_sale_price',array($this,'wc_loop_price'),10);
 
-
-        /*********************************************************
-        * Location: woocommerce/product-content.php
-        * remove add to cart since it is not included in the theme requirements
-        */
-        remove_action( 'woocommerce_after_shop_loop_item','woocommerce_template_loop_add_to_cart'); //remove add to cart since it is not included in the theme requirements
-        add_filter('woocommerce_sale_flash',[$this,'woocommerce_sale_flash_wrapper']);
-        
-
-
-
-        remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail',10); //make a wrapper on the image by reposition
-        
-        add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail',20);  //place in new location
-        add_action('woocommerce_before_shop_loop_item_title',array($this,'thumbnail_wrapper_opening'),15);
-        add_action('woocommerce_before_shop_loop_item_title',array($this,'thumbnail_wrapper_closing'),25);
-        
-
-        /************************** */
+        add_filter('nb_wc_sale_flash', array($this,'wc_thumbnail_sale_flash'),10,2 );
     }
 
     /** 
@@ -160,6 +203,24 @@ class Nb_WoocommerceProductLoop {
 
         echo $html;
     }
+
+    public function wc_thumbnail_sale_flash($content,$product) {
+
+
+        $showPercentage = get_theme_mod('show_percentage',true);
+        $html = "";
+        if($showPercentage) {
+            $regularPrice = ($product->get_regular_price() == "") ? 0 : $product->get_regular_price();
+            $salePrice = $product->get_sale_price(); 
+            $percentage = (floatval($regularPrice) - floatval($salePrice)) / floatval($regularPrice) * 100; 
+            $html = round($percentage) . '% Off Sale';
+        }
+
+        return '<div class="sale-wrapper"><span class="onsale">' . esc_html__($html) . '</span></div>';
+        
+        
+    }
+
 
    
 }
