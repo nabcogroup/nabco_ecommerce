@@ -14,19 +14,23 @@ Product Content Grid
         list-style: none;
         margin: 0;
         padding: 10px 0;
-        @include make-row();
+        
+        &.columns-4,
+        &.columns-3 {
+            @include make-row();
+        }
         
         &.columns-4,
         &.columns-3 {
             .product {
                 @include make-col-ready();
+                padding-bottom: 10px;
             }
         }
     
         &.columns-3 {
             .product {
                 @include make-col(6);
-                
                 @include media-breakpoint-up(sm)  {
                     @include make-col(4);
                 }
@@ -40,6 +44,8 @@ Product Content Grid
                 }
             }
         }
+
+        
     }
 }
 

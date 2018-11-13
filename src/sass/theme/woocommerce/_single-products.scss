@@ -51,9 +51,9 @@
 		padding: 5px 0;
 		color: map-get($theme-colors, "warning" );
 		border-bottom: 1px solid map-get($theme-colors,"light");
-		letter-spacing: 0.2em;
+		letter-spacing: 0.1em;
         text-transform: uppercase;
-        font-size: $nb-h1-standard + rem;
+        font-size: 1.2rem;
 	}
 	input.qty {
 		resize: horizontal;
@@ -98,7 +98,7 @@
 	}
 
 	.flex-control-nav {
-		padding: 15px 0;
+		padding: 10px 0;
 		display:block;
 		list-style: none;
 
@@ -112,7 +112,7 @@
 			}
 			
 			@include media-breakpoint-up(sm) {
-				img { width: 100px; height: 100px;}
+				img { width: 75px; height: 75px;}
 			}
 			
 			&:hover {
@@ -241,7 +241,33 @@ table.shop_attributes {
 			}
 		}
 	}
+}
 
 
-	
+.sharedaddy {
+	margin-top:15px;
+	.sd-block {
+		@include make-row();
+		.sd-title,
+		.sd-content {
+			@include make-col-ready();
+		}
+
+		.sd-title {
+			text-transform: uppercase;
+			color: map-get($theme-colors, "dark-light" );
+			@include media-breakpoint-up(sm) {
+				@include make-col(8);
+			}
+			&::before {
+				border-top: none !important;
+			}
+		}
+
+		.sd-content {
+			@include media-breakpoint-up(sm) {
+				@include make-col(4);
+			}
+		}
+	}
 }

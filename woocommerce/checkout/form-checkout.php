@@ -34,9 +34,11 @@ echo '</div>';
 ?>
 	<div class="col-md-12">
 		<form name="checkout" method="post" class="checkout woocommerce-checkout p-3 nb-wc-form-register" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
+			
 			<div class="row">
+			
 			<?php if ( $checkout->get_checkout_fields() ) : ?>
-
+				
 				<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
 
 				<div class="col-md-8" id="customer_details">

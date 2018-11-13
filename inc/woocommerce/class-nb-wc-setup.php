@@ -2,7 +2,7 @@
 <?php
 
 
-
+require_once get_template_directory() . '/inc/woocommerce/widgets/class-product_rating-cust.php';
 require_once get_template_directory() . '/inc/woocommerce/class-nb-wc-cart.php';
 require_once get_template_directory() . '/inc/woocommerce/class-nb-wc-acct.php';
 require_once get_template_directory() . '/inc/woocommerce/class-nb-wc-checkout.php';
@@ -16,6 +16,7 @@ class Nb_Woocommerce_Setup {
         add_action( 'after_setup_theme', array($this,'woocommerce_setup') );
         add_action( 'wp_enqueue_scripts', array($this,'woocommerce_scripts') );
         
+
 
         //remove breadcrumbs in woocommerce page
         remove_action('woocommerce_before_main_content','woocommerce_breadcrumb',20);
@@ -41,7 +42,12 @@ class Nb_Woocommerce_Setup {
 
         //change data filter
         add_filter( 'woocommerce_breadcrumb_defaults', [$this,'woocommerce_breadcrumb'] );
-        
+
+        //register_widget( 'WC_ProductRating_Cust' );
+
+
+        //add filter for checking price to enable hide/show price 
+        add_filter('woocommerce_get_price_html', [$this,'wc_get_price_html'], 10,2);
     }
 
 
@@ -50,6 +56,16 @@ class Nb_Woocommerce_Setup {
         $classes[] = 'woocommerce-active';
     
         return $classes;
+    }
+
+
+    public function wc_get_price_html($price,$content) {
+
+        if(get_theme_mod('nabco_ecommerce_price_control') == 'show') {
+
+            return $price;
+
+        }
     }
 
      /**

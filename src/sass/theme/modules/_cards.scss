@@ -93,9 +93,8 @@ $front-image-height-responsive: 200px;
         bottom: 5px;
         left: 5px;
         z-index: 5;
-        text-transform: uppercase;
         color: #fff;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     &:hover {
@@ -177,6 +176,10 @@ $front-image-height-responsive: 200px;
         width: 100%;
         margin-bottom: 20px;
     }
+
+    &.collection_footer {
+        margin-bottom: 20px;
+    }
 }
 
 
@@ -185,8 +188,9 @@ $front-image-height-responsive: 200px;
 **/
 
 //content-product
-.wc-card-product-content,.wc-card-product-sale {
-
+.wc-card-product-content,
+.wc-card-product-sale {
+    
     .woocommerce-loop-product__title {
         font-size: 0.8rem;
         color: $nb-p-color;
@@ -201,15 +205,6 @@ $front-image-height-responsive: 200px;
         text-align: center;
         display:block;
         margin: auto;
-    }
-
-    .woocommerce-loop-product__link {
-        text-decoration: none;
-        border: 2px solid transparent;
-        display: block;
-        min-height: 300px;
-        margin-bottom: 10px;
-        padding: 5px;
     }
 
     .price {
@@ -236,7 +231,7 @@ $front-image-height-responsive: 200px;
 .wc-card-product-content {
     position: relative;
     padding: 3px;
-
+    @include transition(all .2s ease-in-out);
     &.wc-card-light {
         background-color: map-get($theme-colors, "light" );
     }
@@ -258,10 +253,9 @@ $front-image-height-responsive: 200px;
     }
 
     &:hover {
-        img {
-            @include transform(scale(1.1));
-            @include transition(all .2s ease-in-out);
-        }
+        
+        @include transform(scale(1.1));
+        @include transition(all .2s ease-in-out);
     }
     img {
         width:100%;
@@ -274,9 +268,9 @@ $front-image-height-responsive: 200px;
 
     .sale-wrapper {
         position: absolute;
-        top: 0;
-        right: 0;
-        background: map-get($theme-colors,"success");
+        top: -5px;
+        right: -5px;
+        background: map-get($theme-colors,"danger");
         color: map-get($theme-colors,"white");
         padding: 10px;
         font-size: 0.6rem;
@@ -310,7 +304,7 @@ $front-image-height-responsive: 200px;
             }
         }
         .sale-wrapper {
-            background: map-get($theme-colors, "success" );
+            background: map-get($theme-colors, "danger" );
             padding: 5px 2px;
             position:absolute;
             z-index: 1;

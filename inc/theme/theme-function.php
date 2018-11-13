@@ -285,7 +285,7 @@ function nabcofurniture_list_child_pages() {
 }
      
 
-if(!function_exists('nabco_furnitures_card_wrapper')) :
+if(!function_exists('nabco_furniture_card_wrapper')) :
 	function nabcofurniture_card_wrapper($atts,$content) {
 		$a = shortcode_atts( array(
 			'col'	=> '',
@@ -307,6 +307,23 @@ if(!function_exists('nabco_furnitures_card_wrapper')) :
 
 	}
 endif;
+
+if(!function_exists('nabcofurniture_ganalytics')) {
+	function nabcofurniture_ganalytics() {
+		?> 
+			<!-- Global site tag (gtag.js) - Google Analytics -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128778955-1"></script>
+    		<script>
+    			window.dataLayer = window.dataLayer || [];
+    			function gtag(){dataLayer.push(arguments);}
+    			gtag('js', new Date());
+
+    			gtag('config', 'UA-128778955-1');
+			</script>
+
+		<?php
+	}
+}
 
 
 

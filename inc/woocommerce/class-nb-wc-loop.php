@@ -31,7 +31,7 @@ class Nb_WoocommerceProductLoop {
             //content-product.php
             // add_action('woocommerce_before_shop_loop_item',[$this,'product_content_wrapper_opening']);
             'woocommerce_before_shop_loop_item' => array(
-                array('action' => 'product_content_wrapper_opening','pos' => 10),
+                array('action' => 'product_content_wrapper_opening','pos' => 5),
             ),
 
             
@@ -86,9 +86,14 @@ class Nb_WoocommerceProductLoop {
         //content-product.php
         add_filter('woocommerce_sale_flash',[$this,'woocommerce_sale_flash_wrapper']); //filter sale flash
         
+        //*************** 
+        //nabcosetting plugins location do not remove**********************
         add_filter('nb_wc_thumb_sale_price',array($this,'wc_loop_price'),10);
-
         add_filter('nb_wc_sale_flash', array($this,'wc_thumbnail_sale_flash'),10,2 );
+        //***************************************** */
+
+
+        //add_filter('woocommerce_get_price_html',array($this,'wc_get_price_html',10,2));
     }
 
     /** 
@@ -191,16 +196,20 @@ class Nb_WoocommerceProductLoop {
     }
 
     public function wc_loop_price() {
-        
-        global $product;
         $html = "";
-        if($product->is_on_sale()) {
-            $html .= "<strong class='price'><small>WAS</small> <strike>" . wc_price($product->get_regular_price()) . "</strike> <small>NOW</small> " .wc_price($product->get_sale_price())."</strong>"; 
+        if(get_theme_mod('nabco_ecommerce_price_control') == 'show') {
+            global $product;
+
+            if($product->is_on_sale()) {
+                $html .= "<strong class='price'><small>WAS</small> <strike>" . wc_price($product->get_regular_price()) . "</strike> <small>NOW</small> " .wc_price($product->get_sale_price())."</strong>"; 
+            }
+            else {
+                $html .= sprintf('<span class="price">%s</span>' ,$product->get_price_html());
+            }
         }
         else {
-            $html .= sprintf('<span class="price">%s</span>' ,$product->get_price_html());
+            $html = "";
         }
-
         echo $html;
     }
 
@@ -219,6 +228,10 @@ class Nb_WoocommerceProductLoop {
         return '<div class="sale-wrapper"><span class="onsale">' . esc_html__($html) . '</span></div>';
         
         
+    }
+
+    public function wc_get_price_html($price,$object) {
+
     }
 
 

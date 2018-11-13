@@ -25,7 +25,7 @@
                         }
                     ?>
                     <?php echo nabcofurnitures_do_shortcode('ns-sale-text', array(
-                      'wrapper_open'    =>  '<li class="nb-link" style="background:green"><a href="'. $page_link .'" class="nb-item-menu item-menu-special">',
+                      'wrapper_open'    =>  '<li class="nb-link nb-sale-link" ><a href="'. $page_link .'" class="nb-item-menu item-menu-special">',
                       'wrapper_close'   =>  '</a></li>'
                     )); ?>
                 </ul>

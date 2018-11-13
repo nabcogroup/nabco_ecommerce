@@ -194,3 +194,31 @@
 }
 
 
+.widget {
+	&.widget_top_rated_products {
+		ul.product_list_widget {
+			list-style:none;
+			margin: 0;
+			padding: 0;
+			li {
+				margin-bottom: 10px;
+				display: flex;
+				flex-direction: row;
+				img.size-woocommerce_thumbnail {
+					width: 70px;
+					height: 70px;
+				}
+				a {
+					padding: 5px 10px;
+				}
+				.nb-title-wrapper {
+					padding: 0 5px;
+					font-size: 0.7rem;
+				}
+
+				border-bottom: 1px dashed map-get($theme-colors,"light");
+			}
+		}
+	}
+}
+

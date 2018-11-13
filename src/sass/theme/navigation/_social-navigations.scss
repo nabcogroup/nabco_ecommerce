@@ -105,8 +105,8 @@ $sticker-content-height: ($social-height - $social-header-height);
         
         a {
             &.social-link {
-                padding: 0 5px;
-                color: map-get($theme-colors,"warning");
+                padding: 0 7px;
+                color: #b7924e;
                 display:block;
             }
         }     

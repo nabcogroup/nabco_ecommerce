@@ -38,7 +38,12 @@
             <div class="col-md-12">
                 <h3 class="site-section-header-2"><span><?php echo wp_kses_post($title); ?></span></h3>
             </div>
-        </div>    
+        </div> 
+        
+        <div class="row col-md-12">
+            <?php echo nabcofurnitures_do_shortcode("ns-ticker"); ?>
+        </div>
+        
         <?php echo $product_sale_content; ?>
         <div class="row justify-content-center my-5">
             <div class='col-md-3'>

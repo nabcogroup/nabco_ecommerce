@@ -1,16 +1,31 @@
 <?php
 
-    $title = get_theme_mod('nb_promotion_title', 'Our Collection');
+    $title = get_theme_mod('nb_promotion_title', 'Our Collections');
     $nbMainNavigation = Nab_MainNavigation::createInstance(array('location' => 'collection')); 
     $renders = array();
     if($nbMainNavigation->haveItems()) {
         foreach($nbMainNavigation->items as $item) {
-			$classes = $item->classes;
-			$thumbnail_id = get_woocommerce_term_meta($item->object_id,'thumbnail_id',true); 
-            $img_src = wp_get_attachment_image_src( $thumbnail_id,'full' );
+            
+            $classes = $item->classes;
+            $thumbnail_id = get_woocommerce_term_meta($item->object_id,'thumbnail_id',true);
+            
+            //cheat the image here
+            if(in_array('collection_top', $classes)) {
+                $img_src = get_template_directory_uri() . '/imgs/collections/collection_top.jpg';
+            }
+            else if(in_array('collection_side',$classes)) {
+                $img_src = get_template_directory_uri() . '/imgs/collections/collection_side.jpg';
+            }
+            else if(in_array('collection_footer',$classes)) {
+                $img_src = get_template_directory_uri() . '/imgs/collections/collection_footer.jpg';
+            }
+            else {
+                $img_src = wp_get_attachment_image_src( $thumbnail_id,'full' );
+                $img_src = $img_src[0];
+            }
 			
 			$attr = array(
-                'img' => $img_src[0],
+                'img' => $img_src,
                 'class' => implode(' ',$classes), 
                 'title' => $item->title,
                 'permalink' => $item->url);
@@ -25,10 +40,10 @@
                 $renders['mini_top'][] =   $attr;
             }
 			else if(in_array('collection_footer',$classes)) {
-				
+				$renders['footer'] = $attr;
 			}
             else {
-                $renders['mini'][] =   $attr;
+                $renders['mini'] =   $attr;
             }
         }   
     }
@@ -79,23 +94,28 @@
                 </div>
                 </a>
             </div>
-
-
             <!-- bottom -->
-            <?php if(isset($renders['mini'])) : ?>
+            <?php if(isset($renders['mini']) && isset($renders['footer'])) : ?>
             <div class="col-md-12">
                 <div class="row">
-                    <?php foreach($renders['mini'] as $render) : ?>
-                        <div class="col-md-4 mb-3">
-                            <a href="<?php echo $render['permalink']; ?>" class="nb-anchor-wrapper">
-                            <div class='<?php  echo   $render['class']; ?> card-product-thumbnail wow bounceInUp'>
+                    <div class="col-md-8">
+                        <a href="<?php echo $renders['footer']['permalink']; ?>" class="nb-anchor-wrapper">
+                            <div class='<?php echo $renders['footer']['class'] ?> card-product-thumbnail wow bounceInUp'>
                                 <div class="shadow"></div>
-                                <img src="<?php echo $render['img']; ?>" class="card-img-top"/>
-                                <h3 class="card-title"><?php echo $render['title']; ?></h3>
+                                <img src="<?php echo $renders['footer']['img']; ?>" class="card-img-top"/>
+                                <h3 class="card-title"><?php echo $renders['footer']['title']; ?></h3>
                             </div>
-                            </a>
-                        </div>
-                    <?php endforeach; ?>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="<?php echo $renders['mini']['permalink']; ?>" class="nb-anchor-wrapper">
+                            <div class='<?php  echo   $renders['mini']['class']; ?> card-product-thumbnail wow bounceInUp'>
+                                <div class="shadow"></div>
+                                <img src="<?php echo $renders['mini']['img']; ?>" class="card-img-top"/>
+                                <h3 class="card-title"><?php echo $renders['mini']['title']; ?></h3>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
             <?php endif; ?>

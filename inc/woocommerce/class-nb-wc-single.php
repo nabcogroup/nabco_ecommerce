@@ -14,16 +14,30 @@ class Nb_WoocommerceSingleProduct {
          * remove sale flash in before single product summary
          * insert sale flash after sale price
          **************************************************/
+        $actions = array(
+            'woocommerce_single_product_summary' => array(
+                //remove everything and rearrange
+                array('action' => 'woocommerce_template_single_meta','pos' => 40, 'func' => 'remove'),
+                array('action' => 'woocommerce_template_single_price','pos' => 10, 'func' => 'remove'),
+                array('action' => 'woocommerce_template_single_excerpt','pos' => 20, 'func' => 'remove'),
+                array('action' => 'remove_sale_price_when_variation','pos' => 1),
+                array('action' => 'woocommerce_template_single_meta','pos' => 7, 'func' => 'wc'),
+                array('action' => 'woocommerce_template_single_excerpt','pos' => 10, 'func' => 'wc'),
+            ),
+
+        );
+
         remove_action('woocommerce_single_product_summary','woocommerce_template_single_meta',40);
         remove_action('woocommerce_single_product_summary','woocommerce_template_single_price',10);
         remove_action('woocommerce_single_product_summary','woocommerce_template_single_excerpt',20);
         
+        add_action('woocommerce_single_product_summary',array($this,'remove_sale_price_when_variation'),1);
         add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 7);
         add_action('woocommerce_single_product_summary','woocommerce_template_single_excerpt',10);
-        add_action('woocommerce_single_product_summary',array($this,'show_price_without_variation'),1);
-
+        //add_action('woocommerce_single_product_summary',array($this,'enable_jetpack_social_sharing'),60);
+        
         remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash',10);
-        add_action('nb_woocommerce_after_sales_price','woocommerce_show_product_sale_flash',10);
+        //add_action('nb_woocommerce_after_sales_price','woocommerce_show_product_sale_flash',10);
 
         //modify price display on variation
         add_filter('woocommerce_available_variation',array($this,'set_variation_price'),10,3);
@@ -86,6 +100,17 @@ class Nb_WoocommerceSingleProduct {
         return $comment_form;
 
     }
+
+    public function enable_jetpack_social_sharing() {
+        if ( function_exists( 'sharing_display' ) ) {
+            sharing_display( '', true );
+        }
+         
+        if ( class_exists( 'Jetpack_Likes' ) ) {
+            $custom_likes = new Jetpack_Likes;
+            echo $custom_likes->post_likes( '' );
+        }
+    }
   
     /**
     *   hooked: woocommerce_dropdown_variation_attribute_options_args
@@ -103,18 +128,26 @@ class Nb_WoocommerceSingleProduct {
     *   hooked: woocommerce_single_product_summary
     *   - add only if not variable product
     ***************************/
-    public function show_price_without_variation() {
-        if(is_product()) {
-            global $product;
-            if(false === $product->is_type('variable')) {
-               //add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price',20);
-               add_action( 'woocommerce_single_product_summary', array($this,'wc_single_price'),20);
-            }
-            else {
-                
+    public function remove_sale_price_when_variation() {
+        if(get_theme_mod('nabco_ecommerce_price_control') == 'show') {
+            if(is_product()) {
+                global $product;
+                if(false === $product->is_type('variable')) {
+                    //add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price',20);
+                   add_action( 'woocommerce_single_product_summary', array($this,'wc_single_price'),20);
+                }
+                else {
+                    
+                }
             }
         }
+        else {
+             //add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price',20);
+             add_action( 'woocommerce_single_product_summary', array($this,'wc_show_no_price_detail'),20);
+        }
     }
+
+    
 
     /**
     * hooked: woocommerce_available_variation
@@ -146,7 +179,7 @@ class Nb_WoocommerceSingleProduct {
         if(is_product()) {
 
             $showPercentage = get_theme_mod('show_percentage',true);
-            
+           
             $html = "";
             if($showPercentage) {
                 $regularPrice = ($product->get_regular_price() == "") ? 0 : $product->get_regular_price();
@@ -165,9 +198,10 @@ class Nb_WoocommerceSingleProduct {
 
         $html = "<p class='nb_wc_price_wrapper price my-2'>";
         if($product->is_on_sale()) {
-            $html .=  "<span class='onsale'>".$this->sale_percentage_by_discount($product)."</span>";
-            $html .= "&nbsp;&nbsp;";     
+            $html .= "<strong class='mr-2'>Price: </strong>";
             $html .= "<strong>Was <strike>" . wc_price($product->get_regular_price()) . "</strike> Now <ins>" .wc_price($product->get_sale_price())."</ins></strong>"; 
+            $html .= "&nbsp;&nbsp;";     
+            $html .=  "<span class='onsale'>".$this->sale_percentage_by_discount($product)."</span>";
         }
         else {
             $html .= "";
@@ -178,6 +212,14 @@ class Nb_WoocommerceSingleProduct {
         echo $html;
     }
     
+    public function wc_show_no_price_detail() {
+        $alternative = get_theme_mod('nabco_ecommerce_alternative', '*Price not displayed');
+        ?>
+            <p class='nb_wc_price_wrapper price my-2' style='text-transform:none'>
+               <?php echo wp_kses_post($alternative); ?>
+            </p>
+        <?php
+    }
 
 
   

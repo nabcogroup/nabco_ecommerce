@@ -171,6 +171,14 @@ $dropdown-height: 300px;
                 letter-spacing: 1px;
             }
 
+            &.nb-sale-link {
+                background: map-get($theme-colors , "danger" );
+                > a {
+                    color: #fff;
+                    @include fun-animation('blink',1s,linear,infinite)
+                }
+            }
+
             &::before {
                 position: absolute;
                 height: 0;

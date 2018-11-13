@@ -12,7 +12,7 @@
 require get_template_directory() . '/inc/class/team_dev_customizer.php';	//customize control helper
 
 require get_template_directory() . '/inc/components/navigation/class-nb-mainmenu.php';				//main navigation
-require get_template_directory() . '/inc/components/navigation/class-wp-bootstrap-navwalker.php';	//main navigation
+//require get_template_directory() . '/inc/components/navigation/class-wp-bootstrap-navwalker.php';	//main navigation
 require get_template_directory() . '/inc/components/widgets/class-widget-setup.php'; 				//register sidebar widget
 require get_template_directory() . '/inc/components/widgets/search-widget.php';	    				//search in the header		
 
@@ -36,3 +36,6 @@ if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce/class-nb-wc-setup.php';
 }
 
+if(class_exists('JetPack')) {
+	require get_template_directory()  . '/inc/jetpack.php';
+}

@@ -1,8 +1,40 @@
 
+
+ .video-wrapper {
+
+    width: 100%;
+    background: gray;
+
+    height: 1000px;
+    @include media-breakpoint-up(sm) {
+        height: 650px;
+    }
+}
+
 .ns-slider-presentation {
     
     position: relative;
     width: 100%;
+    height: 650px;
+
+    @include media-breakpoint-up(sm) {
+        height: 650px;
+    }
+
+    .videoContainer__video {
+        //@include transform(translatex(-150px));
+        position: relative;
+        height: 650px;
+        top: -130px;
+        width:100%;
+        object-fit: cover;
+        object-position: 60% 0;
+        @include media-breakpoint-up(sm) {
+            width: 100%;
+            height: 100%;
+            object-position: 50% 50%;
+        }
+    }
 
     .title-wrapper {
         height: 100%;
@@ -29,6 +61,7 @@
                 width: 50%;
             }
         }
+        
         .ns-title-border,
         .ns-shop-button {
             text-align: center;
@@ -98,25 +131,26 @@
         .ns-shop-button {
             display: block;
             padding: 15px 0;
-            top: 250px;
+            top: 220px;
             width: 120px;
-            background-color: map-get($theme-colors, "warning" );
+            background-color: map-get($theme-colors, "info" );
             color: map-get($theme-colors, "light" );
             font-weight: 900;
             text-decoration: none;
             text-align: center;
             @include transition(all 0.5s ease-in-out);
-            font-family: $nb-global-ff;
-            letter-spacing: 0.4rem;
+            font-size: 0.7rem;
             position: relative;
+            
 
             @include media-breakpoint-up(sm) {
                 top: 280px;
                 width: 180px;
+                letter-spacing: 0.4rem;
             }
 
             &:hover {
-                background-color: map-get($theme-colors, "warning" );
+                background-color: map-get($theme-colors, "light" );
                 color: map-get($theme-colors, "dark" );
                 @include transition(all 0.5s ease-in-out);
             }
@@ -138,7 +172,47 @@
     .announcement-text {
         padding-bottom: 0;
         margin-bottom: 0;
-        color: map-get($theme-colors,"dark");
+        color: map-get($theme-colors,"dark-light");
+        font-size: 1rem;
+        text-transform: uppercase;
+    }
+        
+}
+
+//clock countdown
+#ns-countdown {
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size: 12px;
+    width: 100%;
+    margin: 45px 0;
+
+    ul {
+        margin: 0;
+        padding:0;
+        li {
+            display: inline-block;
+            font-size: 1.6rem;
+            list-style-type: none;
+            padding: 5px;
+            text-transform: uppercase;
+            background: map-get($theme-colors, "light" );
+            
+            color: map-get($theme-colors, "dark-light" );
+            @include border-radius(10px);
+            margin-right: 15px;
+            margin-bottom: 10px;
+            min-width:130px;
+            border: 1px solid map-get($theme-colors, "dark-light" );
+        }
+        li span {
+            display: block;
+            font-size: 1.7rem;
+            font-weight: 700;
+          
+            color: map-get($theme-colors, "warning" );
+        }
     }
 }
 

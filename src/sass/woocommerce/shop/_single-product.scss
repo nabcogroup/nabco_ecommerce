@@ -178,6 +178,27 @@
 	}
 }
 
+.sharedaddy {
+	margin-top:15px;
+	@include make-row();
+	.sd-title,
+	.sd-content {
+		@include make-ready-col();
+	}
+
+	.sd-title {
+		@include media-breakpoint-up(sm) {
+			@include make-col(8);
+		}
+	}
+
+	.sd-content {
+		@include media-breakpoint-up(sm) {
+			@include make-col(4);
+		}
+	}
+}
+
 table.shop_attributes {
 	width: 100%;
 	th {

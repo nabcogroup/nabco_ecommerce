@@ -11,9 +11,9 @@ class Nb_WoocommerceMyAccount {
         add_filter('nb_wc_order_status_class',[$this,'setClassStatus']);
          
         // Hook in to modify checkout fields into bootstrap 
-        add_filter( 'woocommerce_form_field_args' , [$this,'customOverrideAddressFields'] );
-        add_filter( 'woocommerce_my_account_my_address_formatted_address', [$this,'addressFormated']);
-        add_filter( 'woocommerce_default_address_fields', [$this,'customOverrideDefaultAddress']);
+        add_filter( 'woocommerce_form_field_args' , [$this,'customOverrideAddressFields'],10 );
+        add_filter( 'woocommerce_my_account_my_address_formatted_address', [$this,'addressFormated'],10);
+        add_filter( 'woocommerce_default_address_fields', [$this,'customOverrideDefaultAddress'],10);
 
         if(get_theme_mod('nabco_ecommerce_enabled_control') == 'enabled') {
             add_action('nabcofurniture_header_display_fragment',array($this,'customer_account'),20);

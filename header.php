@@ -25,8 +25,9 @@
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
     <?php wp_head(); ?>
 
-    
    <?php do_action('nabco_furnitures_style'); ?>
+
+   
 
 </head>
 
@@ -115,11 +116,13 @@
 
     <!-- top header -->
     <?php if(!is_front_page()) : ?> 
+
         <div class="header-menu-wrapper">
             <?php get_template_part( 'template-parts/menu/menu', 'main' ) ?>
         </div>
         
         <?php
+        
         if(get_theme_mod('nb_underconstruction', 'full_prod') == 'development') {
             if(get_theme_mod('nb_uc_cover', 'all') == 'wc') {
                 if(is_woocommerce() || is_account_page()) {

@@ -17,10 +17,7 @@
         
         @include media-breakpoint-down(sm) {
             height: 320px;
-            .videoContainer__video {
-                height: 320px !important;
-                object-fit: cover;
-            }
+           
         }
         .loading-bar-wrapper {
             position: absolute;
@@ -244,12 +241,17 @@ Woocommers 3.4.1
 	position: relative;
 	width:100%;
 	overflow: hidden;
-	height: 450px;
-
+    min-height: 450px;
+    padding: 10px 0;
+    
 	.products {
 		overflow: hidden;
 		display: block;
 		width:100%;
-	}
+    }
+    
+    .owl-stage-outer {
+        padding: 10px;
+    }
 }
 

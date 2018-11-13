@@ -6,9 +6,9 @@ class Nb_WoocommerceCheckout {
     public function __construct() {
 
         // Hook in to modify checkout fields into bootstrap 
-        add_filter( 'woocommerce_checkout_fields' , [$this,'override_fields'] );
+        add_filter( 'woocommerce_checkout_fields' , [$this,'override_fields'],10 );
         //add_filter('woocommerce_order_button_html',[$this,'order_button_html']); //templates/checkout/payment.php
-        add_filter('woocommerce_thankyou_order_received_text',[$this,'thankyou_message_text']);
+        add_filter('woocommerce_thankyou_order_received_text',[$this,'thankyou_message_text'],20);
         
     }
     

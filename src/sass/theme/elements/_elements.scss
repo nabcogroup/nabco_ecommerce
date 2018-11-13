@@ -1,3 +1,5 @@
+
+
 body {
     font-size: 100%;
     font-family: $nb-secondary-ff;
@@ -48,8 +50,13 @@ a.btn-link-sale {
 a.woocommerce-loop-product__link {
     display:block;
     text-decoration: none;
+    
     &:hover {
         background: map-get($theme-colors, "light" );
+        -webkit-box-shadow: 10px 10px 7px -7px rgba(0,0,0,0.39);
+        -moz-box-shadow: 10px 10px 7px -7px rgba(0,0,0,0.39);
+        box-shadow: 10px 10px 7px -7px rgba(0,0,0,0.39);
+        @include transition(all 0.5s ease);
     }
 }
 

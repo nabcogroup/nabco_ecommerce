@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 
 <?php if ( $has_orders ) : ?>
-	<h3 class="nb-text-title mb-5">Order Details</h3>
+	<h3 class="nb-text-title mb-5 to-upper">Order Details</h3>
 	<table class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table table table-sm">
 		<thead>
 			<tr>

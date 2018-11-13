@@ -13,6 +13,7 @@
  * 
  */
 add_action('wp_footer','nabcofurniture_pre_loading_scripts',10);
+//add_action('nabco_furnitures_style','nabcofurniture_ganalytics',5);
 add_action('nabco_furnitures_style','nabcofurniture_pre_loading_style',10);
 add_action('nabco_furnitures_style','nabcofurniture_adjust_header',20);
 add_action('nabco_furniture_before_content','nabcofurniture_pre_loading',10);
