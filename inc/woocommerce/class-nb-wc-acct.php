@@ -15,7 +15,7 @@ class Nb_WoocommerceMyAccount {
         add_filter( 'woocommerce_my_account_my_address_formatted_address', [$this,'addressFormated'],10);
         add_filter( 'woocommerce_default_address_fields', [$this,'customOverrideDefaultAddress'],10);
 
-        if(get_theme_mod('nabco_ecommerce_enabled_control') == 'enabled') {
+        if( get_option('wc_disabled_shop_cart','yes') == 'no') {
             add_action('nabcofurniture_header_display_fragment',array($this,'customer_account'),20);
         }
         

@@ -3,12 +3,6 @@
 get_header();
 
 $under_con = get_theme_mod('nb_underconstruction','');
-$vid_src = get_theme_mod('nb_video_src', get_template_directory_uri() . '/dist/videos/fp.mp4');
-$vid_post = get_theme_mod('nb_video_src', get_template_directory_uri() . '/dist/imgs/front.jpeg');
-
-
-
-//<video id="main-video" src=" echo $vid_src" poster="echo $vid_post " autoplay muted onended="this.play()" class="videoContainer__video"></video>
 
 ?>
 
@@ -31,8 +25,7 @@ $vid_post = get_theme_mod('nb_video_src', get_template_directory_uri() . '/dist/
 <!-- promotion collection section -->
 
 <?php
-
-	 get_template_part('template-parts/sections/section','promotion') 
+	get_template_part('template-parts/sections/section','promotion') 
 ?>
 
 <!-- product collection section -->
@@ -41,4 +34,4 @@ $vid_post = get_theme_mod('nb_video_src', get_template_directory_uri() . '/dist/
 <!-- testimony section -->
 <?php get_template_part('template-parts/sections/section','testimony') ?>
 
-<?php get_footer(); ?>
+<?php get_footer();

@@ -12,16 +12,13 @@
  * @package nabcofurn_us
  */
 
-
-
 get_header();
 
 $page_sidebar = get_theme_mod('nabcofurniture_theme_page_layout', '' );
-$ecommerce_enabled = get_theme_mod('nabco_ecommerce_enabled_control');
+
+
 ?>
-
 <!-- Section: Page Header -->
-
 <?php if(!is_front_page()) : ?>
 <article class="page-wrapper">
 	<div class="row">
@@ -49,7 +46,7 @@ $ecommerce_enabled = get_theme_mod('nabco_ecommerce_enabled_control');
 				
 				<div class="row">
 					<div class="body-content col-md-12">
-						<?php if($ecommerce_enabled == 'disabled') : ?>
+						<?php if(get_option('wc_disabled_shop_cart','yes') == 'yes') : ?>
 							<?php if(is_page('cart') || is_page('my-account')) :?>
 								<h1>THIS PAGE IS NOT ENABLED</h1>
 							<?php else : ?>

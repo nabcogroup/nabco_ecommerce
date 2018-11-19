@@ -1,7 +1,4 @@
 <?php
-
-
-
 /**
  * Call a shortcode function by tag name.
  *

@@ -25,6 +25,4 @@ $under_con = get_theme_mod( 'nb_underconstruction', '' );
         <?php endwhile; ?>
     <?php endif; ?>
 </article>
-
-
 <?php get_footer(); ?>

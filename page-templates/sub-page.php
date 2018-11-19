@@ -41,5 +41,4 @@ $under_con = get_theme_mod( 'nb_underconstruction', '' );
 <?php else : ?>
     <?php get_template_part( 'template-parts/content-loop/content', 'under-construction' ) ?>
 <?php endif ?>
-
 <?php get_footer(); ?>

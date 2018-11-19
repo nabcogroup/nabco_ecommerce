@@ -13,54 +13,40 @@ class Nb_WoocommerceProductLoop {
             /*********************************************************
             * Location: template/archive-product.php
             ********************************************/
-            // add_action('woocommerce_before_shop_loop',[$this,'order_wrapper_opening'],5);
-            // add_action('woocommerce_before_shop_loop',[$this,'order_wrapper_closing'],35);
             'woocommerce_before_shop_loop' => array(
-                    array('action' => 'order_wrapper_opening','pos' => 5),
-                    array('action' => 'order_wrapper_closing','pos' => 35),
+                array('action' => 'order_wrapper_opening','pos' => 5),
+                array('action' => 'order_wrapper_closing','pos' => 35),
             ),
 
-
             //archive-product.php
-            //add_action('woocommerce_archive_description', [$this,'product_category_navigation'], 20);
             'woocommerce_archive_description' => array(
                 array('action' => 'product_category_navigation','pos' => 20),
             ),
 
             
             //content-product.php
-            // add_action('woocommerce_before_shop_loop_item',[$this,'product_content_wrapper_opening']);
             'woocommerce_before_shop_loop_item' => array(
                 array('action' => 'product_content_wrapper_opening','pos' => 5),
             ),
 
             
-            //remove_action( 'woocommerce_after_shop_loop_item','woocommerce_template_loop_add_to_cart'); //remove add to cart since it is not included in the theme requirements
-            // add_action('woocommerce_after_shop_loop_item',[$this,'product_content_wrapper_closing']);
+            
             //content-product.php
             'woocommerce_after_shop_loop_item' => array(
                 array('action' => 'product_content_wrapper_closing','pos' => 10),
                 array('action' => 'woocommerce_template_loop_add_to_cart','pos' => 10, 'func' => 'remove'),
             ),
-
-            //remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail',10); //make a wrapper on the image by reposition
-            // add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail',20);  //place in new location
-            // add_action('woocommerce_before_shop_loop_item_title',array($this,'thumbnail_wrapper_opening'),15);
-            // add_action('woocommerce_before_shop_loop_item_title',array($this,'thumbnail_wrapper_closing'),25);
             //content-product.php
             'woocommerce_before_shop_loop_item_title' => array(
+                array('action' => 'wc_sale_flash_setup', 'pos' => 5),
                 array('action' => 'woocommerce_template_loop_product_thumbnail','pos' => 10, 'func' => 'remove'),
                 array('action' => 'thumbnail_wrapper_opening','pos' => 15),
                 array('action' => 'woocommerce_template_loop_product_thumbnail','pos' => 20, 'func' => 'wc'),
                 array('action' => 'thumbnail_wrapper_closing','pos' => 25),
             ),
-
-            // remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10);
-            // add_action('woocommerce_after_shop_loop_item_title', array($this,'wc_loop_price'), 10);
-            //content-product.php
-            'woocommerce_after_shop_loop_item_title' => array(
-                array('action' => 'woocommerce_template_loop_price','pos' => 10, 'func' => 'remove'),
-                array('action' => 'wc_loop_price','pos' => 10),
+            'woocommerce_no_products_found' => array(
+                array('action' => 'wc_no_products_found','pos' => 10, 'func' => 'remove'),
+                array('action' => 'wc_no_products_found', 'pos' => 10),
             ),
         );
 
@@ -84,17 +70,16 @@ class Nb_WoocommerceProductLoop {
         add_filter('woocommerce_catalog_orderby',[$this,'orderby_catalog'],10); //filter orderby
         
         //content-product.php
-        add_filter('woocommerce_sale_flash',[$this,'woocommerce_sale_flash_wrapper']); //filter sale flash
+        add_filter('woocommerce_sale_flash',array($this,'woocommerce_sale_flash_wrapper')); //filter sale flash
         
         //*************** 
         //nabcosetting plugins location do not remove**********************
-        add_filter('nb_wc_thumb_sale_price',array($this,'wc_loop_price'),10);
-        add_filter('nb_wc_sale_flash', array($this,'wc_thumbnail_sale_flash'),10,2 );
+        add_filter('nb_wc_sale_flash', array($this,'wc_thumbnail_sale_flash'),10, 2 );
         //***************************************** */
 
-
-        //add_filter('woocommerce_get_price_html',array($this,'wc_get_price_html',10,2));
     }
+
+
 
     /** 
      * hooked: woocommerce_before_shop_loop_item_title
@@ -197,15 +182,10 @@ class Nb_WoocommerceProductLoop {
 
     public function wc_loop_price() {
         $html = "";
+        
         if(get_theme_mod('nabco_ecommerce_price_control') == 'show') {
             global $product;
-
-            if($product->is_on_sale()) {
-                $html .= "<strong class='price'><small>WAS</small> <strike>" . wc_price($product->get_regular_price()) . "</strike> <small>NOW</small> " .wc_price($product->get_sale_price())."</strong>"; 
-            }
-            else {
-                $html .= sprintf('<span class="price">%s</span>' ,$product->get_price_html());
-            }
+            $html .= sprintf('<span class="price">%s</span>' ,$product->get_price_html());
         }
         else {
             $html = "";
@@ -214,27 +194,46 @@ class Nb_WoocommerceProductLoop {
     }
 
     public function wc_thumbnail_sale_flash($content,$product) {
-
-
-        $showPercentage = get_theme_mod('show_percentage',true);
+        
         $html = "";
-        if($showPercentage) {
-            $regularPrice = ($product->get_regular_price() == "") ? 0 : $product->get_regular_price();
-            $salePrice = $product->get_sale_price(); 
-            $percentage = (floatval($regularPrice) - floatval($salePrice)) / floatval($regularPrice) * 100; 
-            $html = round($percentage) . '% Off Sale';
+        
+        // $regularPrice = ($product->get_regular_price() == "") ? 0 : $product->get_regular_price();
+        // $salePrice = $product->get_sale_price(); 
+        // $percentage = (floatval($regularPrice) - floatval($salePrice)) / floatval($regularPrice) * 100; 
+        
+        $html = "<strong class='col-md-6' style='font-size:12px;padding-top:2px'><small>WAS</small> <strike>" . wc_price($product->get_regular_price()) . "</strike></strong> <strong class='col-md-6'><small>NOW</small> " .wc_price($product->get_sale_price())."</strong>";
+        
+        // $html = round($percentage) . '% Off Sale';   
+        return '<div class="sale-wrapper" style="background-color:#e50000;width:100%;padding:10px 0"><span class="onsale row">' . wp_kses_post($html) . '</span></div>';
+
+    }
+
+    /******************************************************
+     * ver 1.2 
+     * check the plugin setup if sale flash is hide then hide it 
+    ********************************************************/
+    public function wc_sale_flash_setup() {
+        
+        if(get_option('wc_hide_sale_flash','yes') == 'yes' ) {
+            remove_action('woocommerce_before_shop_loop_item_title','woocommerce_show_product_loop_sale_flash',10);
         }
-
-        return '<div class="sale-wrapper"><span class="onsale">' . esc_html__($html) . '</span></div>';
-        
         
     }
 
-    public function wc_get_price_html($price,$object) {
 
+    public function wc_no_products_found() {
+        if(isset($_GET['s'])) {
+            //search
+            ?>
+                <p class="woocommerce-info"><?php _e( 'No products were found matching your selection.', 'woocommerce' ); ?></p>
+            <?php
+        }
+        else {
+            ?>
+                <p class="woocommerce-info"><?php _e( 'Products are coming soon...', 'woocommerce' ); ?></p>
+            <?php
+        }
     }
-
-
    
 }
 

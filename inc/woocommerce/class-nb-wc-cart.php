@@ -31,7 +31,7 @@ class Nb_WoocommerceCart {
 
         /**************
         ***************/
-        if(get_theme_mod('nabco_ecommerce_enabled_control') == 'enabled') {
+        if(get_option('wc_disabled_shop_cart','yes') == 'no') {
                 /** 
                 * Minicart
                 *  nabco_furnitures_display_fragment - added to display in theme header

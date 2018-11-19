@@ -1,6 +1,4 @@
-
 <?php
-
 
 require_once get_template_directory() . '/inc/woocommerce/widgets/class-product_rating-cust.php';
 require_once get_template_directory() . '/inc/woocommerce/class-nb-wc-cart.php';
@@ -47,7 +45,7 @@ class Nb_Woocommerce_Setup {
 
 
         //add filter for checking price to enable hide/show price 
-        add_filter('woocommerce_get_price_html', [$this,'wc_get_price_html'], 10,2);
+        //add_filter('woocommerce_get_price_html', [$this,'wc_get_price_html'], 10,2);
     }
 
 
@@ -115,7 +113,5 @@ class Nb_Woocommerce_Setup {
 
         wp_add_inline_style( 'nabco-furnitures-style', $inline_font );
     }
-
 }
-
 return new Nb_Woocommerce_Setup();

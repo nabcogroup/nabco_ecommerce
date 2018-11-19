@@ -365,10 +365,6 @@ class Nab_ThemeFunction {
             echo '<link rel="pingback" href="', esc_url( get_bloginfo( 'pingback_url' ) ), '">';
         }
     }
-
-
-
-
 }
 
 return new Nab_ThemeFunction();

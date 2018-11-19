@@ -27,4 +27,4 @@ get_header();
 </section><!-- .error-404 -->
 
 <?php
-get_footer();
+get_footer(); ?>

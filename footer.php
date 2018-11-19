@@ -10,7 +10,6 @@
  */
 
 ?>
-
 <?php if(!is_front_page()) : ?> 
   </div> <!-- closing container -->
 <?php endif ?>
@@ -37,8 +36,7 @@
  </footer>
  <!-- ADDITIONAL JS HERE -->
  <?php wp_footer(); ?>
-
-  <?php 
+ <?php 
 
   /************** 
   * Hook: nabco_furniture_after_content
@@ -50,5 +48,4 @@
   do_action('nabco_furniture_after_content'); 
 ?>
 </body>
-
 </html>

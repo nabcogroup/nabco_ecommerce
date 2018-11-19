@@ -9,13 +9,10 @@
  * @package nabcofurn_us
  */
 
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
-
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
-
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="mobile-web-app-capable" content="yes">
@@ -24,17 +21,10 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
     <?php wp_head(); ?>
-
    <?php do_action('nabco_furnitures_style'); ?>
-
-   
-
 </head>
-
 <body <?php body_class(); ?>>
-	
     <!-- preloading -->
-
     <?php 
 
         if('false' == intval(get_theme_mod('nb_theme_debug','false'))) {
@@ -47,7 +37,6 @@
         }
        
     ?>
-
     <!-- ******************* The Header Area ******************* -->
     <header id="main-header">
         <div class="navbar navbar-expand-md navbar-light nb-header">
@@ -140,8 +129,6 @@
             }
         }
         ?>
-        
-
         <!-- opening container -->
         <div class="container">
             <?php
@@ -154,5 +141,4 @@
                     // hooked: woocommerce_breadcrumb
                     do_action('nabco_furniture_before_page_loop');
                 }
-            ?>
-    <?php endif; ?>
+            ?><?php endif; ?>

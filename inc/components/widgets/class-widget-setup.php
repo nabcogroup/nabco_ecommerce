@@ -101,5 +101,4 @@ class Nab_WidgetSetup {
 		endif;
     }
 }
-
 return new Nab_WidgetSetup();

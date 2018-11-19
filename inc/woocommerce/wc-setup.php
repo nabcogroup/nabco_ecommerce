@@ -1,13 +1,5 @@
 <?php
 /**
- * WooCommerce Compatibility File
- *
- * @link https://woocommerce.com/
- *
- * @package nabcofurn_us
- */
-
-/**
  * WooCommerce setup function.
  *
  * @link https://docs.woocommerce.com/document/third-party-custom-theme-compatibility/
@@ -22,7 +14,6 @@ function nabco_furnitures_woocommerce_setup() {
 	add_theme_support( 'wc-product-gallery-lightbox' );
 	add_theme_support( 'wc-product-gallery-slider' );
 }
-
 add_action( 'after_setup_theme', 'nabco_furnitures_woocommerce_setup' );
 
 /**
@@ -48,7 +39,6 @@ function nabco_furnitures_woocommerce_scripts() {
 
 	wp_add_inline_style( 'nabco-furnitures-style', $inline_font );
 }
-
 add_action( 'wp_enqueue_scripts', 'nabco_furnitures_woocommerce_scripts' );
 
 /**
@@ -67,13 +57,7 @@ add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
  *
  * You can add the WooCommerce Mini Cart to header.php like so ...
  *
-	<?php
-		if ( function_exists( 'nabco_furnitures_woocommerce_header_cart' ) ) {
-			nabco_furnitures_woocommerce_header_cart();
-		}
-	?>
  */
-
 if ( ! function_exists( 'nabco_furnitures_woocommerce_cart_link_fragment' ) ) {
 	/**
 	 * Cart Fragments.
@@ -94,7 +78,6 @@ if ( ! function_exists( 'nabco_furnitures_woocommerce_cart_link_fragment' ) ) {
 
 
 add_filter( 'woocommerce_add_to_cart_fragments', 'nabco_furnitures_woocommerce_cart_link_fragment' );
-
 if ( ! function_exists( 'nabco_furnitures_woocommerce_cart_link' ) ) {
 	/**
 	 * Cart Link.
@@ -136,8 +119,6 @@ if(!function_exists('nabco_furnitures_search_form')) {
 	}
 }
 
-
-
 if ( ! function_exists( 'nabco_furnitures_woocommerce_header_cart' ) ) {
 	/**
 	 * Display Header Cart.
@@ -168,9 +149,7 @@ if ( ! function_exists( 'nabco_furnitures_woocommerce_header_cart' ) ) {
 		<?php
 	}
 }
-
 add_action('nabco_furnitures_header_display_fragment','nabco_furnitures_woocommerce_header_cart',10);
-
 
 function nabco_furnitures_woocommerce_customer_account() {
 	
@@ -185,9 +164,4 @@ function nabco_furnitures_woocommerce_customer_account() {
 	echo '<div class="myacct-mini-icon">' . sprintf('<a href="%s" class="user-content"><i class="fa fa-user"></i> <small>%s</small></a>',get_permalink(get_option('woocommerce_myaccount_page_id')),$description) . '</div>' ;
 
 }
-
 add_action('nabco_furnitures_header_display_fragment','nabco_furnitures_woocommerce_customer_account',20);
-
-
-
-
