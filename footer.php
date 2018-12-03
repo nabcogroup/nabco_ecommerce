@@ -16,7 +16,7 @@
 
   </main>
 
-<?php get_template_part('template-parts/content','dialog');?>
+
 
 <!-- footer -->
 <footer id="footer-full" class="footer-wrapper">

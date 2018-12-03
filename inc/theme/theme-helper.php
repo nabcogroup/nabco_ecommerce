@@ -10,12 +10,26 @@
  *
  * @return string|bool False on failure, the result of the shortcode on success.
  */
-function nabcofurnitures_do_shortcode( $tag, array $atts = array(), $content = null ) {
+function nabcofurnitures_do_shortcode( $tags, array $atts = array(), $content = null ) {
+
+	//call global shortcode tags
 	global $shortcode_tags;
 
-	if ( ! isset( $shortcode_tags[ $tag ] ) ) {
-		return false;
+	if(is_array($tags))  {
+
+		foreach($tags as $tag) {
+			if ( isset( $shortcode_tags[ $tag ] ) ) {
+				return call_user_func( $shortcode_tags[ $tag ], $atts, $content, $tag );
+			}
+		}
+	}
+	else {
+
+		if ( ! isset( $shortcode_tags[ $tags ] ) ) {
+			return false;
+		}
+		
+		return call_user_func( $shortcode_tags[ $tags ], $atts, $content, $tags );
 	}
 
-	return call_user_func( $shortcode_tags[ $tag ], $atts, $content, $tag );
 }

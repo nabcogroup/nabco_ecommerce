@@ -34,4 +34,8 @@ $under_con = get_theme_mod('nb_underconstruction','');
 <!-- testimony section -->
 <?php get_template_part('template-parts/sections/section','testimony') ?>
 
+
+<!-- dialog -->
+<?php get_template_part('template-parts/content','dialog');?>
+
 <?php get_footer();

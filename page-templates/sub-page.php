@@ -12,33 +12,63 @@
 
 get_header();
 
-$under_con = get_theme_mod( 'nb_underconstruction', '' );
+$page_sidebar = get_theme_mod('nabcofurniture_theme_page_layout', '' );
 
 ?>
 
-
-<?php if($under_con != 'development') : ?>
-
+<!-- Section: Page Header -->
+<?php if(!is_front_page()) : ?>
 <article class="page-wrapper">
+	<div class="row">
+		<?php if ($page_sidebar == 'sidebar') : ?>
+			<div class="col-md-9">
+		<?php else : ?>
+			<div class="col-md-12">
+		<?php endif; ?>
+		
+		<?php if(have_posts()) : ?>
+			<?php while(have_posts()) : the_post(); ?>
+				
+				<div class="row">
+					<!-- post child page -->
+					<nav class="nb-page-nav col-md-6 ml-auto">
+						<?php 
+							echo nabcofurniture_list_child_pages(); 
+						?>
+					</nav>
+				</div>
 
-    <?php if(have_posts()) : ?>
+				<div class="row">
+					<div class="col-md-12">
+						<?php the_title('<h1 class="entry-title blog-post-title to-upper">','</h1>') ?>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="body-content col-md-12">
+						<?php if(get_option('wc_disabled_shop_cart','yes') == 'yes') : ?>
+							<?php if(is_page('cart') || is_page('my-account')) :?>
+								<?php echo apply_filters('nabcofurniture_page_disabled', '<p class="woocommerce-info">This page is disabled</p>' ) ?>
+							<?php else : ?>
+								<?php the_content(); ?>
+							<?php endif; ?>
+						<?php else : ?>
+							<?php the_content(); ?>
+						<?php endif; ?>	
+					</div>
+				</div>
 
-        <?php while(have_posts()) : the_post(); ?>
+			<?php endwhile; ?>
+		</div>
+		<?php endif; ?>
 
-            <nav class="nb-page-nav">
-                <?php echo nabco_furnitures_list_child_pages(); ?>
-            </nav>
-
-            <div class="body-content row col-md-12">
-                <?php the_title('<h1>','</h1>') ?>
-                <?php the_content(); ?>
-            </div>
-
-        <?php endwhile; ?>
-
-    <?php endif; ?>
+		<?php //enable sidebar ?>		
+		<?php if ($page_sidebar == 'sidebar') : ?>
+			<div class="col-md-3">
+				<?php  get_sidebar(); ?>
+			</div>
+		<?php endif; ?>
+	</div>
 </article>
-<?php else : ?>
-    <?php get_template_part( 'template-parts/content-loop/content', 'under-construction' ) ?>
-<?php endif ?>
+<?php endif; ?>
 <?php get_footer(); ?>

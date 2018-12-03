@@ -71,7 +71,6 @@
 $front-image-height: 179px;
 $front-image-height-responsive: 200px;
 
-
 .card-product-thumbnail {
     width: 100%;
     position:relative;
@@ -162,9 +161,7 @@ $front-image-height-responsive: 200px;
 
 
     
-    &.nb-top-slider {
-        margin-bottom: 10px;
-    }
+    
 
     &.collection_side {
         @include media-breakpoint-up(sm) {

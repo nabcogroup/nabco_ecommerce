@@ -141,4 +141,5 @@
                     // hooked: woocommerce_breadcrumb
                     do_action('nabco_furniture_before_page_loop');
                 }
-            ?><?php endif; ?>
+            ?>
+    <?php endif; ?>

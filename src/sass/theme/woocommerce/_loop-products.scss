@@ -39,6 +39,8 @@ Product Content Grid
     
         &.columns-4 {
             .product {
+                @include make-col(6);
+                
                 @include media-breakpoint-up(sm)  {
                     @include make-col(3);
                 }

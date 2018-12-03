@@ -31,16 +31,8 @@ $page_sidebar = get_theme_mod('nabcofurniture_theme_page_layout', '' );
 		<?php if(have_posts()) : ?>
 			<?php while(have_posts()) : the_post(); ?>
 				<div class="row">
-					<nav class="nb-page-nav col-md-6 ml-auto">
-						<?php echo nabcofurniture_list_child_pages(); ?>
-					</nav>
-				</div>
-
-				<div class="row">
 					<div class="col-md-12">
-						<?php 
-							the_title('<h1 class="entry-title blog-post-title to-upper">','</h1>') 
-						?>
+						<?php the_title('<h1 class="entry-title blog-post-title to-upper">','</h1>') ?>
 					</div>
 				</div>
 				
@@ -48,7 +40,7 @@ $page_sidebar = get_theme_mod('nabcofurniture_theme_page_layout', '' );
 					<div class="body-content col-md-12">
 						<?php if(get_option('wc_disabled_shop_cart','yes') == 'yes') : ?>
 							<?php if(is_page('cart') || is_page('my-account')) :?>
-								<h1>THIS PAGE IS NOT ENABLED</h1>
+								<?php echo apply_filters('nabcofurniture_page_disabled', '<p class="woocommerce-info">This page is disabled</p>' ) ?>
 							<?php else : ?>
 								<?php the_content(); ?>
 							<?php endif; ?>
@@ -65,7 +57,7 @@ $page_sidebar = get_theme_mod('nabcofurniture_theme_page_layout', '' );
 		<?php //enable sidebar ?>		
 		<?php if ($page_sidebar == 'sidebar') : ?>
 			<div class="col-md-3">
-			<?php  get_sidebar(); ?>
+				<?php  get_sidebar(); ?>
 			</div>
 		<?php endif; ?>
 	</div>

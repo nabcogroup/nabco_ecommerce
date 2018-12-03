@@ -132,35 +132,15 @@ class Nb_WoocommerceSingleProduct {
     *   - add only if not variable product
     ***************************/
     public function remove_sale_price_when_variation() {
-        if( get_option('wc_hide_price') == "no") {
-            
-            if(is_product()) {
-                global $product;
-                if(false === $product->is_type('variable')) {
-                    //add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price',20);
-                   add_action( 'woocommerce_single_product_summary', array($this,'wc_single_price'),20);
-                }
-                else {
-                    
-                }
-            }
-
-        }
-        else {
+        if(is_product()) {
             global $product;
-            $tag_onsale = wp_get_post_terms($product->get_id(),'product_tag');
-            
-            if(count($tag_onsale) > 0 && $tag_onsale[0]->name == 'onsale' ) {
-                
+            if(false === $product->is_type('variable')) {
                 //add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price',20);
-                add_action( 'woocommerce_single_product_summary', array($this,'wc_single_selected_price'),20);
-
+               add_action( 'woocommerce_single_product_summary', array($this,'wc_single_price'),20);
             }
             else {
-                //add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price',20);
-                add_action( 'woocommerce_single_product_summary', array($this,'wc_show_no_price_detail'),20);
+               //do nothing 
             }
-
         }
     }
 
@@ -173,9 +153,16 @@ class Nb_WoocommerceSingleProduct {
     * @return html with price and discount
     ************************/
     public function set_variation_price($args,$object,$variation) {
+        
         $htmlSaleFlash = "";
+
         if(isset($args['price_html'])) {
+
+            ob_start();
+            
+
             if($variation->is_on_sale())  {
+
                 $discountHtml = $this->sale_percentage_by_discount($variation);
                 $htmlSaleFlash = sprintf("<span class='onsale ml-3'>%s %s</span>",$discountHtml,esc_html__( ' Sale! ', 'woocommerce' ));
             }
@@ -213,45 +200,40 @@ class Nb_WoocommerceSingleProduct {
 
         global $product;
 
-        $html = "<p class='nb_wc_price_wrapper price my-2'>";
-        if($product->is_on_sale()) {
-            $html .= "<strong class='mr-2'>Price: </strong>";
-            $html .= $product->get_price_html(); 
-            $html .= "&nbsp;&nbsp;";     
-            $html .=  "<span class='onsale'>".$this->sale_percentage_by_discount($product)."</span>";
+        $price_html = $product->get_price_html();
+        if($price_html) {
+            $html = "<p class='price my-2' style='font-size:18px'>";
+            if($product->is_on_sale()) {
+                $html .= "<strong class='mr-2'>Price: </strong>";
+                $html .= $price_html; 
+            }
+            else {
+                $html .= sprintf('<strong class="mr-2">Price:</strong> %s' ,$price_html);
+            }
+            $html .= "</p>";
         }
         else {
-            $html .= "";
-            $html .= sprintf('<strong class="mr-2">Price:</strong> %s' ,$product->get_price_html());
+            $html = $this->wc_show_no_price_detail();
         }
-        $html .= "</p>";
+
 
         echo $html;
     }
     
     public function wc_show_no_price_detail() {
         $html = "";
-        
         if(get_option('wc_hide_price','yes') == 'yes') {
-
             $text =  get_option('wc_text_replacement_inquiry', '*Price not displayed');
-            
             ob_start();
             ?>
-            
             <p class='nb_wc_price_wrapper price my-2' style='text-transform:none'>
                 <?php echo wp_kses_post($text); ?>
             </p>
-            
             <?php
-            
             $html = ob_get_clean();
-
         }
         
-        
-        
-        echo $html;
+        return $html;
         
     }
 
@@ -263,7 +245,7 @@ class Nb_WoocommerceSingleProduct {
         
         if($product->is_on_sale()) {
             $html .= "<strong class='mr-2'>Price: </strong>";
-            $html .= "<strong style='width:100%;padding:10px 5px;'><small>WAS</small> <strike>" . wc_price($product->get_regular_price()) . "</strike></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong style='color:#e50000'><small>NOW</small> " .wc_price($product->get_sale_price())."</strong>";
+            $html .= $product->get_price_html();
             $html .= "&nbsp;&nbsp;";     
             //$html .=  "<span class='onsale'>".$this->sale_percentage_by_discount($product)."</span>";
         }
