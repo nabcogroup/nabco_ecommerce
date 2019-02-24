@@ -56,11 +56,13 @@ class Nab_ThemeSetup {
 		load_theme_textdomain( 'nabco-furnitures', get_template_directory() . '/languages' );
 
         // This theme uses wp_nav_menu() in one location.
-        register_nav_menus( array(
-            'primary' 		=> 	esc_html__( 'Primary', 'nabco-furnitures' ),
-            'footer'		=>	esc_html__('Footer','nabco-furnitures'),
-            'collection'	=>	esc_html__('Collection','nabco-furnitures')
-        ) );
+        register_nav_menus( 
+			array(
+            	'primary' 		=> 	esc_html__( 'Primary', 'nabco-furnitures' ),
+            	'footer'		=>	esc_html__('Footer','nabco-furnitures'),
+            	'collection'	=>	esc_html__('Collection','nabco-furnitures')
+			) 
+		);
         
 		/*
         * Let WordPress manage the document title.

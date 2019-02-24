@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying all pages
  *
@@ -16,12 +17,12 @@ get_header();
 
 $page_sidebar = get_theme_mod('nabcofurniture_theme_page_layout', '' );
 
-
 ?>
 <!-- Section: Page Header -->
 <?php if(!is_front_page()) : ?>
 <article class="page-wrapper">
 	<div class="row">
+		<!-- col openning -->
 		<?php if ($page_sidebar == 'sidebar') : ?>
 			<div class="col-md-9">
 		<?php else : ?>
@@ -35,7 +36,6 @@ $page_sidebar = get_theme_mod('nabcofurniture_theme_page_layout', '' );
 						<?php the_title('<h1 class="entry-title blog-post-title to-upper">','</h1>') ?>
 					</div>
 				</div>
-				
 				<div class="row">
 					<div class="body-content col-md-12">
 						<?php if(get_option('wc_disabled_shop_cart','yes') == 'yes') : ?>
@@ -49,10 +49,10 @@ $page_sidebar = get_theme_mod('nabcofurniture_theme_page_layout', '' );
 						<?php endif; ?>	
 					</div>
 				</div>
-
 			<?php endwhile; ?>
-		</div>
 		<?php endif; ?>
+		<!-- col closing -->
+		</div> 
 
 		<?php //enable sidebar ?>		
 		<?php if ($page_sidebar == 'sidebar') : ?>

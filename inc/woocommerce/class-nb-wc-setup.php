@@ -40,12 +40,7 @@ class Nb_Woocommerce_Setup {
 
         //change data filter
         add_filter( 'woocommerce_breadcrumb_defaults', [$this,'woocommerce_breadcrumb'] );
-
-        //register_widget( 'WC_ProductRating_Cust' );
-
-
-        //add filter for checking price to enable hide/show price 
-        //add_filter('woocommerce_get_price_html', [$this,'wc_get_price_html'], 10,2);
+        
     }
 
 
@@ -55,16 +50,7 @@ class Nb_Woocommerce_Setup {
     
         return $classes;
     }
-
-
-    public function wc_get_price_html($price,$content) {
-
-        if(get_theme_mod('nabco_ecommerce_price_control') == 'show') {
-
-            return $price;
-
-        }
-    }
+    
 
      /**
      * 
@@ -110,7 +96,7 @@ class Nb_Woocommerce_Setup {
                 font-weight: normal;
                 font-style: normal;
             }';
-
+        
         wp_add_inline_style( 'nabco-furnitures-style', $inline_font );
     }
 }

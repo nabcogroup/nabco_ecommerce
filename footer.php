@@ -1,20 +1,17 @@
 <?php
 /**
+ * Footer
  * The template for displaying the footer
  *
- * Contains the closing of the #content div and all content after.
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package nabcofurn_us
  */
 
 ?>
+
 <?php if(!is_front_page()) : ?> 
   </div> <!-- closing container -->
 <?php endif ?>
 
-  </main>
+</main>
 
 
 
@@ -33,19 +30,23 @@
       </div>
     </div>
   </div>
- </footer>
+</footer>
+ 
  <!-- ADDITIONAL JS HERE -->
  <?php wp_footer(); ?>
- <?php 
 
+
+ <?php 
+  
   /************** 
   * Hook: nabco_furniture_after_content
-  * 
   * @hooked: nabco_furniture_pre_loading_script - 10
   * @hooked: nabco_furniture_youtube_script - 20
-  */
-
+  ************************************/
   do_action('nabco_furniture_after_content'); 
+
+  
 ?>
+
 </body>
 </html>

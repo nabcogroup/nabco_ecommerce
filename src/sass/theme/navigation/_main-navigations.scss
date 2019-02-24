@@ -25,15 +25,14 @@
 
 
 .nb-tran-icon {
+    
     padding: 7px;
     display: flex;
     flex-direction: row;
-	
+    justify-content: space-evenly;
 	.user-content {
 		color: $nb-p-color;
     }
-    
-
 }
 
 

@@ -54,8 +54,11 @@
         <?php get_template_part( 'sidebar-templates/sidebar', 'front-search' ) ?>
 
         <?php if($haveItems) : ?>
+
             <div class="menu-primary-container">
+
                 <ul class="navbar-nav cust-navbar-item mr-auto">
+
                     <?php foreach($items as $item) :  ?>
                         
                         <?php 
@@ -75,13 +78,18 @@
                                 title="<?php echo $item->title; ?>" 
                                 class="nav-link"><?php echo $item->title; ?></a>
                         </li>        
+
                     <?php endforeach; ?>
+
                     <?php echo nabcofurnitures_do_shortcode('ns-sale-text', array(
                       'wrapper_open'    =>  '<li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-763 nav-item"><a href="' . $page_link . '" class="nav-link">',
                       'wrapper_close'   =>  '</a></li>'
                     )); ?>
+
                 </ul>
+                
             </div>
+
         <?php endif; ?>
     </div>
 </div>

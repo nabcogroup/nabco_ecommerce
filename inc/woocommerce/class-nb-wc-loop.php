@@ -3,81 +3,66 @@
 
 
 
-class Nb_WoocommerceProductLoop {
+class Nb_WoocommerceProductLoop extends Theme_Hook {
 
     public function __construct() {
         
-        $actions = array(
+        $this->actions = array(
+
             /*********************************************************
             * Location: template/archive-product.php
             ********************************************/
             'woocommerce_before_shop_loop' => array(
-                array('action' => 'order_wrapper_opening','pos' => 5),
-                array('action' => 'order_wrapper_closing','pos' => 35),
+                array('fn' => array($this,'order_wrapper_opening'),'pos' => 5),
+                array('fn' => array($this,'order_wrapper_closing'),'pos' => 35),
             ),
 
             //archive-product.php
-            'woocommerce_archive_description' => array(
-                array('action' => 'product_category_navigation','pos' => 20),
-            ),
+            'woocommerce_archive_description' => array('fn' => array($this,'product_category_navigation'),'pos' => 20),
             
             //content-product.php
-            'woocommerce_before_shop_loop_item' => array(
-                array('action' => 'product_content_wrapper_opening','pos' => 5),
-            ),
+            'woocommerce_before_shop_loop_item' => array('fn' => array($this,'product_content_wrapper_opening'),'pos' => 5),
             
             //content-product.php
             'woocommerce_after_shop_loop_item' => array(
-                array('action' => 'product_content_wrapper_closing','pos' => 10),
-                array('action' => 'woocommerce_template_loop_add_to_cart','pos' => 10, 'func' => 'remove'),
+                array('fn' => array($this,'product_content_wrapper_closing'),'pos' => 10),
+                array('fn' => 'woocommerce_template_loop_add_to_cart','pos' => 10, 'event' => 'remove'),
             ),
             
             //content-product.php
             'woocommerce_before_shop_loop_item_title' => array(
-                array('action' => 'wc_sale_flash_setup', 'pos' => 5),
-                array('action' => 'woocommerce_template_loop_product_thumbnail','pos' => 10, 'func' => 'remove'),
-                array('action' => 'thumbnail_wrapper_opening','pos' => 15),
-                array('action' => 'woocommerce_template_loop_product_thumbnail','pos' => 20, 'func' => 'wc'),
-                array('action' => 'thumbnail_wrapper_closing','pos' => 25),
+                array('fn' => array($this,'wc_sale_flash_setup'), 'pos' => 5),
+                array('fn' => 'woocommerce_template_loop_product_thumbnail','pos' => 10, 'event' => 'remove'),
+                array('fn' => array($this,'thumbnail_wrapper_opening'),'pos' => 15),
+                array('fn' => 'woocommerce_template_loop_product_thumbnail','pos' => 20,),
+                array('fn' => array($this,'thumbnail_wrapper_closing'),'pos' => 25),
             ),
             
             'woocommerce_no_products_found' => array(
-                array('action' => 'wc_no_products_found','pos' => 10, 'func' => 'remove'),
-                array('action' => 'wc_no_products_found', 'pos' => 10),
+                array('fn' => 'wc_no_products_found','pos' => 10, 'event' => 'remove'),
+                array('fn' => array($this,'wc_no_products_found'), 'pos' => 10),
             ),
-
+            
             'woocommerce_after_shop_loop_item_title' => array(
-                array('action' => 'wc_remove_price', 'pos' => 5),
+                array('fn' => array($this,'wc_remove_price'), 'pos' => 5),
             )
         );
 
 
-        foreach ($actions as $tag => $actions) {
-            foreach($actions as $value) {
-                $pos = isset($value['pos']) ? $value['pos'] : 10;
-                if(isset($value['func']) && $value['func'] == 'remove') {
-                    remove_action($tag, $value['action'],$pos);
-                }
-                else if(isset($value['func']) && $value['func'] == 'wc') {
-                    add_action($tag, $value['action'],$pos);
-                }
-                else {
-                    add_action($tag, array($this,$value['action']),$pos);
-                }
-            }
-        }
+        $this->filters = array(
+            
+            'woocommerce_catalog_orderby' => 'orderby_catalog',
+            
+            'woocommerce_sale_flash'    =>  'woocommerce_sale_flash_wrapper',
 
-        //archive-product.php
-        add_filter('woocommerce_catalog_orderby',[$this,'orderby_catalog'],10); //filter orderby
-        //content-product.php
-        add_filter('woocommerce_sale_flash',array($this,'woocommerce_sale_flash_wrapper')); //filter sale flash
-        //*************** 
-        //nabcosetting plugins location do not remove**********************
-        add_filter('nb_wc_sale_flash', array($this,'wc_thumbnail_sale_flash'),10, 2 );
-        //***************************************** */
+            //nabcosetting plugins location do not remove**********************
+            'nb_wc_sale_flash' => array('fn' => array($this,'wc_thumbnail_sale_flash'), 'pos' => 10, 'param' => 2)
+            
+        );
+
+        parent::__construct();
 
     }
-
 
 
     /** 
@@ -140,7 +125,6 @@ class Nb_WoocommerceProductLoop {
     public function product_content_wrapper_closing() {
         echo '</div><!-- product content wrapper -->';
     }
-   
    
     /**
      * hooked: woocommerce_catalog_orderby

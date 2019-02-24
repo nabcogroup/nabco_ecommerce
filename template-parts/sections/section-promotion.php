@@ -21,13 +21,13 @@
         );
         
         if($sale_approval_type == 'live') {
-            $product_sale_content = nabcofurnitures_do_shortcode('nb_sale_products',$args);
+            $product_sale_content = nabcofurnitures_do_shortcode('bizpack-product-sales',$args);
             
         }
         else if($sale_approval_type == 'review') {
             if(is_user_logged_in()) 
             {
-                $product_sale_content = nabcofurnitures_do_shortcode('nb_sale_products',$args);
+                $product_sale_content = nabcofurnitures_do_shortcode('bizpack-product-sales',$args);
             }
         }
         else {

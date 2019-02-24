@@ -9,6 +9,7 @@ class Nab_Customizer {
         add_action('customize_register', array($this,'addPostMessageSupport'));
         add_action('customize_register', array($this,'themeGeneralSettingRegister'));
         add_action('customize_register', array($this,'sectionSetting'));
+        add_action('customize_register',array($this,'categorySetting'));
         
         // Register scripts and styles for the controls.
 		add_action( 'customize_controls_enqueue_scripts', array( $this, 'customizePreviewJs' ), 0 );
@@ -263,6 +264,181 @@ class Nab_Customizer {
             array('default'   =>  '','type'		=>	'theme_mod'),
             array('label' => __('Alternative Price Label:'),'priority' => 30)
         );
+    }
+
+    public function categorySetting($wp_customize) {
+
+        $themeSettingPanel = new TeamDevCustomizer($wp_customize,'nabco');
+
+        //Product Collection
+        $themeSettingPanel->addSection('nb_product_collection', 'Front Page Product Collection','Front Page Product Collection','20','nabco_theme_setting_panel');
+
+
+         //select for development and production mode
+        $themeSettingPanel->addSelectControl('nb_prodcol_visible',
+        [
+            'default'   =>  'show',
+            'type'      =>  'theme_mod'
+        ],
+        [
+            'label'         =>  __('Hide Section'),
+            'choices'       => array(
+                'hide'       => __( 'Hide'),
+                'show'       => __( 'Show'),
+            ),
+            'priority'  =>  '5'
+        ]);
+ 
+ 
+        $themeSettingPanel->addBasicControl('nb_prodcol_title','text',
+            array('default'   =>  'Our Product Collection','type'		=>	'theme_mod'),
+            array('label' => __('Title'),'priority' => '10')
+        );
+ 
+        $themeSettingPanel->addColorControl('nb_prodcol_bgcolor',[
+            'default'     => '#fff',
+            'transport'   => 'refresh',
+        ],
+        [
+            'label'         =>  __('Product Collection Background Color'),
+            'priority'      =>  '20'
+        ]);
+         
+
+        //categories
+        $args = array(
+            'taxonomy' => 'product_cat',
+            'orderby' => 'name',
+            'show_count' => '0',
+            'pad_counts' => '0',
+            'hierarchical' => '1',
+            'title_li' => '',
+            'hide_empty' => '0',
+        );
+
+        $categories = get_categories($args);
+        $choices = array('none' => '--Select Categories--');
+        foreach($categories as $category) {
+            $choices[$category->slug] = $category->cat_name;
+        }
+
+         //**********TOP **************/
+        //select for development and production mode
+        $themeSettingPanel->addSelectControl('nb_prodcol_toplink',
+        [
+            'default'   =>  'none',
+            'type'      =>  'theme_mod'
+        ],
+        [
+            'label'         =>  __('Top Link'),
+            'choices'       => $choices,
+            'priority'  =>  '30'
+        ]);
+        
+        $themeSettingPanel->addUploadControl('nb_prodcol_topimg',
+        array('default' => '','type' => 'theme_mod'),
+        array(
+                'label'         => __('Add Background Image'),
+                'description'   =>  __('Maximum 1MB Recommended Size (730 x 330)'),
+                'priority'      => '40'));
+
+
+         //********** SIDE **************/
+         $themeSettingPanel->addSelectControl('nb_prodcol_sidelink',
+         [
+             'default'   =>  'none',
+             'type'      =>  'theme_mod'
+         ],
+         [
+             'label'         =>  __('Side Link'),
+             'choices'       => $choices,
+             'priority'  =>  '50'
+         ]);
+ 
+         $themeSettingPanel->addUploadControl('nb_prodcol_sideimg',
+         array('default' => '','type' => 'theme_mod'),
+         array(
+                 'label'         => __('Add Background Image'),
+                 'description'   =>  __('Maximum 1MB Recommended Size (730 x 330)'),
+                 'priority'      => '60'));
+
+        //********** FOOTER **************/
+        $themeSettingPanel->addSelectControl('nb_prodcol_footerlink',
+        [
+            'default'   =>  'none',
+            'type'      =>  'theme_mod'
+        ],
+        [
+            'label'         =>  __('Footer Link'),
+            'choices'       => $choices,
+            'priority'  =>  '70'
+        ]);
+
+        $themeSettingPanel->addUploadControl('nb_prodcol_footerimg',
+        array('default' => '','type' => 'theme_mod'),
+        array(
+                'label'         => __('Add Background Image'),
+                'description'   =>  __('Maximum 1MB Recommended Size (730 x 330)'),
+                'priority'      => '80'));
+
+        //********** MINI SIDE 1 **************/
+        $themeSettingPanel->addSelectControl('nb_prodcol_thumb1link',
+        [
+            'default'   =>  'none',
+            'type'      =>  'theme_mod'
+        ],
+        [
+            'label'         =>  __('Mini Thumbnail 1 Link'),
+            'choices'       => $choices,
+            'priority'  =>  '90'
+        ]);
+
+        $themeSettingPanel->addUploadControl('nb_prodcol_thumb1img',
+        array('default' => '','type' => 'theme_mod'),
+        array(
+                'label'         => __('Add Background Image'),
+                'description'   =>  __('Maximum 1MB Recommended Size (500 x 300)'),
+                'priority'      => '100'));
+
+        //********** MINI SIDE 2 **************/
+        $themeSettingPanel->addSelectControl('nb_prodcol_thumb2link',
+        [
+            'default'   =>  'none',
+            'type'      =>  'theme_mod'
+        ],
+        [
+            'label'         =>  __('Mini Thumbnail 2 Link'),
+            'choices'       => $choices,
+            'priority'  =>  '110'
+        ]);
+ 
+        $themeSettingPanel->addUploadControl('nb_prodcol_thumb2img',
+        array('default' => '','type' => 'theme_mod'),
+        array(
+                'label'         => __('Add Background Image'),
+                'description'   =>  __('Maximum 1MB Recommended Size (500 x 300)'),
+                'priority'      => '120'));
+        
+        
+        //********** MINI SIDE 3 **************/
+        $themeSettingPanel->addSelectControl('nb_prodcol_thumb3link',
+        [
+            'default'   =>  'none',
+            'type'      =>  'theme_mod'
+        ],
+        [
+            'label'         =>  __('Mini Thumbnail 3 Link'),
+            'choices'       => $choices,
+            'priority'  =>  '130'
+        ]);
+
+        $themeSettingPanel->addUploadControl('nb_prodcol_thumb3img',
+        array('default' => '','type' => 'theme_mod'),
+        array(
+                'label'         => __('Add Background Image'),
+                'description'   =>  __('Maximum 1MB Recommended Size (500 x 300)'),
+                'priority'      => '140'));
+
     }
 
     

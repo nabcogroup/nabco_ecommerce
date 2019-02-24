@@ -1,0 +1,23 @@
+
+body {
+    font-size: 100%;
+    font-family: $nb-secondary-ff;
+    font-size: $nb-standard-fs;
+    background: $nb-bg;
+}
+
+address {
+    abbr {
+        display:block;
+        padding:0;
+        margin: 0;
+        font-size: calc(10px + 0.2vw);
+    }
+}
+
+
+p {
+    line-height: $nb-line-height;
+    color: $nb-p-color;
+    font-size: $nb-p-size;
+}

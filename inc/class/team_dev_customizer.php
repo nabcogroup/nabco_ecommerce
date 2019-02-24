@@ -109,4 +109,18 @@ class TeamDevCustomizer {
 
         $this->wp_customize->add_control(new WP_Customize_Upload_Control( $this->wp_customize,  $name, $default_control_setting));
     }
+
+    public function addColorControl($name,$settings = array(), $controls = array(),$override = false  ) {
+
+        $default_control_setting = [
+            'label'         =>  isset($controls['label']) ? __($controls['label']) : '',
+            'description'   =>  isset($controls['description']) ? __($controls['description']) : '',
+            'section'       =>  isset($controls['section']) ? $controls['section'] : $this->section_name,
+            'priority'      =>  isset($controls['priority']) ? $controls['priority'] : '',
+        ];
+
+        $this->wp_customize->add_setting( $name, $settings);
+
+        $this->wp_customize->add_control(new WP_Customize_Color_Control($this->wp_customize,$name,$default_control_setting) );
+    }
 }

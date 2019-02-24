@@ -14,14 +14,15 @@ get_header();
 <article class="page-wrapper">
     <?php if(have_posts()) : ?>
         <?php while(have_posts()) : the_post(); ?>
-        <header class="woocommerce-products-header">
-            <?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
-                <h1 class="woocommerce-products-header__title page-title"><?php the_title(); ?></h1>
-            <?php endif; ?>
-        </header>
+            <header class="woocommerce-products-header">
+                <?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
+                    <h1 class="woocommerce-products-header__title page-title"><?php the_title(); ?></h1>
+                <?php endif; ?>
+            </header>
             <div class="body-content">
                 <div class="row">
                     <div class="col-md-9 woocommerce-shop-page">
+                    
                         <?php
                             /**
                              * Hook: woocommerce_before_shop_loop.
@@ -39,7 +40,6 @@ get_header();
                         <?php do_action( 'woocommerce_sidebar' ); ?>
                     </div>
                 </div>
-
             </div>
         <?php endwhile; ?>
     <?php endif; ?>

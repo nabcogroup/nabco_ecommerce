@@ -37,24 +37,40 @@
 .card-transparent {
     background: transparent !important;
     border: none !important;
+    
     .card-header {
         background: transparent;
         margin-bottom: 15px;
         font-weight: 700;
-        padding: 0 0 0 15px;
+        padding: 0 0 10px 0;
         font-size: 14px;
         border: none !important;
         position:relative;
         
         &::before {
-            display: inline-block;
-            font-weight: 900;
-            content: '';
-            width: 3px;
-            height: 100%;
+            position: absolute;
+            content: "";
+            left: 0px;
+            bottom: 0px;
+            width: 100%;
+            max-width: 60px;
             background: map-get($theme-colors,"danger");
-            @include nb-top-left();
+            height: 3px;
+            z-index: 999;
         }
+
+        &::after {
+            position: absolute;
+            content: "";
+            left: 0px;
+            bottom: 0px;
+            width: 100%;
+            max-width: 250px;
+            border-bottom: 1px solid #4c4c4c;
+            height: 3px;
+            z-index: 99;
+        }
+
     }
 }
 
@@ -140,7 +156,6 @@ $front-image-height-responsive: 200px;
             right: 25px;
             display: block;
             height: 0;
-            
         }
         
         &:hover {
@@ -300,6 +315,7 @@ $front-image-height-responsive: 200px;
                 @include transition(all .2s ease-in-out);
             }
         }
+        
         .sale-wrapper {
             background: map-get($theme-colors, "danger" );
             padding: 5px 2px;

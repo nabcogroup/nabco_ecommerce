@@ -1,0 +1,36 @@
+
+
+a {
+    color: $nb-link;
+    &:hover {
+        color: $nb-link-hover;
+    }
+    &:active {
+        color: $nb-link-active;
+    }
+}
+
+
+a.btn-link-sale {
+    padding: 5px;
+    border: 1px solid map-get($theme-colors, 'warning' );
+    @include border-radius(10px);
+    text-decoration: none;
+    &:hover {
+        color:white;
+        background: map-get($theme-colors, 'warning' );
+    }
+}
+
+a.woocommerce-loop-product__link {
+    display:block;
+    text-decoration: none;
+    
+    &:hover {
+        background: map-get($theme-colors, "light" );
+        -webkit-box-shadow: 10px 10px 7px -7px rgba(0,0,0,0.39);
+        -moz-box-shadow: 10px 10px 7px -7px rgba(0,0,0,0.39);
+        box-shadow: 10px 10px 7px -7px rgba(0,0,0,0.39);
+        @include transition(all 0.5s ease);
+    }
+}

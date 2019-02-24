@@ -13,7 +13,7 @@
 >
 	<div class="container">
 		<div class="row">
-			<?php echo nabcofurnitures_do_shortcode('tesm-card',$args); ?>
+			<?php echo nabcofurnitures_do_shortcode('bizpack-testimonial',$args); ?>
 		</div>
 	</div>
 </section>

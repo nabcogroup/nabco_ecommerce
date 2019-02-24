@@ -1,9 +1,6 @@
 <?php 
-
 get_header();
-
 $under_con = get_theme_mod('nb_underconstruction','');
-
 ?>
 
 
@@ -23,10 +20,7 @@ $under_con = get_theme_mod('nb_underconstruction','');
 <?php endif; ?>
 
 <!-- promotion collection section -->
-
-<?php
-	get_template_part('template-parts/sections/section','promotion') 
-?>
+<?php get_template_part('template-parts/sections/section','promotion')  ?>
 
 <!-- product collection section -->
 <?php get_template_part('template-parts/sections/section','collection') ?>
@@ -34,8 +28,8 @@ $under_con = get_theme_mod('nb_underconstruction','');
 <!-- testimony section -->
 <?php get_template_part('template-parts/sections/section','testimony') ?>
 
-
 <!-- dialog -->
 <?php get_template_part('template-parts/content','dialog');?>
 
-<?php get_footer();
+<?php 
+	get_footer();

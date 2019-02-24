@@ -1,8 +1,26 @@
 <?php 
 
-class Nb_WoocommerceMyAccount {
+class Nb_WoocommerceMyAccount extends Theme_Hook {
 
     public function __construct() {
+
+        $this->actions = array(
+            'woocommerce_auth_page_header'      =>  'auth_page_header',
+            'woocommerce_auth_page_footer'      =>  'auth_page_footer',
+            'wp_footer'                         =>  'dashboard_button_script'
+        );
+
+        $this->filters = array(
+            'woocommerce_account_menu_items'    =>  'account_menu_item_args',
+            'nb_wc_order_status_class'          =>  'set_class_status',
+            'woocommerce_form_field_args'       =>  'custom_override_address_fields',
+            'woocommerce_my_account_my_address_formatted_address'   =>  'address_formated',
+            'woocommerce_default_address_fields' => 'custom_override_address_fields'
+        );
+
+        if( get_option('wc_disabled_shop_cart','yes') == 'no') {
+            add_action('nabcofurniture_header_display_fragment',array($this,'customer_account'),20);
+        }
 
         //add wrapper to auth header
         add_action( 'woocommerce_auth_page_header', [$this,'authPageHeader'], 10);
@@ -15,11 +33,8 @@ class Nb_WoocommerceMyAccount {
         add_filter( 'woocommerce_my_account_my_address_formatted_address', [$this,'addressFormated'],10);
         add_filter( 'woocommerce_default_address_fields', [$this,'customOverrideDefaultAddress'],10);
 
-        if( get_option('wc_disabled_shop_cart','yes') == 'no') {
-            add_action('nabcofurniture_header_display_fragment',array($this,'customer_account'),20);
-        }
-        
         add_action('wp_footer',array($this,'dashboard_button_script'),10);
+
     }
 
 
@@ -41,6 +56,7 @@ class Nb_WoocommerceMyAccount {
     public function customOverrideAddressFields($args) {
 
         array_push($args['class'],"form-group");
+
         $args["input_class"] = array("form-control");
         $args["label_class"] = array("register-label");
 
@@ -49,6 +65,7 @@ class Nb_WoocommerceMyAccount {
     }
 
     public function setClassStatus($status) {
+
         if($status == 'processing') {
             return 'badge-secondary';
         }
@@ -78,13 +95,13 @@ class Nb_WoocommerceMyAccount {
             'edit-account'    	=> __( 'Account Details', 'woocommerce' ),
             'customer-logout'    => __( 'Logout', 'woocommerce' ),
         );
+
         return $menuOrder;
     }
 
 
 
     public function authPageHeader() {
-
         echo "<div class='row justify-content-center align-self-center'>";
     }
 
@@ -117,8 +134,9 @@ class Nb_WoocommerceMyAccount {
         if(!is_page('my-account')) {
             return false;
         }
-        ?>
 
+        ?>
+        
         <script>
             jQuery(document).ready(function($) {
                 console.log("navigation mobile");
