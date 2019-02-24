@@ -4,8 +4,8 @@
 $visible = get_theme_mod('nb_prodcol_visible','show');
 $title = get_theme_mod('nb_prodcol_title', '');
 $bg_color = get_theme_mod('nb_prodcol_bgcolor');
-    
-    
+
+
 if($visible == 'hide') return false;
 
 //top link
@@ -23,12 +23,12 @@ if($top['slug'] != 'none') {
 $side = array(
     'slug' => get_theme_mod('nb_prodcol_sidelink',''), 
     'imgsrc' => get_theme_mod('nb_prodcol_sideimg','') );
+
 if($side['slug'] != 'none') {
     $category = get_term_by('slug', $side['slug'],'product_cat');
     $side['permalink'] = get_category_link($category);
     $side['name'] = $category->name;
 }
-    
 
 //footer
 $footer = array(
@@ -40,13 +40,11 @@ if($footer['slug'] != 'none') {
     $footer['name'] = $category->name;
 }
     
-
-    
 //mini thumbnail 1
 $mini_thumbnails = array(
     'top_1' =>  array(
-                'slug' => get_theme_mod('nb_prodcol_thumb1link',''), 
-                'imgsrc' => get_theme_mod('nb_prodcol_thumb1img',''),
+        'slug' => get_theme_mod('nb_prodcol_thumb1link',''), 
+        'imgsrc' => get_theme_mod('nb_prodcol_thumb1img',''),
     ),
     'top_2' =>  array(
         'slug' => get_theme_mod('nb_prodcol_thumb2link',''), 
