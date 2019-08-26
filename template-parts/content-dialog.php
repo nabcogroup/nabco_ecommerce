@@ -1,4 +1,3 @@
 <?php
 
-
-echo nabcofurnitures_do_shortcode('ns-dialog');
+echo nabcofurnitures_do_shortcode('bizpack-dialog',array());

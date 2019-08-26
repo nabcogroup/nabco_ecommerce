@@ -24,7 +24,6 @@ class Nb_WoocommerceSingleProduct {
                 array('action' => 'woocommerce_template_single_meta','pos' => 7, 'func' => 'wc'),
                 array('action' => 'woocommerce_template_single_excerpt','pos' => 10, 'func' => 'wc'),
             ),
-
         );
 
         remove_action('woocommerce_single_product_summary','woocommerce_template_single_meta',40);
@@ -54,10 +53,8 @@ class Nb_WoocommerceSingleProduct {
 
 
         //check if ecommerce enabled
-        if(get_option('wc_disabled_shop_cart','yes') ) {
-
+        if(get_option('wc_disabled_shop_cart','yes')  == 'yes') {
             remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
-
         }
     }
 

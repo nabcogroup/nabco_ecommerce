@@ -32,7 +32,7 @@ abstract class Theme_Hook {
                             $pos = isset($action['pos']) ? $action['pos'] : 10;
                             $param = isset($action['param']) ? $action['param'] : 1;
                             $event = isset($action['event']) ? $action['event'] : 'add';
-    
+                            
                             add_action($tag,$action['fn'],$pos,$param);
                             break; //no need for further step
                         }

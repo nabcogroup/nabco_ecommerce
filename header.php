@@ -47,7 +47,6 @@
             <div class="container">
                 <!-- Your site title as branding in the menu -->
                 <?php 
-                    $custom_logo_id = get_theme_mod( 'custom_logo' );
                     /** 
                      * Hooked: 
                      *      nabcofurniture_get_logo - 10

@@ -52,7 +52,9 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 								<td class="product-thumbnail">
 								<?php
-								$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(array(75,75)), $cart_item, $cart_item_key );
+								$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', 
+									$_product->get_image(array(75,75)), 
+									$cart_item, $cart_item_key );
 
 								if ( ! $product_permalink ) {
 									echo wp_kses_post( $thumbnail );
@@ -92,7 +94,8 @@ do_action( 'woocommerce_before_cart' ); ?>
 								<?php
 								if ( $_product->is_sold_individually() ) {
 									$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
-								} else {
+								} 
+								else {
 									$product_quantity = woocommerce_quantity_input( array(
 										'input_name'   => "cart[{$cart_item_key}][qty]",
 										'input_value'  => $cart_item['quantity'],

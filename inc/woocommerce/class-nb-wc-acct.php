@@ -7,7 +7,7 @@ class Nb_WoocommerceMyAccount extends Theme_Hook {
         $this->actions = array(
             'woocommerce_auth_page_header'      =>  'auth_page_header',
             'woocommerce_auth_page_footer'      =>  'auth_page_footer',
-            'wp_footer'                         =>  'dashboard_button_script'
+            'wp_footer'                         =>  'dashboard_button_script',
         );
 
         $this->filters = array(
@@ -23,17 +23,17 @@ class Nb_WoocommerceMyAccount extends Theme_Hook {
         }
 
         //add wrapper to auth header
-        add_action( 'woocommerce_auth_page_header', [$this,'authPageHeader'], 10);
-        add_action('woocommerce_auth_page_footer',[$this,'authPageFooter'],10);
-        add_filter( 'woocommerce_account_menu_items', [$this,'accountMenuItemsArgs']);
-        add_filter('nb_wc_order_status_class',[$this,'setClassStatus']);
+        //add_action( 'woocommerce_auth_page_header', [$this,'authPageHeader'], 10);
+        //add_action('woocommerce_auth_page_footer',[$this,'authPageFooter'],10);
+        //add_filter( 'woocommerce_account_menu_items', [$this,'accountMenuItemsArgs']);
+        //add_filter('nb_wc_order_status_class',[$this,'setClassStatus']);
          
         // Hook in to modify checkout fields into bootstrap 
-        add_filter( 'woocommerce_form_field_args' , [$this,'customOverrideAddressFields'],10 );
-        add_filter( 'woocommerce_my_account_my_address_formatted_address', [$this,'addressFormated'],10);
-        add_filter( 'woocommerce_default_address_fields', [$this,'customOverrideDefaultAddress'],10);
+        //add_filter( 'woocommerce_form_field_args' , [$this,'customOverrideAddressFields'],10 );
+        //add_filter( 'woocommerce_my_account_my_address_formatted_address', [$this,'addressFormated'],10);
+        //add_filter( 'woocommerce_default_address_fields', [$this,'customOverrideDefaultAddress'],10);
 
-        add_action('wp_footer',array($this,'dashboard_button_script'),10);
+        //add_action('wp_footer',array($this,'dashboard_button_script'),10);
 
     }
 
@@ -78,7 +78,6 @@ class Nb_WoocommerceMyAccount extends Theme_Hook {
     }
 
     public function addressFormated($address) {
-
         return $address;
 
     }

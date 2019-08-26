@@ -32,6 +32,7 @@ get_header();
                              * @hooked woocommerce_catalog_ordering - 30
                              */
                             do_action( 'woocommerce_before_shop_loop' );
+                            
                         ?> 
 
                         <?php the_content(); ?>

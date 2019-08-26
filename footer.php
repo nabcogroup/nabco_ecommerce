@@ -25,7 +25,7 @@
           <small class="text-light align-middle p-0 m-0">&copy; All Rights Reserved 2018</small>
         </div>
         <div class="col-md-6 col-sm-12">
-          <?php echo nabcofurnitures_do_shortcode('ns-social-link',array()); ?>
+          <?php echo nabcofurnitures_do_shortcode('bizpack-social-link',array()); ?>
         </div>
       </div>
     </div>

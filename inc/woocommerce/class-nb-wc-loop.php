@@ -148,25 +148,34 @@ class Nb_WoocommerceProductLoop extends Theme_Hook {
         $navigation_html = "";
 
         if(is_tax('product_cat')) {
+            
             $cat = get_queried_object();
+            
             $children = get_terms( $cat->taxonomy, array('parent'    => $cat->term_id));
+            
             if($children && count($children) > 0) {
+                
                 $navigation_html = "<ul class='nb-shop-navigation wc-shop-category-subnav'>";
+                
                 foreach ($children as $key => $child) {
                     $navigation_html .= sprintf("<li><a href='%s'>%s</a></li>", $child->slug,$child->name);
                 }
+
                 $navigation_html .= "</ul>";
             }
         }
         
         echo $navigation_html;
-
     }
    
 
     public function wc_thumbnail_sale_flash($content,$product) {
-        $html = "<strong class='col-md-6' style='font-size:12px;padding-top:2px'><small>WAS</small> <strike>" . wc_price($product->get_regular_price()) . "</strike></strong> <strong class='col-md-6'><small>NOW</small> " .wc_price($product->get_sale_price())."</strong>";
+        
+        $html = "<strong class='col-md-6' style='font-size:12px;padding-top:2px'><small>WAS</small> <strike>" . 
+                wc_price($product->get_regular_price()) . "</strike></strong> <strong class='col-md-6'><small>NOW</small> " . 
+                wc_price($product->get_sale_price())."</strong>";
         return '<div class="sale-wrapper" style="background-color:#e50000;width:100%;padding:10px 0"><span class="onsale row">' . wp_kses_post($html) . '</span></div>';
+
     }
 
     /******************************************************
@@ -176,10 +185,13 @@ class Nb_WoocommerceProductLoop extends Theme_Hook {
     public function wc_sale_flash_setup() {
         if(get_option('wc_hide_sale_flash','yes') == 'yes' ) {
             remove_action('woocommerce_before_shop_loop_item_title','woocommerce_show_product_loop_sale_flash',10);
+            
         }
     }
 
-
+    /**
+     * Display No product found
+     */
     public function wc_no_products_found() {
         if(isset($_GET['s'])) {
             //search
@@ -194,6 +206,9 @@ class Nb_WoocommerceProductLoop extends Theme_Hook {
         }
     }
 
+    /** 
+     * Remove Price
+    *********************************/
     public function wc_remove_price() {
         if(get_option('wc_hide_price','yes') == 'yes' && !current_user_can('manage_options') ) {
             remove_action('woocommerce_after_shop_loop_item_title','woocommerce_template_loop_price',10);
